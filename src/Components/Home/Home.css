@@ -22,34 +22,13 @@
 #get-started-btn{
     padding: 1.5rem 10ch;
     border-radius: 0px;
+    font-family: "Poppins";
+    border-width: medium;
     font-size: 1.15rem;
     font-weight: 500;
     color: white;
     border-color: white;
 }
-.nav{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 25px;
-    text-decoration: none;
-    font-size: 2rem;
-    color:#004a98;
-    font-weight: 500;
-}
-.Navbar{
-    padding-right: 25px;
-    display: grid;
-    background-color: white;
-    grid-template-columns: 1fr 1fr 1fr 3fr;
-}
-.nav-login{
-    text-align: end;
-}
-.nav-home{
-    background-color: #004a98;
-    color:white
-}
-
 .about-container{
     min-height: 65vh;
     display: grid;
@@ -113,5 +92,17 @@
         grid-template-columns: 1fr;
         gap: 2ch;
         padding-left: 15%;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .cloud>path{
+        fill: #181a1b
+    }
+    .cloud2{
+        background-color:#181a1b;
+    }
+    .about-container{
+        background-color: #181a1b;
+        color: white;
     }
 }
