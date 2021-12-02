@@ -1,0 +1,117 @@
+.Home{
+    font-family: "Poppins";
+}
+.cloud{
+    background-color: #004a98;
+}
+.Home>svg{
+    display: block;
+}
+.home-container{
+    color:white;
+    min-height: 65vh;
+    background-color: #004a98;
+}
+.home-container-main{
+    padding: 2% 5%;
+}
+.about-image>img{
+    width: 100%;
+    height: auto;
+}
+#get-started-btn{
+    padding: 1.5rem 10ch;
+    border-radius: 0px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: white;
+    border-color: white;
+}
+.nav{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    text-decoration: none;
+    font-size: 2rem;
+    color:#004a98;
+    font-weight: 500;
+}
+.Navbar{
+    padding-right: 25px;
+    display: grid;
+    background-color: white;
+    grid-template-columns: 1fr 1fr 1fr 3fr;
+}
+.nav-login{
+    text-align: end;
+}
+.nav-home{
+    background-color: #004a98;
+    color:white
+}
+
+.about-container{
+    min-height: 65vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: white;
+    padding: 2% 5%;
+
+}
+.about-text{
+    font-weight: 300;
+    font-size: 2rem;
+}
+.about-text>p{
+    width: 70%;
+}
+
+.contact-container{
+    padding: 4% 5%;
+    background-color: black;
+    color: white;
+}
+.contact-card>img{
+    padding-right: 10px;
+    width:40px;
+    height: 40px;
+}
+.contact-link{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+}
+.contact-card{
+    display: flex;
+    padding: 1.2ch 4px;
+}
+.contact-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 760px){
+    .home-container{
+        min-height: 95vh;
+        text-align: center;
+    }
+    
+    #get-started-btn{
+        font-size: 0.9rem;
+    }
+    .about-container{
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
+    .about-text>p{
+        font-size: 1.5rem;
+        width: 100%;
+    }
+    .about-image{
+        width: 80%;
+    }
+    .contact-grid{
+        grid-template-columns: 1fr;
+        gap: 2ch;
+        padding-left: 15%;
+    }
+}
