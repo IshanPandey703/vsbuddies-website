@@ -28,6 +28,7 @@
     font-weight: 500;
     color: white;
     border-color: white;
+    text-transform: none;
 }
 .about-container{
     min-height: 65vh;
