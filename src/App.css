@@ -1,20 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&display=swap');
-h1{
-  font-size: 4rem;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&display=swap");
+h1 {
+	font-size: 4rem;
 }
-h3{
-  font-size: 2rem;
-  font-weight: 500;
+h3 {
+	font-size: 2rem;
+	font-weight: 500;
 }
-html{
-  scroll-behavior: smooth;
+html {
+	scroll-behavior: smooth;
 }
 
-@media (max-width: 760px){
-  h1{
-    font-size: 3rem;
-}
-h3{
-    font-size: 1.5rem;
-}
+@media (max-width: 760px) {
+	h1 {
+		font-size: 3rem;
+	}
+	h3 {
+		font-size: 1.5rem;
+	}
 }
