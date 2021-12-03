@@ -8,3 +8,9 @@
     padding-top: 5px;
     height: 100vh;
 }
+.dashboard-navbar{
+    background: white;
+}
+.dashboard-nav-left{
+    flex-grow: 1;
+}

@@ -1,18 +1,39 @@
 // import firebase from 'firebase/compat/app';
-import { Search } from "@mui/icons-material";
-import { Avatar, Button } from "@mui/material";
-import "./Dashboard.css"
-// import { useCollectionData } from 'react-firebase-hooks/firestore';
+import {
+	AppBar,
+	Avatar,
+	Button,
+	Toolbar,
+	Typography,
+} from "@mui/material";
+import "./Dashboard.css";
+import ChatIcon from '@mui/icons-material/Chat';
+import { useState } from "react";
+import Chat from "../Chat/Chat"
 function Dashboard(props) {
-	// const firestore = firebase.firestore()
-	// const messagesRef = firestore.collection("Messages")
-	// const query = messagesRef.orderBy("createdAt").limit(25)
 
-	// const [Messages] = useCollectionData(query, {idField: 'id'});
-	// {Messages && Messages.map(msg=><p key={msg.id}>{msg.message}</p>)}
+	const [curActivity,setCurActivity] = useState(0);
+
 	return (
 		<div className="Dashboard">
-			<Button onClick={props.func} variant="outlined">Sign Out</Button>
+			<AppBar position="static" className="dashboard-navbar" elevation={0} sx={{bgcolor: "#fff"}}>
+				<Toolbar>
+					<div className="dashboard-nav-left">
+						<Avatar src={props.user.photoURL} />
+					</div>
+					<Button variant="outlined" onClick={()=>{
+						setCurActivity(0)
+					}}>
+						<ChatIcon color="primary"/>
+					</Button>
+					<Button onClick={props.func} variant="outlined">
+						Sign Out
+					</Button>
+				</Toolbar>
+			</AppBar>
+
+		{curActivity===0&&<Chat uid={props.uid}/>}
+
 		</div>
 	);
 }

@@ -1,0 +1,7 @@
+.Chat{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.CurChat{
+    background-color: #004a98;
+}

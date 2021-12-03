@@ -1,22 +1,22 @@
 .Home {
 	font-family: "Poppins";
 }
-.navbar{
+.home-navbar{
 	position: static;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	padding-right: 5%;
 }
-.nav-item>a{
+.home-nav-item>a{
 	text-decoration: none;
 	color: inherit;
 }
-.nav-item{
+.home-nav-item{
 	text-align: center;
 	padding-top: 2ch;
 	padding-bottom: 2ch;
 }
-.nav-first{
+.home-nav-first{
 	padding-left: 5%;
 	background-color: #004a98;
 	color: white;
@@ -125,10 +125,10 @@
 		background-color: #181a1b;
 		color: white;
 	}
-	.navbar{
+	.home-navbar{
 		background-color: #181a1b;
 	}
-	.nav-item{
+	.home-nav-item{
 		color: white;
 	}
 }

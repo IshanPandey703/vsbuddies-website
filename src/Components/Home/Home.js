@@ -5,14 +5,14 @@ import ContactCard from "./ContactCard";
 function Home(props) {
 	return (
 		<div className="Home">
-			<div className="navbar">
-				<div className="nav-item nav-first">
+			<div className="home-navbar">
+				<div className="home-nav-item home-nav-first">
 					<a href="#home">Home</a>
 				</div>
-				<div className="nav-item" href="#about">
+				<div className="home-nav-item" href="#about">
 					<a href="#about">About</a>
 				</div>
-				<div className="nav-item" href="#contact">
+				<div className="home-nav-item" href="#contact">
 					<a href="#contact">Contact Us</a>
 				</div>
 			</div>

@@ -26,9 +26,7 @@ function App() {
 	};
 	//eslint-disable-next-line
 	const [user, loading, err] = useAuthState(auth);
-	if (err) {
-		console.log(err);
-	}
+	
 	return (
 		<div className="App">
 			{user ? <Dashboard func={signOut} user={user} /> : <Home func={signIn} />}
