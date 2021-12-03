@@ -16,7 +16,7 @@ function Dashboard(props) {
 
 	return (
 		<div className="Dashboard">
-			<AppBar position="static" className="dashboard-navbar" elevation={0} sx={{bgcolor: "#fff"}}>
+			<AppBar position="static" className="dashboard-navbar" sx={{bgcolor: "#fff"}}>
 				<Toolbar>
 					<div className="dashboard-nav-left">
 						<Avatar src={props.user.photoURL} />
@@ -32,7 +32,7 @@ function Dashboard(props) {
 				</Toolbar>
 			</AppBar>
 
-		{curActivity===0&&<Chat uid={props.uid}/>}
+		{curActivity===0&&<Chat uid={props.user.uid}/>}
 
 		</div>
 	);

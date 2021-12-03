@@ -14,3 +14,6 @@
 .dashboard-nav-left{
     flex-grow: 1;
 }
+.Dashboard{
+    min-height: 100vh;
+}

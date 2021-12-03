@@ -33,6 +33,7 @@ function Home(props) {
 						Get Started!
 					</Button>
 				</div>
+				
 			</div>
 			<svg
 				className="cloud"
