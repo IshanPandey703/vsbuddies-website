@@ -4,6 +4,8 @@
     grid-template-columns: 1fr 4fr;
 }
 .CurChat{
+    display: flex;
+    flex-direction: column;
     background-color: #004a98;
     height: 100%;
 }
@@ -17,6 +19,20 @@
         grid-template-columns: 1fr;
     }
 }
+.messages-container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.message-form{
+    align-self: flex-end;
+    height: 4.5vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 12fr 1fr;
+}
+
 @media (prefers-color-scheme : dark) {
     .Friends-List{
         background-color: #181a1b;
