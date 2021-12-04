@@ -20,7 +20,6 @@ function Chat(props) {
             if(typeof friends !== "undefined" && friends !== null){let toSet = [];
             friends.forEach(async(friend) => {
                 const doc2 = await friendsRef.doc(friend).collection("Details").doc("Details").get();
-                    console.log(doc2.data())
                     const name = await doc2.data().name;
                     const icon = await doc.data().icon;
                     toSet = [...toSet, {

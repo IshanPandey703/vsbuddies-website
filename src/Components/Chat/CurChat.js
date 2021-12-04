@@ -14,7 +14,7 @@ function CurChat(props) {
     // recipient ref -> firebase ref to the recipients Messages Collection
     const recvdquery = messagesRef.orderBy("createdAt")
     // this is a query to fetch all the messages by/to user
-    const [rcvd] = useCollectionData(recvdquery)
+    const [rcvd] = useCollectionData(recvdquery, { idField: 'id' })
     // this hook auto updates the rcvd which is an array of message objects
     const filteredrcvd = rcvd?rcvd.filter(msg=>((msg.author === props.uid && msg.to===props.curChat)||(msg.to === props.uid && msg.author === props.curChat ))):[]
     // filter through the rcvd array to find messages between the user and recipient
@@ -60,7 +60,7 @@ function CurChat(props) {
         <div className="CurChat">
             <div className="messages-container">
                 {/* Iterate through filetered messaged, applying a class of sent or recieved */}
-            {rcvd?(filteredrcvd.map(msgObject=><MessageCard sr={msgObject.author === props.uid?"sent":"recieved"}>{msgObject.message}</MessageCard>)):""}
+            {rcvd?(filteredrcvd.map(msgObject=><MessageCard key={msgObject.id} sr={msgObject.author === props.uid?"sent":"recieved"}>{msgObject.message}</MessageCard>)):""}
             </div>
             <form className="message-form" onSubmit={sendMessage}>
                 <input className="message-input" value={messageInput} onChange={messageInputChange} placeholder="Message"/>
