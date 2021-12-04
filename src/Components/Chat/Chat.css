@@ -12,3 +12,8 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+@media (max-width:768px){
+    .Chat{
+        grid-template-columns: 1fr;
+    }
+}

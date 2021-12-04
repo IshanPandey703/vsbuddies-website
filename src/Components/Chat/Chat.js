@@ -2,9 +2,10 @@ import FriendCard from "./FriendCard/FriendCard"
 import "./Chat.css"
 import { useState, useEffect } from "react";
 import firebase from "firebase/compat";
-function Chat(props) {
+import CurChat from "./CurChat";
 
-    const firestore = firebase.firestore();
+const firestore = firebase.firestore();
+function Chat(props) {
     const [Friends, setFriends] = useState([]);
     const [curChat, setCurChat] = useState("0");
     useEffect(()=>{
@@ -25,27 +26,43 @@ function Chat(props) {
                     setFriends(toSet);
             });
         })
-    }, [props.uid, firestore])
+    }, [props.uid])
+    const [width, setWidth] = useState(window.innerWidth);
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+    const isMobile = width <= 768;
 
-    // useEffect(()=>{if(curChat!=="0"){
-    //     const messageRef = firestore.collection("Messages").doc(props.uid);
-    //     const query = messageRef.where()
-    // }
+    if(isMobile){
+        return(
+            <div className="Chat">
+            <div className="Friends-List">
+                {curChat==="0"?(<div className="Friends-container">
+                    {Friends && Friends.map((fr)=>{return<FriendCard onClick={()=>{setCurChat(fr.uid)}} key={fr.uid} icon={fr.icon}>{fr.name}</FriendCard>}) }
+                </div>):(<CurChat uid={props.uid} curChat={curChat}/>)}
+            </div>
+        </div>
+        )
+    }
 
-    // },[curChat, props.uid])
-
-    return (
+    if(!isMobile){return (
         <div className="Chat">
             <div className="Friends-List">
                 <div className="Friends-container">
                     {Friends && Friends.map((fr)=>{return<FriendCard onClick={()=>{setCurChat(fr.uid)}} key={fr.uid} icon={fr.icon}>{fr.name}</FriendCard>}) }
                 </div>
             </div>
-            <div className="CurChat">
+            {curChat ==="0"?(<div className="CurChat">
                 
-            </div>
+            </div>):<CurChat uid={props.uid} curChat={curChat}/>}
         </div>
-    );
+    );}
 }
 
 export default Chat

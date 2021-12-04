@@ -9,6 +9,8 @@ import "./Dashboard.css";
 import ChatIcon from '@mui/icons-material/Chat';
 import { useState } from "react";
 import Chat from "../Chat/Chat"
+import { PersonAdd } from "@mui/icons-material";
+import Friends from "../Friends/Friends";
 function Dashboard(props) {
 
 	const [curActivity,setCurActivity] = useState(0);
@@ -21,6 +23,11 @@ function Dashboard(props) {
 						<Avatar src={props.user.photoURL} />
 					</div>
 					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
+						setCurActivity(1)
+					}}>
+						<PersonAdd color="primary"/>
+					</Button>
+					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(0)
 					}}>
 						<ChatIcon color="primary"/>
@@ -32,6 +39,7 @@ function Dashboard(props) {
 			</AppBar>
 
 		{curActivity===0&&<Chat uid={props.user.uid}/>}
+		{curActivity===1&&<Friends uid={props.user.uid}/>}
 
 		</div>
 	);
