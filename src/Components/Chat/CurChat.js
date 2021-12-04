@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 import firebase from "firebase/compat";
 import { useState, useEffect } from "react";
-const firestore = firebase.firestore();
 function CurChat(props) {
-
-    const messagesRef = firestore.collection("Users").doc(props.uid).collection("Messages");
+    // const firestore = firebase.firestore();
+    // const messagesRef = firestore.collection("Users").doc(props.uid).collection("Messages");
     const [width, setWidth] = useState(window.innerWidth);
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);

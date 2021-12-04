@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import firebase from "firebase/compat";
 import CurChat from "./CurChat";
 
-const firestore = firebase.firestore();
 function Chat(props) {
+    const firestore = firebase.firestore();
     const [Friends, setFriends] = useState([]);
     const [curChat, setCurChat] = useState("0");
     useEffect(()=>{
@@ -26,6 +26,7 @@ function Chat(props) {
                     setFriends(toSet);
             });
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.uid])
     const [width, setWidth] = useState(window.innerWidth);
     function handleWindowSizeChange() {
