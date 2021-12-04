@@ -5,29 +5,38 @@ import firebase from "firebase/compat";
 import CurChat from "./CurChat";
 
 function Chat(props) {
+    // initalise firestore
     const firestore = firebase.firestore();
+    // Friends contains the list of friends, initalises to empty array
     const [Friends, setFriends] = useState([]);
+    // curChat is the uid of the user whose chat panel is open ie the recipient of the chat messages
     const [curChat, setCurChat] = useState("0");
+    // Fetch data on component mount
     useEffect(()=>{
         const friendsRef = firestore.collection('Users');
-        friendsRef.doc(props.uid).get().then((doc)=>{
-            const friends = doc.data().friends;
-            let toSet = [];
+        friendsRef.doc(props.uid).collection("Details").doc("Details").get().then(async(doc)=>{
+            const friends = await doc.data().friends;
+            // next line handles the cases of undefined / null return types when fetching friends array from firebase
+            if(typeof friends !== "undefined" && friends !== null){let toSet = [];
             friends.forEach(async(friend) => {
-                    const doc2 = await friendsRef.doc(friend).get();
-                    const data = await doc2.data();
-                    const name = data.name;
-                    const icon = data.icon;
+                const doc2 = await friendsRef.doc(friend).collection("Details").doc("Details").get();
+                    console.log(doc2.data())
+                    const name = await doc2.data().name;
+                    const icon = await doc.data().icon;
                     toSet = [...toSet, {
                         name: name,
                         icon: icon,
                         uid: friend
                     }];
+                    // Update the friends state array
                     setFriends(toSet);
-            });
+            }
+            );}
         })
+        // Firebase is not a real dependency of this useEffect hook, so suppressed es-lint warning
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.uid])
+    // Line 40 to 50 check if the user is on a mobile device
     const [width, setWidth] = useState(window.innerWidth);
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
@@ -39,7 +48,7 @@ function Chat(props) {
         }
     }, []);
     const isMobile = width <= 768;
-
+    // For mobile only render either chat or Friends List
     if(isMobile){
         return(
             <div className="Chat">
@@ -51,7 +60,7 @@ function Chat(props) {
         </div>
         )
     }
-
+    // For Desktop / tablet load both side by side
     if(!isMobile){return (
         <div className="Chat">
             <div className="Friends-List">

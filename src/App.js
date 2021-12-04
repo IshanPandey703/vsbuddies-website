@@ -1,11 +1,10 @@
 import "./App.css";
 import Home from "./Components/Home/Home";
 import firebase from "firebase/compat/app";
-// import "firebase/compat/auth";
-// import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Dashboard from "./Components/Dashboard/Dashboard";
 
+// initialise firebase 
 firebase.initializeApp({
 	apiKey: `${process.env.REACT_APP_FIREBASE_KEY}`,
 	authDomain: `${process.env.REACT_APP_FIREBASE_AUTH_DOMAIN}`,
@@ -17,6 +16,7 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const db = firebase.firestore();
 function App() {
+	// auth with github oauth
 	const signIn = () => {
 		const provider = new firebase.auth.GithubAuthProvider();
 		auth.signInWithPopup(provider);
@@ -27,13 +27,15 @@ function App() {
 	//eslint-disable-next-line
 	const [user, loading, err] = useAuthState(auth);
 		if(user){
-		db.collection("Users").doc(user.uid)
+		// true if user is logged in
+		db.collection("Users").doc(user.uid).collection("Details").doc("Details")
 			.get()
 			.then((docSnapshot) => {
 				if (docSnapshot.exists) {
 					//user exists
 				} else {
-					db.collection("Users").doc(user.uid).set({
+					// new user
+					db.collection("Users").doc(user.uid).collection("Details").doc("Details").set({
 						uid: user.uid,
 						friends: [],
 						icon: user.photoURL,
@@ -44,8 +46,10 @@ function App() {
 	return (
 		<div className="App">
 			{user ? (
+				// Go to dashboard if signed in
 				<Dashboard func={signOut} user={user} />
 			) : (
+				// If not signed in stay on home
 				<Home func={signIn} />
 			)}
 		</div>
