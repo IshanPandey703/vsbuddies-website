@@ -25,7 +25,7 @@ function Chat(props) {
                     setFriends(toSet);
             });
         })
-    }, [props.uid])
+    }, [props.uid, firestore])
 
     // useEffect(()=>{if(curChat!=="0"){
     //     const messageRef = firestore.collection("Messages").doc(props.uid);
