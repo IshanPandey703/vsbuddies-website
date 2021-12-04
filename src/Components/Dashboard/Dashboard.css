@@ -6,7 +6,6 @@
     width: 15%;
     padding-left: 2%;
     padding-top: 5px;
-    height: 100vh;
 }
 .dashboard-navbar{
     background: white;
@@ -14,6 +13,7 @@
 .dashboard-nav-left{
     flex-grow: 1;
 }
-.Dashboard{
-    min-height: 100vh;
+
+.dashboard-nav-btn{
+    margin-right: 5px !important;
 }

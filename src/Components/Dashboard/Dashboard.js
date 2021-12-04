@@ -4,7 +4,6 @@ import {
 	Avatar,
 	Button,
 	Toolbar,
-	Typography,
 } from "@mui/material";
 import "./Dashboard.css";
 import ChatIcon from '@mui/icons-material/Chat';
@@ -21,12 +20,12 @@ function Dashboard(props) {
 					<div className="dashboard-nav-left">
 						<Avatar src={props.user.photoURL} />
 					</div>
-					<Button variant="outlined" onClick={()=>{
+					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(0)
 					}}>
 						<ChatIcon color="primary"/>
 					</Button>
-					<Button onClick={props.func} variant="outlined">
+					<Button className="dashboard-nav-btn" onClick={props.func} variant="outlined">
 						Sign Out
 					</Button>
 				</Toolbar>
