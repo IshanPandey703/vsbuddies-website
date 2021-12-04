@@ -12,8 +12,8 @@ function CurChat(props) {
     const recipientRef = firestore.collection("Users").doc(props.curChat).collection("Messages")
     // messages ref -> firebase ref to the users Messages Collection
     // recipient ref -> firebase ref to the recipients Messages Collection
-    const recvdquery = messagesRef.where("author","in",[props.uid, props.curChat])
-    // this is a query to fetch all the messages ever created by either the user or the recipient
+    const recvdquery = messagesRef.orderBy("createdAt")
+    // this is a query to fetch all the messages by/to user
     const [rcvd] = useCollectionData(recvdquery)
     // this hook auto updates the rcvd which is an array of message objects
     const filteredrcvd = rcvd?rcvd.filter(msg=>((msg.author === props.uid && msg.to===props.curChat)||(msg.to === props.uid && msg.author === props.curChat ))):[]
