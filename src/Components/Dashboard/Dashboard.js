@@ -12,12 +12,15 @@ import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
 import Friends from "../Friends/Friends";
 function Dashboard(props) {
-
+	let bgcolor = "#fff"
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		bgcolor="#181a1b"
+	}
 	const [curActivity,setCurActivity] = useState(0);
 
 	return (
 		<div className="Dashboard">
-			<AppBar position="static" className="dashboard-navbar" sx={{bgcolor: "#fff"}}>
+			<AppBar position="static" className="dashboard-navbar" sx={{bgcolor: bgcolor}}>
 				<Toolbar>
 					<div className="dashboard-nav-left">
 						<Avatar src={props.user.photoURL} />

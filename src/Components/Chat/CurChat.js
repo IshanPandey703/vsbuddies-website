@@ -2,8 +2,8 @@
 import firebase from "firebase/compat";
 import { useState, useEffect } from "react";
 function CurChat(props) {
-    // const firestore = firebase.firestore();
-    // const messagesRef = firestore.collection("Users").doc(props.uid).collection("Messages");
+    const firestore = firebase.firestore();
+    const messagesRef = firestore.collection("Users").doc(props.uid).collection("Messages");
     const [width, setWidth] = useState(window.innerWidth);
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
@@ -18,7 +18,9 @@ function CurChat(props) {
 
     return (
         <div className="CurChat">
-            
+            my:{props.uid}
+            <br/>
+            friend: {props.curChat}
         </div>
     )
 }

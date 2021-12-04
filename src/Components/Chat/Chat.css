@@ -7,7 +7,7 @@
     background-color: #004a98;
     height: 100%;
 }
-.friends-list{
+.Friends-List{
     height: calc(100vh - 64px);
     overflow-y: scroll;
     overflow-x: hidden;
@@ -15,5 +15,10 @@
 @media (max-width:768px){
     .Chat{
         grid-template-columns: 1fr;
+    }
+}
+@media (prefers-color-scheme : dark) {
+    .Friends-List{
+        background-color: #181a1b;
     }
 }
