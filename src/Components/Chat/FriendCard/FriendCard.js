@@ -4,7 +4,7 @@ export default function FriendCard(props) {
     return (
         <div className="FriendCard">
             <Button onClick={props.onClick}>
-            <Avatar src={props.icon}/>
+            <Avatar className="FriendCardAvatar" src={props.icon}/>
             {props.children}
             </Button>
         </div>
