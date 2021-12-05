@@ -63,7 +63,7 @@
 }
 @media(max-width: 768px){
     .Chat{
-        grid-template-columns: auto;
+        grid-template-columns: 100vw;
     }
 }
 @media(max-width: 600px){
