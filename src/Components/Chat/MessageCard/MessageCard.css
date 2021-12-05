@@ -1,0 +1,20 @@
+.Message-Card-Text{
+    overflow-wrap: break-word;
+    padding: 2% 4%;
+    max-width: 60%;
+    border-radius: 10px;
+    border: 5px solid #004a98;
+}
+.Message-recvd>.Message-Card-Text{
+    background-color: rgb(207, 207, 207);
+}
+.Message-sent{
+    flex-direction: row-reverse;
+}
+.Message-sent>.Message-Card-Text{
+    background-color: white;
+}
+.Message-Card{
+    display: flex;
+    align-items: center;
+}

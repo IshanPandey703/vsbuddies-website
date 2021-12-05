@@ -22,19 +22,42 @@
 .messages-container{
     flex: 1;
     display: flex;
+    padding: 1% 1%;
     flex-direction: column;
     overflow-y: scroll;
+}
+.message-input{
+    border: none;
+    border-radius: 5px 0 0 5px;
+    flex: 1;
+}
+.message-form>button{
+    border-radius: 0 5px 5px 0;
 }
 .message-form{
     align-self: flex-end;
     height: 4.5vh;
     width: 100%;
-    display: grid;
-    grid-template-columns: 12fr 1fr;
+    display: flex;
 }
 
 @media (prefers-color-scheme : dark) {
     .Friends-List{
         background-color: #181a1b;
+    }
+}
+@media(max-width: 1100px){
+    .Chat{
+        grid-template-columns: 30vw 70vw;
+    }
+}
+@media(max-width: 768px){
+    .Chat{
+        grid-template-columns: auto;
+    }
+}
+@media(max-width: 600px){
+    .Chat,.CurChat,.Friends-List{
+        height: calc(100vh - 56px);
     }
 }

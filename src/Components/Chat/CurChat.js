@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Send } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import firebase from "firebase/compat";
@@ -29,6 +28,7 @@ function CurChat(props) {
             window.removeEventListener('resize', handleWindowSizeChange);
         }
     }, []);
+    // eslint-disable-next-line no-unused-vars
     const isMobile = width <= 768;
 
     // Bind the input from chat box to messageInput State
@@ -39,7 +39,7 @@ function CurChat(props) {
     // Handles form submission ie sending message
     const sendMessage = async (e)=>{
         e.preventDefault();
-        // add message object to user's Message collection
+        if(messageInput!==""){// add message object to user's Message collection
         await messagesRef.add({
             message: messageInput,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -52,7 +52,7 @@ function CurChat(props) {
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             author: props.uid,
             to: props.curChat
-        })
+        })}
         setMessageInput("")
     }
 
@@ -60,12 +60,12 @@ function CurChat(props) {
         <div className="CurChat">
             <div className="messages-container">
                 {/* Iterate through filetered messaged, applying a class of sent or recieved */}
-            {rcvd?(filteredrcvd.map(msgObject=><MessageCard key={msgObject.id} sr={msgObject.author === props.uid?"sent":"recieved"}>{msgObject.message}</MessageCard>)):""}
+            {rcvd?(filteredrcvd.map(msgObject=><MessageCard key={msgObject.id} sr={msgObject.author === props.uid?"sent":"recieved"} uid={msgObject.author}>{msgObject.message}</MessageCard>)):""}
             </div>
             <form className="message-form" onSubmit={sendMessage}>
                 <input className="message-input" value={messageInput} onChange={messageInputChange} placeholder="Message"/>
-                <Button variant="contained" type="submit">
-                    <Send color="#fff" />
+                <Button variant="text" type="submit" sx={{background: "#fff"}}>
+                    <Send />
                 </Button>
             </form>
         </div>
