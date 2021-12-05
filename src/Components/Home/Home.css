@@ -18,11 +18,11 @@
 }
 .home-nav-first{
 	padding-left: 5%;
-	background-color: #004a98;
+	background-color: #0984e3;
 	color: white;
 }
 .cloud {
-	background-color: #004a98;
+	background-color: #0984e3;
 }
 .Home > svg {
 	display: block;
@@ -30,7 +30,7 @@
 .home-container {
 	color: white;
 	min-height: 65vh;
-	background-color: #004a98;
+	background-color: #0984e3;
 }
 .home-container-main {
 	padding: 2% 5%;
@@ -117,6 +117,15 @@
 @media (prefers-color-scheme: dark) {
 	.cloud > path {
 		fill: #181a1b;
+	}
+	.home-nav-first{
+		background-color: #004a98;
+	}
+	.cloud{
+		background-color: #004a98;
+	}
+	.home-container{
+		background-color: #004a98;
 	}
 	.cloud2 {
 		background-color: #181a1b;

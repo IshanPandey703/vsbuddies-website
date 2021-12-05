@@ -20,38 +20,36 @@ html {
 /* width */
 ::-webkit-scrollbar {
 	width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-	background: #004a98;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-	background: white;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-	background: white;
-  }
+}
 
-@media(prefers-color-scheme: dark){
-	/* width */
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-	background: #004a98;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-	background: rgb(24, 24, 24);
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-	background: rgb(24, 24, 24);
-  }
+/* Track */
+::-webkit-scrollbar-track {
+	background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #5a5a5a;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #5a5a5a;
+}
+
+@media (prefers-color-scheme: dark) {
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: rgb(24, 24, 24);
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: rgb(66, 66, 66);
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: rgb(66, 66, 66);
+	}
 }

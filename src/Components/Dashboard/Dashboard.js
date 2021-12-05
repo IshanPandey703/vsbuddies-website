@@ -21,7 +21,7 @@ function Dashboard(props) {
 		//get user icon from firestore db
 		const avatarSrcRef = firestore.collection("Users").doc(props.user.uid).collection("Details").doc("Details");
 		avatarSrcRef.get().then(async(doc)=>{
-			const temp = await doc.data().icon
+			const temp = await doc.data()
 			setAvatarSrc(temp)
 		})
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,10 +38,11 @@ function Dashboard(props) {
 
 	return (
 		<div className="Dashboard">
-			<AppBar position="static" className="dashboard-navbar" sx={{bgcolor: bgcolor}}>
+			<AppBar position="static" className="dashboard-navbar" elevation={3} sx={{bgcolor: bgcolor}}>
 				<Toolbar>
 					<div className="dashboard-nav-left">
-						<Avatar src={avatarSrc} />
+						<Avatar src={avatarSrc.icon} />
+						{avatarSrc.name}
 					</div>
 					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(1)

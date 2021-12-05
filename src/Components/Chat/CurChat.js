@@ -67,12 +67,13 @@ function CurChat(props) {
 	}
     return (
         <div className="CurChat">
-            <AppBar position="static" sx={{bgcolor: bgcolor}}>
+            <AppBar position="static" elevation={1} sx={{bgcolor: bgcolor}}>
             <Toolbar>
             {isMobile&&(
                 <Button onClick={props.back}> {"<"} </Button>
             )}
-            <Avatar src={props.friendObj.icon}/>
+            <Avatar className="chat-appbar-icon" src={props.friendObj.icon}/>
+            {props.friendObj.name}
             </Toolbar>
             </AppBar>
             <div className="messages-container">

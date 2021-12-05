@@ -1,4 +1,7 @@
 .dashboard-nav-left{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
     flex-grow: 1;
 }
 
