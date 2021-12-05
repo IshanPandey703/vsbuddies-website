@@ -33,12 +33,16 @@ function Dashboard(props) {
 		// For dark mode chagne the material ui appbar
 		bgcolor="#181a1b"
 	}
+	const color = bgcolor === "#fff"?"#1976d2":"white"
 	// Checks if user is in the Chat section or add Friends Section, initialises to 0 ie chats
 	const [curActivity,setCurActivity] = useState(0);
 
 	return (
 		<div className="Dashboard">
-			<AppBar position="static" className="dashboard-navbar" elevation={3} sx={{bgcolor: bgcolor}}>
+			<AppBar position="static" className="dashboard-navbar" elevation={3} sx={{
+				bgcolor: bgcolor,
+				color: color
+				}}>
 				<Toolbar>
 					<div className="dashboard-nav-left">
 						<Avatar src={avatarSrc.icon} />

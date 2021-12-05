@@ -6,7 +6,7 @@ import {
 	Toolbar,
 } from "@mui/material";
 import firebase from "firebase/compat";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import MessageCard from "./MessageCard/MessageCard";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 function CurChat(props) {
@@ -59,15 +59,21 @@ function CurChat(props) {
             to: props.curChat
         })}
         setMessageInput("")
+        dummy.current.scrollIntoView({behavior: 'smooth'});
     }
     let bgcolor = "#fff"
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 		// For dark mode chagne the material ui appbar
 		bgcolor="#181a1b"
 	}
+    const color = bgcolor === "#fff"?"black":"white"
+    const dummy = useRef();
     return (
         <div className="CurChat">
-            <AppBar position="static" elevation={1} sx={{bgcolor: bgcolor}}>
+            <AppBar position="static" elevation={1} sx={{
+                bgcolor: bgcolor,
+                color: color
+                }}>
             <Toolbar>
             {isMobile&&(
                 <Button onClick={props.back}> {"<"} </Button>
@@ -79,6 +85,7 @@ function CurChat(props) {
             <div className="messages-container">
                 {/* Iterate through filetered messaged, applying a class of sent or recieved */}
             {rcvd?(filteredrcvd.map(msgObject=><MessageCard key={msgObject.id} sr={msgObject.author === props.uid?"sent":"recieved"} uid={msgObject.author}>{msgObject.message}</MessageCard>)):""}
+            <span ref={dummy}></span>
             </div>
             <form className="message-form" onSubmit={sendMessage}>
                 <input className="message-input" value={messageInput} onChange={messageInputChange} placeholder="Message"/>
