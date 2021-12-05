@@ -21,7 +21,7 @@ function Chat(props) {
             friends.forEach(async(friend) => {
                 const doc2 = await friendsRef.doc(friend).collection("Details").doc("Details").get();
                     const name = await doc2.data().name;
-                    const icon = await doc.data().icon;
+                    const icon = await doc2.data().icon;
                     toSet = [...toSet, {
                         name: name,
                         icon: icon,
@@ -49,12 +49,13 @@ function Chat(props) {
     const isMobile = width <= 768;
     // For mobile only render either chat or Friends List
     if(isMobile){
+        const back = ()=>{setCurChat("0")}
         return(
             <div className="Chat">
             <div className="Friends-List">
                 {curChat==="0"?(<div className="Friends-container">
                     {Friends && Friends.map((fr)=>{return<FriendCard onClick={()=>{setCurChat(fr.uid)}} key={fr.uid} icon={fr.icon}>{fr.name}</FriendCard>}) }
-                </div>):(<CurChat uid={props.uid} curChat={curChat}/>)}
+                </div>):(<CurChat back={back} uid={props.uid} curChat={curChat} friendObj={Friends.find(fr=>fr.uid === curChat)}/>)}
             </div>
         </div>
         )
@@ -69,7 +70,7 @@ function Chat(props) {
             </div>
             {curChat ==="0"?(<div className="CurChat">
                 
-            </div>):<CurChat uid={props.uid} curChat={curChat}/>}
+            </div>):<CurChat uid={props.uid} curChat={curChat} friendObj={Friends.find(fr=>fr.uid === curChat)}/>}
         </div>
     );}
 }

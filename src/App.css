@@ -17,3 +17,41 @@ html {
 		font-size: 1.5rem;
 	}
 }
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: #004a98;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: white;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: white;
+  }
+
+@media(prefers-color-scheme: dark){
+	/* width */
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: #004a98;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: rgb(24, 24, 24);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: rgb(24, 24, 24);
+  }
+}

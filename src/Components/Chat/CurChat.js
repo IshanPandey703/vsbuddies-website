@@ -1,5 +1,10 @@
 import { Send } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import {
+	AppBar,
+	Avatar,
+    Button,
+	Toolbar,
+} from "@mui/material";
 import firebase from "firebase/compat";
 import { useState, useEffect } from "react";
 import MessageCard from "./MessageCard/MessageCard";
@@ -55,9 +60,21 @@ function CurChat(props) {
         })}
         setMessageInput("")
     }
-
+    let bgcolor = "#fff"
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		// For dark mode chagne the material ui appbar
+		bgcolor="#181a1b"
+	}
     return (
         <div className="CurChat">
+            <AppBar position="static" sx={{bgcolor: bgcolor}}>
+            <Toolbar>
+            {isMobile&&(
+                <Button onClick={props.back}> {"<"} </Button>
+            )}
+            <Avatar src={props.friendObj.icon}/>
+            </Toolbar>
+            </AppBar>
             <div className="messages-container">
                 {/* Iterate through filetered messaged, applying a class of sent or recieved */}
             {rcvd?(filteredrcvd.map(msgObject=><MessageCard key={msgObject.id} sr={msgObject.author === props.uid?"sent":"recieved"} uid={msgObject.author}>{msgObject.message}</MessageCard>)):""}

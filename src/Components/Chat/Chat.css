@@ -35,6 +35,7 @@
     border-radius: 0 5px 5px 0;
 }
 .message-form{
+    border-top: 5px solid #004a98;
     align-self: flex-end;
     height: 4.5vh;
     width: 100%;

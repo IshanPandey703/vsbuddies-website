@@ -7,13 +7,27 @@ import {
 } from "@mui/material";
 import "./Dashboard.css";
 import ChatIcon from '@mui/icons-material/Chat';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
 import Friends from "../Friends/Friends";
-
+import firebase from "firebase/compat"
 
 function Dashboard(props) {
+	//initalise firestore
+    const firestore = firebase.firestore();
+	const [avatarSrc, setAvatarSrc] = useState("")
+	useEffect(()=>{
+		//get user icon from firestore db
+		const avatarSrcRef = firestore.collection("Users").doc(props.user.uid).collection("Details").doc("Details");
+		avatarSrcRef.get().then(async(doc)=>{
+			const temp = await doc.data().icon
+			setAvatarSrc(temp)
+		})
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
+
 	let bgcolor = "#fff"
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 		// For dark mode chagne the material ui appbar
@@ -27,7 +41,7 @@ function Dashboard(props) {
 			<AppBar position="static" className="dashboard-navbar" sx={{bgcolor: bgcolor}}>
 				<Toolbar>
 					<div className="dashboard-nav-left">
-						<Avatar src={props.user.photoURL} />
+						<Avatar src={avatarSrc} />
 					</div>
 					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(1)
