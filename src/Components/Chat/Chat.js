@@ -48,7 +48,7 @@ function Chat(props) {
 		// Firebase is not a real dependency of this useEffect hook, so suppressed es-lint warning
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.uid]);
-	// Line 40 to 50 check if the user is on a mobile device
+	// Line 51 to 61 check if the user is on a mobile device
 	const [width, setWidth] = useState(window.innerWidth);
 	function handleWindowSizeChange() {
 		setWidth(window.innerWidth);

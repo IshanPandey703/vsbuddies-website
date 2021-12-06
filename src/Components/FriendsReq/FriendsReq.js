@@ -1,4 +1,4 @@
-import "./Friends.css"
+import "./FriendsReq.css"
 function Friends() {
     return (
         <div className="Friends">

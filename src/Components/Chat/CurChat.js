@@ -19,10 +19,19 @@ function CurChat(props) {
     const recvdquery = messagesRef.orderBy("createdAt")
     // this is a query to fetch all the messages by/to user
     const [rcvd] = useCollectionData(recvdquery, { idField: 'id' })
+    /* [
+        author: ___,
+        createdAt: ___,
+        message: ___,
+        to: ___,
+        id: ___
+    ]...
+    
+    */
     // this hook auto updates the rcvd which is an array of message objects
     const filteredrcvd = rcvd?rcvd.filter(msg=>((msg.author === props.uid && msg.to===props.curChat)||(msg.to === props.uid && msg.author === props.curChat ))):[]
     // filter through the rcvd array to find messages between the user and recipient
-    // line 22 to 32 check if the user is on a mobile device for future use
+    // line 34 to 44 check if the user is on a mobile device for future use
     const [width, setWidth] = useState(window.innerWidth);
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
@@ -44,7 +53,8 @@ function CurChat(props) {
     // Handles form submission ie sending message
     const sendMessage = async (e)=>{
         e.preventDefault();
-        if(messageInput!==""){// add message object to user's Message collection
+        if(messageInput!==""){
+            // add message object to user's Message collection
         await messagesRef.add({
             message: messageInput,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -84,7 +94,11 @@ function CurChat(props) {
             </AppBar>
             <div className="messages-container">
                 {/* Iterate through filetered messaged, applying a class of sent or recieved */}
-            {rcvd?(filteredrcvd.map(msgObject=><MessageCard key={msgObject.id} sr={msgObject.author === props.uid?"sent":"recieved"} uid={msgObject.author}>{msgObject.message}</MessageCard>)):""}
+            {filteredrcvd?(filteredrcvd.map(msgObject=><MessageCard
+                key={msgObject.id} sr={msgObject.author === props.uid?"sent":"recieved"} 
+                uid={msgObject.author}>
+                    {msgObject.message}
+                </MessageCard>)):""}
             <span ref={dummy}></span>
             </div>
             <form className="message-form" onSubmit={sendMessage}>
