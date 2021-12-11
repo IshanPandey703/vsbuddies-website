@@ -1,0 +1,32 @@
+.User-Card{
+    background-color: #0984e3;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    /* margin: 10% 3%; */
+    color: #fff;
+    font-size: 1.2rem;
+    width: 75%;
+    height: 45vh;
+    /* justify-content: space-evenly; */
+    text-align: center;
+    border-radius: 10px;
+    /* box-shadow: 3px 3px 3px rgb(121, 110, 110); */
+    margin-left: 12.5%;
+}
+
+
+.Card-head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+}
+
+.Spacer-small{
+    flex: 0.3;
+}
+
+.Spacer-large{
+    flex:1;
+}

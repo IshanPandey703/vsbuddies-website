@@ -1,4 +1,10 @@
-.FriendCard{
+.Options-List{
+    height: calc(100vh - 64px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.option-card{
     display: flex;
     align-items: center;
     text-align: start;
@@ -6,15 +12,21 @@
     margin-left: 5px;
     margin-right: 5px;
     font-size: 1.2rem;
-}
-.FriendCard>button{
     border-bottom: 1px solid #6b6b6b;
+}
+.option-card>button{
     border-radius: 0%;
     width: 100%;
-    padding: 7.0% 5%;
+    padding: 10% 5%;
     justify-content: start;
     overflow-wrap: break-word;
 }
-.FriendCardAvatar{
+.optionIcon{
     margin-right: 15px;
+}
+
+@media (prefers-color-scheme : dark) {
+    .Options-List{
+        background-color: #181a1b;
+    }
 }

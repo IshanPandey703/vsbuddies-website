@@ -10,7 +10,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
-import FriendsReq from "../FriendsReq/FriendsReq";
+import Friends from "../Friends/Friends";
 import firebase from "firebase/compat"
 
 function Dashboard(props) {
@@ -66,7 +66,7 @@ function Dashboard(props) {
 		{/* On currActivity 0 -> renders Chat 
 			   currActivity 1 -> renders Friends panel */}
 		{curActivity===0&&<Chat uid={props.user.uid}/>}
-		{curActivity===1&&<FriendsReq uid={props.user.uid}/>}
+		{curActivity===1&&<Friends uid={props.user.uid}/>}
 
 		</div>
 	);
