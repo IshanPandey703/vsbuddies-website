@@ -3,10 +3,10 @@ import firebase from "firebase/compat";
 import UserCard from "../UserCard/UserCard";
 import { AppBar, Toolbar } from "@mui/material";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import "./FriendsList.css";
+import "./FriendList.css";
 
 
-function FriendsList(props) {
+function FriendList(props) {
     
     const db = firebase.firestore();
     
@@ -46,4 +46,4 @@ function FriendsList(props) {
     );
 }
 
-export default FriendsList;
+export default FriendList;

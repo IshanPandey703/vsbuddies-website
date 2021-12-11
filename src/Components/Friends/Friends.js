@@ -2,7 +2,7 @@ import "./Friends.css"
 import SideBar from "./SideBar/SideBar"
 import AllUsers from "./AllUsers/AllUsers"
 import React,{useState} from "react"
-import FriendsList from "./FriendsList/FriendsList.jsx";
+import FriendList from "./FriendList/FriendList.jsx";
 
 function Friends(props) {
 
@@ -17,7 +17,7 @@ function Friends(props) {
         <div className="Friends">
             <SideBar onClick ={handleClick} />
             {curOption ===0 && <AllUsers uid = {props.uid} option="Connect with other Devs" />}
-            {curOption ===2 && <FriendsList uid = {props.uid} option="Friends" />}
+            {curOption ===2 && <FriendList uid = {props.uid} option="Friends" />}
         </div>
     )
 }
