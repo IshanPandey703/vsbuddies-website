@@ -35,6 +35,9 @@ function App() {
 					//user exists
 				} else {
 					// new user
+					db.collection("Users").doc(user.uid).set({
+						exists: true
+					})
 					db.collection("Users").doc(user.uid).collection("Details").doc("Details").set({
 						uid: user.uid,
 						friends: [],
@@ -43,6 +46,7 @@ function App() {
 					});
 				}
 			})}
+			
 	return (
 		<div className="App">
 			{user ? (
