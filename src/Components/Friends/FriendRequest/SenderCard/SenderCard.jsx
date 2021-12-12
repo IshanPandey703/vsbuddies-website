@@ -23,23 +23,29 @@ function SenderCard(props){
 
     // console.log(userDetails);
 
-    function reqAccept() {
+    async function reqAccept() {
         const sender = props.uid;
         const receiver = props.receiverUid;
-        const receiverRref = db.collection("Users").doc(receiver).collection("Details").doc("Details").friend;
-        receiverRref.update([sender]);
-        const senderRref = db.collection("Users").doc(sender).collection("Details").doc("Details").friend;
-        senderRref.update([receiver]);
+        const receiverRref = db.collection("Users").doc(receiver).collection("Details").doc("Details");
+        const senderRref = db.collection("Users").doc(sender).collection("Details").doc("Details");
+
+        // Add sender's uid in receiver's friend List
+        const addSender = await receiverRref.update({
+            friends : firebase.firestore.FieldValue.arrayUnion(sender)
+        });
+        // Add receiver's uid in sender's friend List
+        const addReceiver = await senderRref.update({
+            friends : firebase.firestore.FieldValue.arrayUnion(receiver)
+        });
     }
 
-    function reqDecline() {
-        // const sender = props.uid;
-        // const receiver = props.receiverUid;
-        // const receiverRref = db.collection("Users").doc(receiver).collection("Details").doc("Details");
-        // receiverRref.update([sender]);
-        // const senderRref = db.collection("Users").doc(sender).collection("Details").doc("Details").friend;
-        // senderRref.update([receiver]);
-        console.log("Removed");
+    async function reqDecline() {
+        const sender = props.uid;
+        const receiver = props.receiverUid;
+        const receiverRef = db.collection("Users").doc(receiver).collection("Pending Requests").doc(sender);
+
+        // delete the doc with key as Uid of sender in receiver's Pending Req Collection
+        const removeSender = await receiverRef.delete();    
     }
 
     const matchPercent = Math.floor(Math.random()*100);

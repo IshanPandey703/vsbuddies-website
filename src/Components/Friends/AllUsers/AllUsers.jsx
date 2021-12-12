@@ -37,10 +37,10 @@ export default function AllUsers(props) {
         setFilterUserId(temp);
     },[allUserId,curUserFriendsId]);
 
-    console.log(allUserId);
-    console.log(curUserFriendsId);
+    // console.log(allUserId);
+    // console.log(curUserFriendsId);
 
-    console.log(filteredUserId);
+    // console.log(filteredUserId);
 
     let bgcolor = "#fff"
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -70,7 +70,7 @@ export default function AllUsers(props) {
             <div className = "UserCard-Container">
             {(filteredUserId.length>0)&&
                 filteredUserId.map(user=><UserCard 
-                key={user} uid = {user} text="Add Friend" onClick = {AddFriend} /> )
+                key={user} uid = {user} text="Add Friend" func = {AddFriend} /> )
             }
             </div>
         </div>
