@@ -1,0 +1,19 @@
+.All-sender-list-container{
+    /* display: flex; */
+    height: calc(100vh - 64px);
+    /* overflow-y: hidden; */
+    /* justify-content: center;
+    align-items: center; */
+    background-color:#131516;
+}
+
+.Sender-card-container{
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    /* gap: 1rem; */
+    grid-row-gap: 1rem;
+    padding: 3% 5%;
+    height: calc(100vh - 128px);
+    /* flex: 90%; */
+}
