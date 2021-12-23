@@ -27,22 +27,28 @@ function App() {
 	//eslint-disable-next-line
 	const [user, loading, err] = useAuthState(auth);
 		if(user){
+			// console.log(user);
 		// true if user is logged in
-		db.collection("Users").doc(user.uid).collection("Details").doc("Details")
+		db.collection("Users").doc(user.email).collection("Details").doc("Details")
 			.get()
 			.then((docSnapshot) => {
 				if (docSnapshot.exists) {
 					//user exists
 				} else {
 					// new user
-					db.collection("Users").doc(user.uid).set({
+					db.collection("Users").doc(user.email).set({
 						exists: true
 					})
-					db.collection("Users").doc(user.uid).collection("Details").doc("Details").set({
-						uid: user.uid,
+					db.collection("Users").doc(user.email).collection("Details").doc("Details").set({
+						uid: user.email,
 						friends: [],
 						icon: user.photoURL,
 						name: user.displayName?user.displayName:"No-Name",
+						theme: "dark",
+						extensions: [],
+						interests: [],
+						topTwoLanguages: [],
+						college: "Other"
 					});
 				}
 			})}
