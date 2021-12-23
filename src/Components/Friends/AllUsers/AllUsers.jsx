@@ -9,19 +9,21 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 export default function AllUsers(props) {
     
     const db = firebase.firestore();
-    // let [userList,setUserList] = useState([]);
 
     let [allUserId,setAllUserId] = useState([]);
     let [curUserFriendsId,setCurUserFriendsId] = useState([]);
     let [filteredUserId,setFilterUserId] = useState([]);
+    let [filteredUserData,setFilterUserData] = useState([]);
 
     useEffect(()=>{
+            // fetching uid's of all users
             db.collection("Users").get().then(async (docSnapshot)=>{
                 const docs = docSnapshot.docs;
                 const temp = docs.map(userid => userid.id);
                 setAllUserId(temp);
             })
         
+            // fetching uid's of actv user's frineds
             db.collection("Users").doc(props.uid).collection("Details").doc("Details").get().then(async(curUserData) => {
                     const temp = await curUserData.data().friends;
                     setCurUserFriendsId(temp);
@@ -31,11 +33,27 @@ export default function AllUsers(props) {
     );
     
     useEffect(()=>{
+
+        // getting id of user that are not friend with actv user
         const temp = allUserId.filter(userId => {
             return !curUserFriendsId.includes(userId)&& userId!==props.uid
-        });
+        }); 
         setFilterUserId(temp);
     },[allUserId,curUserFriendsId]);
+
+    useEffect(()=>{
+        // fetching data of every user to be displayed 
+        const temp = filteredUserId.map((userId)=>{
+            let userData;
+            // fetching data of user
+            db.collection("Users").doc(userId).collection("Details").doc("Details").get().then(
+                async(docSnapshot)=>{userData = await docSnapshot.data();}
+            )
+            return userData;
+        })
+
+        console.log(temp);
+    },[filteredUserId])
 
     // console.log(allUserId);
     // console.log(curUserFriendsId);
