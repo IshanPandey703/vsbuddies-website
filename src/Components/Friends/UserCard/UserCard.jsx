@@ -1,26 +1,17 @@
-import React,{useState,useEffect} from "react";
-// import firebase from "firebase/compat";
+import {useState} from "react";
 import { Avatar, Button } from '@mui/material'
-// import { useDocumentData } from "react-firebase-hooks/firestore";
 import "./UserCard.css";
 
 
 export default function UserCard(props) {
     
-    // TODO: data fetch -> react-firebase-hooks 
-
-    // console.log(props.uid);
-    // const db = firebase.firestore();
-    // // let [userDetails,setUserDetalis] = useState({});
-    // const userRef = db.collection("Users").doc(props.uid).collection("Details").doc("Details");
-    // const [userDetails] = useDocumentData(userRef);
     // buttonText changes according to type of card 
     // if Add Friend=> buttonText changes to Request Sent
     // if Remove Friend=> Removed
     let [btnText,setBtnText] = useState(props.text);
     let[btnDisabled,setBtnDisabled] = useState(false); 
 
-    const matchPercent = Math.floor(Math.random()*100);
+    const matchPercent = props.matchPercent;
     return (
         <div>
             <div className="User-Card">

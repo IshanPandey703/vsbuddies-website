@@ -35,9 +35,20 @@ export default function AllUsers(props) {
                 }
                 details = [...details, temp];
             }))
-            // console.log(details);
+            
             setActvUserDetails(actvUserData)
+            
             // Sorting details acc. to matchPercent with Actv user in Dec. order
+            details.sort((a,b)=>{ 
+                if(a.matchPercent>b.matchPercent){
+                    return -1;
+                }
+                if(b.matchPercent>a.matchPercent){
+                    return 1;
+                }
+                return 0;
+            })
+            
             setEveryUserDetails(details)
     },[]);
     let bgcolor = "#fff"
@@ -68,7 +79,7 @@ export default function AllUsers(props) {
             {(everyUserDetails.length!=0) && everyUserDetails.map((user)=>
                 (!actvUserDetails.friends.includes(user.uid)&&user.uid!=props.uid) && 
                 <UserCard key={user.uid} name = {user.name} 
-                icon = {user.icon}  text="Add Friend" func = {AddFriend} />
+                icon = {user.icon} matchPercent={user.matchPercent} text="Add Friend" func = {AddFriend} />
             )
             }
             </div>
