@@ -56,7 +56,6 @@ function SenderCard(props){
     const matchPercent = props.matchPercent;
     return (
         <div>
-            {senderDetails!=={}&&(
                 <div className="Sender-Card">
                     <div className="Spacer-small"></div>
                     <div className="Card-head">
@@ -80,7 +79,6 @@ function SenderCard(props){
                         </ButtonGroup>
                     </div>
                 </div>
-            )}
         </div> 
     );
     
