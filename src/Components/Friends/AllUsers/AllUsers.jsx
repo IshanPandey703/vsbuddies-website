@@ -4,62 +4,53 @@ import "./AllUsers.css";
 import UserCard from "../UserCard/UserCard";
 import {AppBar,Toolbar} from "@mui/material";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import MatchCalculator from "../MatchCalculator/MatchCalculator";
 
 
 export default function AllUsers(props) {
     
     const db = firebase.firestore();
 
-    let [allUserId,setAllUserId] = useState([]);
-    let [curUserFriendsId,setCurUserFriendsId] = useState([]);
-    let [filteredUserId,setFilterUserId] = useState([]);
-    let [filteredUserData,setFilterUserData] = useState([]);
+    const [everyUserDetails,setEveryUserDetails] = useState([]);
+    const [actvUserDetails,setActvUserDetails] = useState([]);
 
-    useEffect(()=>{
-            // fetching uid's of all users
-            db.collection("Users").get().then(async (docSnapshot)=>{
-                const docs = docSnapshot.docs;
-                const temp = docs.map(userid => userid.id);
-                setAllUserId(temp);
-            })
-        
-            // fetching uid's of actv user's frineds
-            db.collection("Users").doc(props.uid).collection("Details").doc("Details").get().then(async(curUserData) => {
-                    const temp = await curUserData.data().friends;
-                    setCurUserFriendsId(temp);
+    useEffect(async ()=>{
+            let details = [];
+            
+            // fetching uid's of actv user's friends
+            const actvUserRef = await db.collection("Users").doc(props.uid).collection("Details").doc("Details").get()
+            const actvUserData = actvUserRef.data();
+            
+            // fetching uid of every user
+            const docSnapshot = await db.collection("Users").get();
+            const docs =  docSnapshot.docs;
+            
+            // fetching details of every user 
+            await Promise.all(docs.map(async(user)=>{
+                const doc = await db.collection("Users").doc(user.id).collection("Details").doc("Details").get();
+                let temp = doc.data();
+                temp = {
+                    ...temp,
+                    matchPercent: MatchCalculator(actvUserData,temp)
                 }
-            );
-        },[]
-    );
-    
-    useEffect(()=>{
+                details = [...details, temp];
+            }))
+            
+            setActvUserDetails(actvUserData)
+            
+            // Sorting details acc. to matchPercent with Actv user in Dec. order
+            details.sort((a,b)=>{ 
+                if(a.matchPercent>b.matchPercent){
+                    return -1;
+                }
+                if(b.matchPercent>a.matchPercent){
+                    return 1;
+                }
+                return 0;
+            })
 
-        // getting id of user that are not friend with actv user
-        const temp = allUserId.filter(userId => {
-            return !curUserFriendsId.includes(userId)&& userId!==props.uid
-        }); 
-        setFilterUserId(temp);
-    },[allUserId,curUserFriendsId]);
-
-    useEffect(()=>{
-        // fetching data of every user to be displayed 
-        const temp = filteredUserId.map((userId)=>{
-            let userData;
-            // fetching data of user
-            db.collection("Users").doc(userId).collection("Details").doc("Details").get().then(
-                async(docSnapshot)=>{userData = await docSnapshot.data();}
-            )
-            return userData;
-        })
-
-        console.log(temp);
-    },[filteredUserId])
-
-    // console.log(allUserId);
-    // console.log(curUserFriendsId);
-
-    // console.log(filteredUserId);
-
+            setEveryUserDetails(details)
+    },[]);
     let bgcolor = "#fff"
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 		// For dark mode chagne the material ui appbar
@@ -73,7 +64,6 @@ export default function AllUsers(props) {
         });
     }
 
-    
     return(
         <div className = "All-User-List-Container">
         <AppBar position="static" elevation={1} sx={{
@@ -86,9 +76,11 @@ export default function AllUsers(props) {
             </Toolbar>
         </AppBar>
             <div className = "UserCard-Container">
-            {(filteredUserId.length>0)&&
-                filteredUserId.map(user=><UserCard 
-                key={user} uid = {user} text="Add Friend" func = {AddFriend} /> )
+            {(everyUserDetails.length!=0) && everyUserDetails.map((user)=>
+                (!actvUserDetails.friends.includes(user.uid)&&user.uid!=props.uid) && 
+                <UserCard key={user.uid} uid={user.uid} name = {user.name} 
+                icon = {user.icon} matchPercent={user.matchPercent} text="Add Friend" func = {AddFriend} />
+            )
             }
             </div>
         </div>

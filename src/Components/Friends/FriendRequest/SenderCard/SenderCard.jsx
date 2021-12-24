@@ -10,16 +10,16 @@ function SenderCard(props){
     const db = firebase.firestore();
     
     // senderDetails contains details of sender of friend request
-    let [senderDetails,setSenderDetalis] = useState({});
+    // let [senderDetails,setSenderDetalis] = useState({});
 
 
-    useEffect(()=>{
-        db.collection("Users").doc(props.uid).collection("Details").doc("Details").get().then(async(senderData)=>{
-            const temp = senderData.data();
-            setSenderDetalis(temp);
-        }
-        )// eslint-disable-next-line
-    },[]);
+    // useEffect(()=>{
+    //     db.collection("Users").doc(props.uid).collection("Details").doc("Details").get().then(async(senderData)=>{
+    //         const temp = senderData.data();
+    //         setSenderDetalis(temp);
+    //     }
+    //     )// eslint-disable-next-line
+    // },[]);
 
     // console.log(userDetails);
 
@@ -33,10 +33,15 @@ function SenderCard(props){
         const addSender = await receiverRref.update({
             friends : firebase.firestore.FieldValue.arrayUnion(sender)
         });
+
         // Add receiver's uid in sender's friend List
         const addReceiver = await senderRref.update({
             friends : firebase.firestore.FieldValue.arrayUnion(receiver)
         });
+
+        // delete the doc with key as Uid of sender in receiver's Pending Req Collection
+        const removeSender = await db.collection("Users").doc(receiver).collection("Pending Requests")
+                            .doc(sender).delete();
     }
 
     async function reqDecline() {
@@ -48,16 +53,15 @@ function SenderCard(props){
         const removeSender = await receiverRef.delete();    
     }
 
-    const matchPercent = Math.floor(Math.random()*100);
+    const matchPercent = props.matchPercent;
     return (
         <div>
-            {senderDetails!=={}&&(
                 <div className="Sender-Card">
                     <div className="Spacer-small"></div>
                     <div className="Card-head">
-                        <Avatar sx={{width:60, height:60}} className="Display-Card-Avatar" src={senderDetails.icon} />
+                        <Avatar sx={{width:60, height:60}} className="Display-Card-Avatar" src={props.icon} />
                         <p>
-                            {senderDetails.name}
+                            {props.name}
                         </p>
                     </div>
                     <p>
@@ -75,7 +79,6 @@ function SenderCard(props){
                         </ButtonGroup>
                     </div>
                 </div>
-            )}
         </div> 
     );
     
