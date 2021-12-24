@@ -3,6 +3,7 @@ import firebase from "firebase/compat";
 import UserCard from "../UserCard/UserCard";
 import { AppBar, Toolbar } from "@mui/material";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import MatchCalculator from "../MatchCalculator/MatchCalculator";
 import "./FriendList.css";
 
 
@@ -10,13 +11,28 @@ function FriendList(props) {
     
     const db = firebase.firestore();
     
-    const [friendIdList,setFriendIdList] = useState([]);
+    const [friendsDetails,setFriendsDetails] = useState([]);
     
-    useEffect(()=>{
-        db.collection("Users").doc(props.uid).collection("Details").doc("Details").get().then(async(doc)=>{
-            const temp = await doc.data().friends;
-            setFriendIdList(temp);
-        })
+    useEffect(async ()=>{
+        // Fetching Details of actv user 
+        const docSnapshot = await db.collection("Users").doc(props.uid).collection("Details").doc("Details").get()
+        const actvuserDetails = docSnapshot.data();
+        
+        // Fetching details of actv user's friends 
+        const friendUids = actvuserDetails.friends;
+        // console.log(friendUids);
+        const friendsData = [];
+        await Promise.all(friendUids.map(async(friendUid)=>{
+            const docSnapshot = await db.collection("Users").doc(friendUid).collection("Details").doc("Details").get();
+            let friendDetails = docSnapshot.data();
+            console.log(friendDetails);
+            friendDetails = {
+                ...friendDetails,
+                matchPercent: MatchCalculator(actvuserDetails,friendDetails)
+            }
+            friendsData.push(friendDetails);
+        }))
+        setFriendsDetails(friendsData);
     // eslint-disable-next-line
     },[]
     );
@@ -28,19 +44,17 @@ function FriendList(props) {
 	}
     const color = bgcolor === "#fff"?"black":"white"
 
-    async function RemoveFriend(friend){
+    function RemoveFriend(friend){
         const userRef = db.collection("Users").doc(props.uid).collection("Details").doc("Details");
         const friendRef = db.collection("Users").doc(friend).collection("Details").doc("Details");
 
-        console.log(friend);
-
         // Remove friend's Uid from user's friend list
-        const removeFriend = userRef.update({
+        userRef.update({
             friends: firebase.firestore.FieldValue.arrayRemove(friend)
         })
 
         // Remove user's Uid from Friend's friend list
-        const removeUser = friendRef.update({
+        friendRef.update({
             friends: firebase.firestore.FieldValue.arrayRemove(props.uid)
         })
     }
@@ -57,8 +71,9 @@ function FriendList(props) {
                 </Toolbar>
                 </AppBar>
                 <div className="Friends-card-container">
-                    {(friendIdList.length > 0) && friendIdList.map(friend=> <UserCard 
-                    key={friend} uid = {friend} text = "Remove Friend" func = {RemoveFriend}/>)}
+                    {(friendsDetails.length > 0) && friendsDetails.map(friend=> <UserCard 
+                    key={friend} uid={friend.uid} name={friend.name} icon={friend.icon} 
+                    matchPercent={friend.matchPercent} text = "Remove Friend" func = {RemoveFriend}/>)}
                 </div>
         </div>
     );

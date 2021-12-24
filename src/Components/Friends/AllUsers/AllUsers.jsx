@@ -48,7 +48,7 @@ export default function AllUsers(props) {
                 }
                 return 0;
             })
-            
+
             setEveryUserDetails(details)
     },[]);
     let bgcolor = "#fff"
@@ -78,7 +78,7 @@ export default function AllUsers(props) {
             <div className = "UserCard-Container">
             {(everyUserDetails.length!=0) && everyUserDetails.map((user)=>
                 (!actvUserDetails.friends.includes(user.uid)&&user.uid!=props.uid) && 
-                <UserCard key={user.uid} name = {user.name} 
+                <UserCard key={user.uid} uid={user.uid} name = {user.name} 
                 icon = {user.icon} matchPercent={user.matchPercent} text="Add Friend" func = {AddFriend} />
             )
             }
