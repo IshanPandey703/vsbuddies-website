@@ -19,7 +19,7 @@ function Dashboard(props) {
 	const [avatarSrc, setAvatarSrc] = useState("")
 	useEffect(()=>{
 		//get user icon from firestore db
-		const avatarSrcRef = firestore.collection("Users").doc(props.user.uid).collection("Details").doc("Details");
+		const avatarSrcRef = firestore.collection("Users").doc(props.user.email).collection("Details").doc("Details");
 		avatarSrcRef.get().then(async(doc)=>{
 			const temp = await doc.data()
 			setAvatarSrc(temp)
@@ -65,8 +65,8 @@ function Dashboard(props) {
 			</AppBar>
 		{/* On currActivity 0 -> renders Chat 
 			   currActivity 1 -> renders Friends panel */}
-		{curActivity===0&&<Chat uid={props.user.uid}/>}
-		{curActivity===1&&<Friends uid={props.user.uid}/>}
+		{curActivity===0&&<Chat uid={props.user.email}/>}
+		{curActivity===1&&<Friends uid={props.user.email}/>}
 
 		</div>
 	);
