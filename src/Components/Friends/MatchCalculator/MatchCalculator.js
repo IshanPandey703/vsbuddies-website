@@ -1,5 +1,5 @@
 
-function MatchCalculator(person1,person2) {
+export default function MatchCalculator(person1,person2) {
     
     // get common interests
     let sameInterests = 0; 
@@ -24,24 +24,32 @@ function MatchCalculator(person1,person2) {
     
     // top two languages match
     let topTwoLanguagesMatch = 0;
-    if(person1.topTwoLanguages.includes(person1.topTwoLanguages[0])) topTwoLanguagesMatch+=.5;
-    if(person1.topTwoLanguages.includes(person1.topTwoLanguages[1])) topTwoLanguagesMatch+=.5;
+    if(person1.topTwoLanguages.includes(person2.topTwoLanguages[0])) topTwoLanguagesMatch+=.5;
+    if(person1.topTwoLanguages.includes(person2.topTwoLanguages[1])) topTwoLanguagesMatch+=.5;
     
     // college match
     const collegeMatch = person1.college===person2.college?1:0;
-
-    console.log(interestMatchPerson1,interestMatchPerson2,extensionMatchPerson1,
-        extensionMatchPerson2,themeMatch,collegeMatch);
 
     const matchPercentPerson1 = ((interestMatchPerson1*4 + extensionMatchPerson1*2 + (collegeMatch)+ (themeMatch)
                                 +topTwoLanguagesMatch*2)*10).toFixed(2);
     const matchPercentPerson2 = ((interestMatchPerson2*4 + extensionMatchPerson2*2 + collegeMatch+ themeMatch
                                 +topTwoLanguagesMatch*2)*10).toFixed(2);
-    console.log(matchPercentPerson1,matchPercentPerson2);
+    return matchPercentPerson1 
 }
 
-MatchCalculator(ishan,lohit);
+// MatchCalculator(ishan,lohit);
 
 // 50 30 10 10
 
+// matchPercent={user.matchPercent}
+
+// details.sort((a,b)=>{ 
+//     if(a.matchPercent>b.matchPercent){
+//         return -1;
+//     }
+//     if(b.matchPercent>a.matchPercent){
+//         return 1;
+//     }
+//     return 0;
+// })
 
