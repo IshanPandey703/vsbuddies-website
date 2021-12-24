@@ -4,22 +4,52 @@ import {AppBar,Toolbar} from "@mui/material";
 import SenderCard from "./SenderCard/SenderCard";
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import "./FriendRequest.css";
+import MatchCalculator from "../MatchCalculator/MatchCalculator";
 
 function FriendRequest(props) {
     const db = firebase.firestore();
 
-    // senderIdList contains uid of every user that sent req to Logged in user
-    const [senderIdList,setSenderIdList] = useState([]);
+    // senderDetails contains details of every user that sent req to actv user
+    const [senderDetails,setSenderDetails] = useState([]);
     
-    useEffect(()=>{
+    useEffect(async()=>{
         
-        const senderListRef = db.collection("Users").doc(props.uid).collection("Pending Requests");
-        
-        senderListRef.get().then(async(doc)=>{
-            const docs = doc.docs;
-            const temp = docs.map(senderId => senderId.id);
-            setSenderIdList(temp);
+        const temp = await db.collection("Users").doc(props.uid).collection("Details").doc("Details").get();
+        const actvUserDetails = temp.data();
+
+        const docSnapshot = await db.collection("Users").doc(props.uid).collection("Pending Requests").get();
+        // Uids of sender
+        const senderUids = docSnapshot.docs;
+        const senderData = [];
+
+        // fetching details of sender
+        await Promise.all(senderUids.map(async(sender)=>{
+            const docSnapshot = db.collection("Users").doc(sender).collection("Details").doc("Details").get();
+            let details = docSnapshot.data();
+            details = {
+                ...details,
+                matchPercent: MatchCalculator(actvUserDetails,details)
+            }
+        }))
+
+        // Sorting senderData acc. to matchPercent with Actv user in Dec. order
+        senderData.sort((a,b)=>{ 
+            if(a.matchPercent>b.matchPercent){
+                return -1;
+            }
+            if(b.matchPercent>a.matchPercent){
+                return 1;
+            }
+            return 0;
         })
+
+        setSenderDetails(senderData);
+        // docSnapshot.then(async(doc)=>{
+        //     const docs = doc.docs;
+        //     const temp = docs.map(senderId => senderId.id);
+        //     setSenderIdList(temp);
+        // })
+        // eslint-disable-next-line
     },[])
 
     let bgcolor = "#fff"
@@ -41,8 +71,10 @@ function FriendRequest(props) {
                 </Toolbar>
             </AppBar>
             <div className="Sender-card-container">
-                {(senderIdList.length > 0) && 
-                    senderIdList.map(senderId=> <SenderCard key={senderId} uid = {senderId} receiverUid = {props.uid} />)
+                {(senderDetails.length > 0) && 
+                    senderDetails.map(sender=> 
+                    <SenderCard key={sender.uid} uid = {sender.uid} receiverUid = {props.uid} 
+                    name={sender.name} matchPercent={sender.matchPercent} icon= {sender.icon} />)
                 }
             </div>
         </div>
