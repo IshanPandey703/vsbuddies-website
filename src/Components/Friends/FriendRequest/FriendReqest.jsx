@@ -24,12 +24,13 @@ function FriendRequest(props) {
 
         // fetching details of sender
         await Promise.all(senderUids.map(async(sender)=>{
-            const docSnapshot = db.collection("Users").doc(sender).collection("Details").doc("Details").get();
+            const docSnapshot = await db.collection("Users").doc(sender.id).collection("Details").doc("Details").get();
             let details = docSnapshot.data();
             details = {
                 ...details,
                 matchPercent: MatchCalculator(actvUserDetails,details)
             }
+            senderData.push(details);
         }))
 
         // Sorting senderData acc. to matchPercent with Actv user in Dec. order
@@ -44,11 +45,6 @@ function FriendRequest(props) {
         })
 
         setSenderDetails(senderData);
-        // docSnapshot.then(async(doc)=>{
-        //     const docs = doc.docs;
-        //     const temp = docs.map(senderId => senderId.id);
-        //     setSenderIdList(temp);
-        // })
         // eslint-disable-next-line
     },[])
 
