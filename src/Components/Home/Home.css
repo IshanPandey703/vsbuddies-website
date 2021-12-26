@@ -15,6 +15,7 @@
 	text-align: center;
 	padding-top: 2ch;
 	padding-bottom: 2ch;
+	font-size: 20px;
 }
 .home-nav-first{
 	padding-left: 5%;
@@ -31,9 +32,21 @@
 	color: white;
 	min-height: 65vh;
 	background-color: #0984e3;
+	display: flex;
 }
 .home-container-main {
 	padding: 2% 5%;
+	width: 30%;
+}
+.home-left{
+  flex: 1;
+}
+.home-right{
+  flex: 1;
+}
+.img{
+	height: 700px;
+	width: 1000px;
 }
 .about-image > img {
 	width: 100%;
@@ -82,7 +95,7 @@
 }
 .contact-card {
 	display: flex;
-	padding: 1.2ch 4px;
+	padding: 1.5ch 50px;
 }
 .contact-grid {
 	display: grid;
@@ -92,8 +105,16 @@
 	.home-container {
 		min-height: 75vh;
 		text-align: center;
+		display: flex;
+		flex-direction: column;
 	}
-
+	.home-container-main{
+		width: 90%;
+	}
+	.img{
+		height: 250px;
+		width: 370px;
+	}
 	#get-started-btn {
 		font-size: 0.9rem;
 	}
