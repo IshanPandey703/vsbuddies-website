@@ -1,6 +1,7 @@
 import {useState} from "react";
 import { Avatar, Button } from '@mui/material'
 import "./UserCard.css";
+import { color } from "@mui/system";
 
 
 export default function UserCard(props) {
@@ -36,7 +37,7 @@ export default function UserCard(props) {
                     }
                     setBtnText(txt);
                     setBtnDisabled(true);
-                }} sx={{color:"#0984e3", backgroundColor:"black", justifySelf:"flex-end"}} 
+                }} sx={{color:"orange", backgroundColor:"black", justifySelf:"flex-end"}} 
                 variant ="outlined" disabled = {btnDisabled} >{btnText}</Button>
             </div>
         </div> 

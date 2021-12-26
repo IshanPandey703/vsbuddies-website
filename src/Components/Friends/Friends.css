@@ -2,4 +2,10 @@
     height: calc(100vh - 64px);
     display: grid;
     grid-template-columns: 1fr 4fr;
+    font-size: 25px;
+}
+
+.MuiToolbar-root{
+    margin-top: 5px;
+    background-color: #181717;
 }

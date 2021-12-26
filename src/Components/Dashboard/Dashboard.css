@@ -3,9 +3,15 @@
     align-items: center;
     flex-direction: row;
     flex-grow: 1;
+    font-size: 25px;
+    text-transform: uppercase;
 }
 
 .dashboard-nav-btn{
     margin-right: 5px !important;
+    height: 50px;
 }
 
+.dashboard-nav-left{
+    height: 80px;
+}
