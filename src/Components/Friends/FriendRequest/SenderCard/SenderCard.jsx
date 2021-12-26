@@ -2,26 +2,11 @@ import { Button, ButtonGroup, Avatar } from "@mui/material";
 import  firebase  from "firebase/compat";
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
-import { useState, useEffect } from "react";
 import "./SenderCard.css";
 
 function SenderCard(props){
 
     const db = firebase.firestore();
-    
-    // senderDetails contains details of sender of friend request
-    // let [senderDetails,setSenderDetalis] = useState({});
-
-
-    // useEffect(()=>{
-    //     db.collection("Users").doc(props.uid).collection("Details").doc("Details").get().then(async(senderData)=>{
-    //         const temp = senderData.data();
-    //         setSenderDetalis(temp);
-    //     }
-    //     )// eslint-disable-next-line
-    // },[]);
-
-    // console.log(userDetails);
 
     async function reqAccept() {
         const sender = props.uid;
