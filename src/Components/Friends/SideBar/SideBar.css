@@ -1,7 +1,12 @@
+body{
+    background-color: #181a1b;
+}
 .Options-List{
     height: calc(100vh - 64px);
     overflow-y: scroll;
     overflow-x: hidden;
+    margin-top: 10px;
+    background-color: #181a1b;
 }
 
 .option-card{
@@ -9,15 +14,18 @@
     align-items: center;
     text-align: start;
     border-top: none;
+    margin-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
+    margin-bottom: 20px;
     font-size: 1.2rem;
-    border-bottom: 1px solid #6b6b6b;
+    border-bottom: 3px solid #726f6f;
 }
 .option-card>button{
     border-radius: 0%;
     width: 100%;
     padding: 10% 5%;
+    font-size: 1.23rem;
     justify-content: start;
     overflow-wrap: break-word;
 }
@@ -27,6 +35,6 @@
 
 @media (prefers-color-scheme : dark) {
     .Options-List{
-        background-color: #181a1b;
+        background-color: #292b2c;
     }
 }

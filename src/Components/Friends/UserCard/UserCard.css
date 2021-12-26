@@ -1,16 +1,16 @@
 .User-Card{
-    background-color: #0984e3;
+    background-color: #10abc7;
     display: flex;
     flex-direction: column;
     padding: 2%;
     /* margin: 10% 3%; */
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     width: 75%;
     height: 45vh;
     /* justify-content: space-evenly; */
     text-align: center;
-    border-radius: 10px;
+    border-radius: 8px;
     /* box-shadow: 3px 3px 3px rgb(121, 110, 110); */
     margin-left: 12.5%;
 }
@@ -29,4 +29,8 @@
 
 .Spacer-large{
     flex:1;
+}
+
+button{
+    height: 55px;
 }

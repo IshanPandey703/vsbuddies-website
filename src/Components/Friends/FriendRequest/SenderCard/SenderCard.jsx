@@ -1,14 +1,14 @@
 import { Button, ButtonGroup, Avatar } from "@mui/material";
-import  firebase  from "firebase/compat";
+import firebase from "firebase/compat";
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useState, useEffect } from "react";
 import "./SenderCard.css";
 
-function SenderCard(props){
+function SenderCard(props) {
 
     const db = firebase.firestore();
-    
+
     // senderDetails contains details of sender of friend request
     // let [senderDetails,setSenderDetalis] = useState({});
 
@@ -31,17 +31,17 @@ function SenderCard(props){
 
         // Add sender's uid in receiver's friend List
         const addSender = await receiverRref.update({
-            friends : firebase.firestore.FieldValue.arrayUnion(sender)
+            friends: firebase.firestore.FieldValue.arrayUnion(sender)
         });
 
         // Add receiver's uid in sender's friend List
         const addReceiver = await senderRref.update({
-            friends : firebase.firestore.FieldValue.arrayUnion(receiver)
+            friends: firebase.firestore.FieldValue.arrayUnion(receiver)
         });
 
         // delete the doc with key as Uid of sender in receiver's Pending Req Collection
         const removeSender = await db.collection("Users").doc(receiver).collection("Pending Requests")
-                            .doc(sender).delete();
+            .doc(sender).delete();
     }
 
     async function reqDecline() {
@@ -50,7 +50,7 @@ function SenderCard(props){
         const receiverRef = db.collection("Users").doc(receiver).collection("Pending Requests").doc(sender);
 
         // delete the doc with key as Uid of sender in receiver's Pending Req Collection
-        const removeSender = await receiverRef.delete();    
+        const removeSender = await receiverRef.delete();
     }
 
     const matchPercent = props.matchPercent;
@@ -81,8 +81,8 @@ function SenderCard(props){
                 </div>
         </div> 
     );
-    
-    
+
+
 }
 
 export default SenderCard;
