@@ -56,8 +56,7 @@ function SenderCard(props){
     const matchPercent = props.matchPercent;
     return (
         <div>
-            {senderDetails!=={}&&(
-                <div className="Sender-Card">
+            <div className="Sender-Card">
                     <div className="Spacer-small"></div>
                     <div className="Card-head">
                         <Avatar sx={{width:60, height:60}} className="Display-Card-Avatar" src={props.icon} />
@@ -80,7 +79,6 @@ function SenderCard(props){
                         </ButtonGroup>
                     </div>
                 </div>
-            )}
         </div> 
     );
     

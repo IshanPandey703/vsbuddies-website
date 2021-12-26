@@ -1,6 +1,7 @@
 import Button from "@mui/material/Button";
 import "./Home.css";
 import about from "../../Media/about.png";
+import home from "../../Media/home.png";
 import ContactCard from "./ContactCard";
 function Home(props) {
 	return (
@@ -18,22 +19,28 @@ function Home(props) {
 			</div>
 			<div id="home" className="home-container">
 				<div className="home-container-main">
-					<h1>VSBuddies</h1>
-					<h3>
-						A Simple way to meet
-						<br />
-						new friends. Let's scream at
-						<br />
-						our screens together!
-					</h3>
-					<Button
-						id="get-started-btn"
-						variant="outlined"
-						onClick={props.func}>
-						Get Started!
-					</Button>
+					<div className="home-left">
+						<h1 className="home-title">VSBuddies</h1>
+						<h3 className="home-descp">
+							A Simple way to meet
+							<br />
+							new friends. Let's scream at
+							<br />
+							our screens together!
+						</h3>
+						<Button
+							id="get-started-btn"
+							variant="outlined"
+							onClick={props.func}>
+							Get Started!
+						</Button>
+					</div>
 				</div>
-				
+				<div className="home-right">
+					<div className="home-image">
+						<img src={home} alt="" className="img" />
+					</div>
+				</div>
 			</div>
 			<svg
 				className="cloud"
@@ -100,7 +107,7 @@ function Home(props) {
 						Ankur Pandey
 					</ContactCard>
 				</div>
-				<p>© 2021 VSBuddies</p>
+				<p className="contact-p">© 2021 VSBuddies</p>
 			</div>
 		</div>
 	);
