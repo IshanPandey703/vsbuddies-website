@@ -56,31 +56,30 @@ function SenderCard(props) {
     const matchPercent = props.matchPercent;
     return (
         <div>
-            {senderDetails !== {} && (
-                <div className="Sender-Card">
-                    <div className="Spacer-small"></div>
-                    <div className="Card-head">
-                        <Avatar sx={{ width: 60, height: 60 }} className="Display-Card-Avatar" src={props.icon} />
-                        <p>
-                            {props.name}
-                        </p>
-                    </div>
+            <div className="Sender-Card">
+                <div className="Spacer-small"></div>
+                <div className="Card-head">
+                    <Avatar sx={{ width: 60, height: 60 }} className="Display-Card-Avatar" src={props.icon} />
                     <p>
-                        {"Match Percent: " + matchPercent + "%"}
+                        {props.name}
                     </p>
-                    <div className="Spacer-large"></div>
-                    <div className="button-container">
-                        <ButtonGroup size="large">
-                            <Button onClick={reqAccept}
-                                sx={{ color: "#0984e3", backgroundColor: "black", justifySelf: "flex-end" }}
-                                variant="outlined"> <DoneIcon /> </Button>
-                            <Button onClick={reqDecline}
-                                sx={{ color: "#0984e3", backgroundColor: "black", justifySelf: "flex-end" }}
-                                variant="outlined"> <ClearIcon /> </Button>
-                        </ButtonGroup>
-                    </div>
                 </div>
-            )} </div>
+                <p>
+                    {"Match Percent: " + matchPercent + "%"}
+                </p>
+                <div className="Spacer-large"></div>
+                <div className="button-container">
+                    <ButtonGroup size="large">
+                        <Button onClick={reqAccept}
+                            sx={{ color: "#0984e3", backgroundColor: "black", justifySelf: "flex-end" }}
+                            variant="outlined"> <DoneIcon /> </Button>
+                        <Button onClick={reqDecline}
+                            sx={{ color: "#0984e3", backgroundColor: "black", justifySelf: "flex-end" }}
+                            variant="outlined"> <ClearIcon /> </Button>
+                    </ButtonGroup>
+                </div>
+            </div>
+        </div>
     );
 
 
