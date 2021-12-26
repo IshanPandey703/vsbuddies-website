@@ -101,9 +101,6 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 }
-.contact-p{
-	padding: 1.5ch 50px;
-}
 @media (max-width: 760px) {
 	.home-container {
 		min-height: 75vh;
