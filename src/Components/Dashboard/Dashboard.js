@@ -1,4 +1,3 @@
-// import firebase from 'firebase/compat/app';
 import {
 	AppBar,
 	Avatar,
@@ -12,6 +11,8 @@ import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
 import Friends from "../Friends/Friends";
 import firebase from "firebase/compat"
+import { Link } from "react-router-dom";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Dashboard(props) {
 	//initalise firestore
@@ -48,6 +49,11 @@ function Dashboard(props) {
 						<Avatar src={avatarSrc.icon} />
 						{avatarSrc.name}
 					</div>
+					<Link to="/IshanPandey">
+						<Button className="dashboard-nav-btn" variant="outlined" >
+							<AccountCircleIcon color="primary"/>
+						</Button>
+					</Link>
 					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(1)
 					}}>
@@ -64,7 +70,7 @@ function Dashboard(props) {
 				</Toolbar>
 			</AppBar>
 		{/* On currActivity 0 -> renders Chat 
-			   currActivity 1 -> renders Friends panel */}
+			   currActivity 1 -> renders Friends panel  */}
 		{curActivity===0&&<Chat uid={props.user.email}/>}
 		{curActivity===1&&<Friends uid={props.user.email}/>}
 
