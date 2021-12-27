@@ -6,17 +6,15 @@
     border-top: none;
     margin-left: 5px;
     margin-right: 5px;
-    font-size: 1.5rem;
-    height: 80px;
 }
 .FriendCard>button{
-    border-bottom: 3px solid #6b6b6b;
+    border-bottom: 0.5px solid #363c3d;
     border-radius: 0%;
     width: 100%;
-    padding: 7.0% 5%;
+    padding: 8% 5%;
     justify-content: start;
     overflow-wrap: break-word;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
 }
 .FriendCardAvatar{
     margin-right: 15px;

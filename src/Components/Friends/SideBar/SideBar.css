@@ -5,29 +5,26 @@ body{
     height: calc(100vh - 64px);
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-top: 10px;
     background-color: #181a1b;
 }
 
 .option-card{
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: start;
     border-top: none;
-    margin-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    border-bottom: 3px solid #726f6f;
 }
 .option-card>button{
+    border-bottom: 0.5px solid #363c3d;
     border-radius: 0%;
     width: 100%;
     padding: 10% 5%;
-    font-size: 1.23rem;
     justify-content: start;
     overflow-wrap: break-word;
+    font-size: 1rem;
 }
 .optionIcon{
     margin-right: 15px;
@@ -35,6 +32,6 @@ body{
 
 @media (prefers-color-scheme : dark) {
     .Options-List{
-        background-color: #292b2c;
+        background-color: #181a1b;
     }
 }

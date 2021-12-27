@@ -1,26 +1,21 @@
-.Chat{
+.Chat, .CurChat, .Friends-List{
     height: calc(100vh - 64px);
+}
+.Chat{
     display: grid;
     grid-template-columns: 1fr 4fr;
-    background-color:#131516;
+    background-color:#181a1b;
 }
 .CurChat{
     display: flex;
     flex-direction: column;
     background-color: #0984e3;
-    height: calc(100vh - 64px);
-    margin-top: 10px;
-    font-size: 18px;
 }
-.MuiToolbar-gutters{
-    font-size: 25px;
-    text-transform: uppercase;
-}
+
 .Friends-List{
-    height: calc(100vh - 64px);
+    background-color: #fff;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-top: 10px;
 }
 @media (max-width:768px){
     .Chat{
@@ -36,22 +31,18 @@
 }
 .message-input{
     border: none;
-    margin-left: 5px;
     border-radius: 5px 0 0 5px;
     flex: 1;
-    font-size: 18px;
+    font-size: 0.8rem;
 }
 .message-card{
     background-color: black;
 }
 .message-form>button{
     border-radius: 0 3px 3px 0;
-    margin-right: 5px;
-    height: 36px;
     background-color: black;
 }
 .message-form{
-    border-top: 5px solid #0984e3;
     align-self: flex-end;
     height: 4.5vh;
     width: 100%;
@@ -60,7 +51,7 @@
 
 @media (prefers-color-scheme : dark) {
     .Friends-List{
-        background-color: #292b2c;
+        background-color: #181a1b;
     }
     .message-form{
         border-top-color: #004a98;

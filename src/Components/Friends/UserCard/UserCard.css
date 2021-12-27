@@ -1,18 +1,18 @@
 .User-Card{
-    background-color: #10abc7;
+    background-color: #004A98;
     display: flex;
     flex-direction: column;
     padding: 2%;
     /* margin: 10% 3%; */
     color: #fff;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     width: 75%;
-    height: 45vh;
     /* justify-content: space-evenly; */
     text-align: center;
     border-radius: 8px;
     /* box-shadow: 3px 3px 3px rgb(121, 110, 110); */
     margin-left: 12.5%;
+    min-height: 35vh;
 }
 
 
@@ -23,14 +23,7 @@
     gap:1rem;
 }
 
-.Spacer-small{
-    flex: 0.3;
-}
-
 .Spacer-large{
-    flex:1;
+    flex: 1;
 }
 
-button{
-    height: 55px;
-}

@@ -85,11 +85,18 @@ function CurChat(props) {
                 color: color
                 }}>
             <Toolbar>
+                <div style ={{
+                    fontFamily: "Poppins",
+                    display: "flex",
+                    gap: "1ch",
+                    textAlign: "center"
+                }}>
             {isMobile&&(
                 <Button onClick={props.back}> {"<"} </Button>
             )}
             <Avatar className="chat-appbar-icon" src={props.friendObj.icon}/>
             {props.friendObj.name}
+                </div>
             </Toolbar>
             </AppBar>
             <div className="messages-container">
