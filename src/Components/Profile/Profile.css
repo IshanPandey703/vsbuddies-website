@@ -1,0 +1,166 @@
+.Container-1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    height: 50vh;
+    font-family: "Poppins";
+    padding: 5%;
+    justify-content: space-between;
+    background-color: #181A1B;
+}
+
+.profile-img{
+    background-image: url("/src/Media/random.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 30%;
+    height: 30%;
+    border-radius: 100%;
+    border: 2px solid #393D43;
+    /* margin: 1% 0; */
+}
+
+.Name{
+    background-color: #393D43;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    width: 80%;
+    text-align: center;
+    padding: 1%;
+    /* margin: 1% 0; */
+}
+
+.Bio{
+    width:80%;
+    height: 40%;
+    padding: 5%;
+    background-color: #393D43;
+    border-radius: 20px;
+    /* margin: 1% 0; */
+}
+
+textarea{
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: #393D43;
+  color: #ffffff; 
+  width: 100% !important;
+  height: 100% !important; 
+  font-family: "Poppins" !important;
+}
+
+.Container-2{
+    color: #fff;
+    font-family : "Poppins";
+    background-color: #0C5DAF;
+}
+
+.Interests{
+    padding: 3% 3%;
+}
+
+.heading{
+    font-size: 1.4rem;
+}
+
+.text-bg{
+    background-color: #004A98;
+    border-radius: 20px;
+}
+
+.text{
+    background-color: #0c5daf;
+    margin: 1% 1%;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.1rem;
+    display: inline-block;
+    padding: 1% 2%;
+}
+
+.College{
+    padding: 3% 3%;
+}
+
+.College .text{
+    background-color: #004A98;
+}
+
+.Top-two-languages{
+    padding : 3% 3%;
+}
+
+.Top-two-languages .text{
+    background-color: #004A98;
+}
+
+@media (min-width:1024px) and (max-width:1024px){
+    .Profile{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+    .Container-1{
+        height: 100vh;
+        justify-content: center;
+        padding: 0%;
+    }
+    .profile-img{
+        width: 70%;
+        height: 20%;
+        border: 3px solid #393D43;
+        margin-bottom: 2%;
+    }
+    .Name{
+        margin: 2% 0;
+        font-size: 2.5rem;
+        padding: 1.5%;
+        width: 85%;
+    }
+    .Bio{
+        height: 28%;
+        margin-top: 2%;
+    }
+    textarea{
+        font-size: 1.7rem;
+    }
+    .Container-2{
+        height: 100vh;
+    }
+    .heading{
+        font-size: 2.5rem;
+    }
+    .text{
+        font-size: 2rem;
+    }
+}
+
+@media (min-width:1100px){
+    .Profile{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+    .Container-1{
+        height: 100vh;
+        justify-content: center;
+        padding: 0%;
+    }
+    .profile-img{
+        width: 80%;
+        height: 40%;
+        border: 3px solid #393D43;
+        margin-bottom: 2%;
+    }
+    .Name{
+        margin: 2% 0;
+    }
+    .Bio{
+        height: 25%;
+        margin-top: 2%;
+    }
+    .Container-2{
+        height: 100vh;
+    }
+}
