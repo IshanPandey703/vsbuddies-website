@@ -1,7 +1,6 @@
 import {useState} from "react";
 import { Avatar, Button } from '@mui/material'
 import "./UserCard.css";
-import { color } from "@mui/system";
 
 
 export default function UserCard(props) {
@@ -28,6 +27,9 @@ export default function UserCard(props) {
                 </p>
                 <div className="Spacer-large"></div>
                 <Button onClick={()=>{
+                }} sx={{color:"white", backgroundColor:"#181a1b", justifySelf:"flex-end", fontSize: "0.8rem"}} 
+                variant ="outlined" disabled = {btnDisabled}>View Profile</Button>
+                <Button onClick={()=>{ 
                     props.func(props.uid);
                     let txt = "";
                     if(props.text==="Add Friend"){
@@ -37,7 +39,7 @@ export default function UserCard(props) {
                     }
                     setBtnText(txt);
                     setBtnDisabled(true);
-                }} sx={{color:"orange", backgroundColor:"black", justifySelf:"flex-end"}} 
+                }} sx={{color:"white", backgroundColor:"#181a1b", justifySelf:"flex-end", fontSize: "0.8rem"}} 
                 variant ="outlined" disabled = {btnDisabled} >{btnText}</Button>
             </div>
         </div> 

@@ -1,7 +1,6 @@
 import Button from "@mui/material/Button";
 import "./Home.css";
 import about from "../../Media/about.png";
-import home from "../../Media/home.png";
 import ContactCard from "./ContactCard";
 function Home(props) {
 	return (
@@ -23,9 +22,9 @@ function Home(props) {
 						<h1 className="home-title">VSBuddies</h1>
 						<h3 className="home-descp">
 							A Simple way to meet
+							new friends. 
 							<br />
-							new friends. Let's scream at
-							<br />
+							Let's scream at
 							our screens together!
 						</h3>
 						<Button
@@ -37,9 +36,6 @@ function Home(props) {
 					</div>
 				</div>
 				<div className="home-right">
-					<div className="home-image">
-						<img src={home} alt="" className="img" />
-					</div>
 				</div>
 			</div>
 			<svg

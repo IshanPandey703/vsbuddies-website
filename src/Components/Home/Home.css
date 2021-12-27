@@ -22,6 +22,11 @@
 	background-color: #0984e3;
 	color: white;
 }
+.home-right{
+	background-position: center;
+	background: url("./home.png") no-repeat;
+	background-size: contain;
+}
 .cloud {
 	background-color: #0984e3;
 }
@@ -53,15 +58,17 @@
 	height: auto;
 }
 #get-started-btn {
-	padding: 1.5rem 10ch;
+	padding: 1.5rem 4ch;
+	word-wrap: break-word;
 	border-radius: 0px;
 	font-family: "Poppins";
 	border-width: medium;
-	font-size: 1.15rem;
-	font-weight: 500;
+	font-size: 1.5rem;
+	font-weight: 700;
 	color: white;
 	border-color: white;
 	text-transform: none;
+	height: max-content;
 }
 .about-container {
 	min-height: 65vh;

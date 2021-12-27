@@ -5,7 +5,6 @@ import ClearIcon from '@mui/icons-material/Clear';
 import "./SenderCard.css";
 
 function SenderCard(props) {
-
     const db = firebase.firestore();
 
     async function reqAccept() {
@@ -41,30 +40,35 @@ function SenderCard(props) {
     const matchPercent = props.matchPercent;
     return (
         <div>
-                <div className="Sender-Card">
-                    <div className="Spacer-small"></div>
-                    <div className="Card-head">
-                        <Avatar sx={{width:60, height:60}} className="Display-Card-Avatar" src={props.icon} />
-                        <p>
-                            {props.name}
-                        </p>
-                    </div>
+            <div className="Sender-Card">
+                <div className="Spacer-small"></div>
+                <div className="Card-head">
+                    <Avatar sx={{ width: 60, height: 60 }} className="Display-Card-Avatar" src={props.icon} />
                     <p>
-                        {"Match Percent: "+matchPercent+"%"}
+                        {props.name}
                     </p>
-                    <div className="Spacer-large"></div>
-                    <div className="button-container">
-                        <ButtonGroup size="large">
-                            <Button onClick={reqAccept}
-                            sx={{color:"#0984e3", backgroundColor:"black", justifySelf:"flex-end"}} 
-                            variant ="outlined"> <DoneIcon /> </Button>
-                            <Button onClick ={reqDecline} 
-                            sx={{color:"#0984e3", backgroundColor:"black", justifySelf:"flex-end"}} 
-                            variant ="outlined"> <ClearIcon /> </Button>
-                        </ButtonGroup>
-                    </div>
                 </div>
-        </div> 
+                <p>
+                    {"Match Percent: " + matchPercent + "%"}
+                </p>
+                <div className="Spacer-large"></div>
+                <div className="button-container">
+                    <ButtonGroup size="large">
+                    <Button onClick={() => {
+                    }} sx={{ color: "white", backgroundColor: "#181a1b", justifySelf: "flex-end", fontSize: "0.8rem" }}
+                        variant="outlined" fullWidth >View Profile</Button>
+                    </ButtonGroup>
+                    <ButtonGroup fullWidth = {true}>
+                        <Button onClick={reqAccept}
+                            sx={{ color: "#fff", backgroundColor: "#181a1b", justifySelf: "flex-end" }}
+                            variant="outlined"> <DoneIcon /> </Button>
+                        <Button onClick={reqDecline}
+                            sx={{ color: "#fff", backgroundColor: "#181a1b", justifySelf: "flex-end" }}
+                            variant="outlined"> <ClearIcon /> </Button>
+                    </ButtonGroup>
+                </div>
+            </div>
+        </div>
     );
 
 

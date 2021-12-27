@@ -15,5 +15,6 @@
     grid-row-gap: 1rem;
     padding: 3% 5%;
     height: calc(100vh - 128px);
+    background-color: #0C5DAF;
     /* flex: 90%; */
 }
