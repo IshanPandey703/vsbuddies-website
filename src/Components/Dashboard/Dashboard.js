@@ -49,7 +49,7 @@ function Dashboard(props) {
 						<Avatar src={avatarSrc.icon} />
 						{avatarSrc.name}
 					</div>
-					<Link to="/IshanPandey">
+					<Link to={`/profile/${props.user.email}`}>
 						<Button className="dashboard-nav-btn" variant="outlined" >
 							<AccountCircleIcon color="primary"/>
 						</Button>
@@ -79,3 +79,7 @@ function Dashboard(props) {
 }
 
 export default Dashboard;
+
+// /Profile?uid={}
+
+// /Profile?uid={anouauoad}

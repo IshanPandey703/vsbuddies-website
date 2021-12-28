@@ -1,6 +1,7 @@
 import {useState} from "react";
 import { Avatar, Button } from '@mui/material'
 import "./UserCard.css";
+import {Link} from "react-router-dom";
 
 
 export default function UserCard(props) {
@@ -26,9 +27,11 @@ export default function UserCard(props) {
                     {"Match Percent: "+matchPercent+"%"}
                 </p>
                 <div className="Spacer-large"></div>
-                <Button onClick={()=>{
-                }} sx={{color:"white", backgroundColor:"#181a1b", justifySelf:"flex-end", fontSize: "0.8rem"}} 
-                variant ="outlined" disabled = {btnDisabled}>View Profile</Button>
+                <Link to={`/profile/${props.uid}`}>
+                    <Button onClick={()=>{
+                    }} sx={{color:"white", backgroundColor:"#181a1b", justifySelf:"flex-end", fontSize: "0.8rem"}} 
+                    variant ="outlined" disabled = {btnDisabled}>View Profile</Button>
+                </Link>
                 <Button onClick={()=>{ 
                     props.func(props.uid);
                     let txt = "";
