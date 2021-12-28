@@ -55,11 +55,6 @@ function Dashboard(props) {
 						</Button>
 					</Link>
 					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
-						setCurActivity(2)
-					}}>
-						<AccountCircleIcon color="primary"/>
-					</Button>
-					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(1)
 					}}>
 						<PersonAdd color="primary"/>

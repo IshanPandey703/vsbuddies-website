@@ -56,6 +56,7 @@ textarea{
     color: #fff;
     font-family : "Poppins";
     background-color: #0C5DAF;
+    /* overflow: hidden; */
 }
 
 .Interests{
@@ -90,7 +91,7 @@ textarea{
 }
 
 .Top-two-languages{
-    padding : 3% 3%;
+    padding : 3% 3% 1%;
 }
 
 .Top-two-languages .text{
