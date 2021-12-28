@@ -11,7 +11,8 @@ import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
 import Friends from "../Friends/Friends";
-import firebase from "firebase/compat"
+import firebase from "firebase/compat";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Dashboard(props) {
 	//initalise firestore
@@ -48,6 +49,11 @@ function Dashboard(props) {
 						<Avatar src={avatarSrc.icon} />
 						{avatarSrc.name}
 					</div>
+					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
+						setCurActivity(2)
+					}}>
+						<AccountCircleIcon color="primary"/>
+					</Button>
 					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(1)
 					}}>
