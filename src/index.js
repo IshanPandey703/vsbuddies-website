@@ -11,7 +11,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="IshanPandey" element={<Profile />} />
+        <Route path="/profile/:uid" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
