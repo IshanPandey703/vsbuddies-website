@@ -2,18 +2,37 @@
 import "./Profile.css";
 import { useParams } from 'react-router-dom';
 import firebase from "firebase/compat";
-import {useEffect,useState} from "react";
+import {useEffect,useState,useRef} from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Profile(){
-    const  {uid}  = useParams()
-    console.log(uid);
 
-    const db = firebase.firestore(); 
+    const  {uid}  = useParams()
+    // console.log(uid);
+
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+    
+    const [user,loading,err] = useAuthState(auth);
+    // console.log(user.email);
+
+    const actvUserInterests = useRef();
+
     const [details,setDetails] = useState({})
     // fetching data on mount
     useEffect(async()=>{
+
         const docSnapshot = await db.collection("Users").doc(uid).collection("Details").doc("Details").get();
         const temp = docSnapshot.data();
+        
+        if(user.email!==uid){
+            // fetching actv user interest list
+            const userDoc = await db.collection("Users").doc(user.email).collection("Details").doc("Details").get();
+            const temp = userDoc.data().interests;
+            actvUserInterests.current=[...temp];
+            // console.log(actvUserInterests);
+        }
+
         setDetails(temp);
     },[]) 
     
@@ -39,7 +58,14 @@ export default function Profile(){
                         <div className="Interests">
                             <div className="heading">Interests</div>
                             <div className="text-bg">
-                            {details.interests.map(interest=> <div key={interest} className="text"> {interest} </div>)}
+                            {details.interests.map((interest)=> {
+                                if(user.email!==uid){
+                                    if(actvUserInterests.current.includes(interest)){
+                                        return (<div key={interest} className="text highlight"> {interest} </div>)
+                                    }
+                                }
+                                return (<div key={interest} className="text"> {interest} </div>) 
+                            })}
                             </div>
                         </div>
                         <div className="College">
