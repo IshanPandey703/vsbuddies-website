@@ -10,12 +10,8 @@ import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
 import Friends from "../Friends/Friends";
-<<<<<<< HEAD
-import firebase from "firebase/compat";
-=======
 import firebase from "firebase/compat"
 import { Link } from "react-router-dom";
->>>>>>> 61e3a0dc4141b51ae5a236b003fd3a29ff431d55
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Dashboard(props) {
