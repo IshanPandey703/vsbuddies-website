@@ -1,40 +1,46 @@
 // import randomImg from "../../Media/random.jpg";
 import "./Profile.css";
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import firebase from "firebase/compat";
 import {useEffect,useState,useRef} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import {Button} from "@mui/material";
 
 export default function Profile(){
 
+    // uid of user whose profile is requested 
     const  {uid}  = useParams()
-    // console.log(uid);
 
     const db = firebase.firestore();
     const auth = firebase.auth();
     
+    // to check who is requesting to view profile
     const [user,loading,err] = useAuthState(auth);
-    // console.log(user.email);
 
-    const actvUserInterests = useRef();
-
+    // stores details of user whose profile is requested
     const [details,setDetails] = useState({})
+    
+    // stores interests of actv user
+    const actvUserInterests = useRef();
+    
     // fetching data on mount
     useEffect(async()=>{
-
+        
         const docSnapshot = await db.collection("Users").doc(uid).collection("Details").doc("Details").get();
         const temp = docSnapshot.data();
-        
-        if(user.email!==uid){
-            // fetching actv user interest list
-            const userDoc = await db.collection("Users").doc(user.email).collection("Details").doc("Details").get();
-            const temp = userDoc.data().interests;
-            actvUserInterests.current=[...temp];
-            // console.log(actvUserInterests);
-        }
-
         setDetails(temp);
-    },[]) 
+        
+        if(user){
+            // user.email === uid ---> if true, actv user is requesting to view their own profile 
+            if(user.email!==uid){
+                // fetching actv user interest list
+                const userDoc = await db.collection("Users").doc(user.email).collection("Details").doc("Details").get();
+                const temp = userDoc.data().interests;
+                actvUserInterests.current=[...temp];
+                // console.log(actvUserInterests);
+            }
+        }
+    },[user]) 
     
     return (
         <div>
@@ -53,14 +59,22 @@ export default function Profile(){
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                             </textarea>
                         </div>
+                        {/* if actv user views their own profile Edit button will be rendered 
+                            to change data of proile*/}
+                        { (user && user.email===uid) &&
+                            <Link to={`/details/${user.email}`}>
+                            <Button variant="outlined">Edit</Button>
+                            </Link>
+                        }
                     </div>
                     <div className="Container-2">
                         <div className="Interests">
                             <div className="heading">Interests</div>
                             <div className="text-bg">
                             {details.interests.map((interest)=> {
-                                if(user.email!==uid){
+                                if(user && user.email!==uid){
                                     if(actvUserInterests.current.includes(interest)){
+                                        {/* highlights common interests */}
                                         return (<div key={interest} className="text highlight"> {interest} </div>)
                                     }
                                 }

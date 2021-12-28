@@ -38,7 +38,7 @@
     padding: 5%;
     background-color: #393D43;
     border-radius: 20px;
-    /* margin: 1% 0; */
+    margin: 1% 0;
 }
 
 textarea{
@@ -126,7 +126,7 @@ textarea{
     }
     .Bio{
         height: 28%;
-        margin-top: 2%;
+        margin: 2% 0;
     }
     textarea{
         font-size: 1.7rem;
@@ -163,7 +163,7 @@ textarea{
     }
     .Bio{
         height: 25%;
-        margin-top: 2%;
+        margin: 2% 0;
     }
     .Container-2{
         height: 100vh;
