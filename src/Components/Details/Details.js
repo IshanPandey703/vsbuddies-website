@@ -2,11 +2,12 @@ import { useParams,Link } from 'react-router-dom';
 import firebase from "firebase/compat";
 import {useEffect,useState,useRef} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {Button} from "@mui/material";
+import {Button, FormControl, FormLabel} from "@mui/material";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import "./Details.css";
 
 export default function Details(){
     // uid of actv user
@@ -27,34 +28,50 @@ export default function Details(){
     "Jadavpur University, Kolkata" ];
 
     const interests = ["competitive programming", "data sructures", "algorithms", "web development", 
-    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap" ];
+    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap",
+    "competitive programming", "data sructures", "algorithms", "web development", 
+    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap", 
+    "competitive programming", "data sructures", "algorithms", "web development", 
+    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap",
+    "competitive programming", "data sructures", "algorithms", "web development", 
+    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap"];
     
     // to check if user is logged in or not
     const auth = firebase.auth();
     const db = firebase.firestore();
 
     const [user,loading,err] = useAuthState(auth);
+
     return (
-        <div className="form-container">
-            <form action="">
-                <TextField label="Name" defaultValue="Ishan Pandey" />
-                <TextField label="Bio" defaultValue="Short bio about me" helperText="*Short bio of you in 50 chars" />
-                <div className="interest-container">
-                    {interests.map(interest=>{
-                        <FormControlLabel
-                        control={<Checkbox />} label={interest} />
-                    })}
+        <div className="Details">
+            <div className="form-heading"> User Details </div>
+            <div className="form-container">
+                <form action="">
+                <FormControl fullWidth sx={{fontFamily:"Poppins"}}>
+                    <TextField label="Name" defaultValue="Ishan Pandey" margin="normal"/>
+                    <TextField label="Bio" defaultValue="Short bio about me" 
+                    helperText="*Short bio of you in 50 chars" margin="normal"/>
+                    <FormLabel component="legend" >Interests</FormLabel>
+                    <div className="interest-container" margin="normal">
+                        {interests.map(interest=>
+                            <FormControlLabel control={<Checkbox />} label={interest} />)}
+                    </div>
+                    <TextField select label="College/Univesity" defaultValue="Your college" margin="normal">
+                        {collegeList.map(college=>
+                            <MenuItem key={college} value={college}>{college}</MenuItem>
+                        )}
+                    </TextField>
+                </FormControl>
+                <FormControl fullWidth>
+                    <FormLabel component="legend" >Fill Two Programming Languages</FormLabel>
+                    <TextField label="Programming Language 1" defaultValue="Some Language" margin="normal"/>
+                    <TextField label="Programming Language 2" defaultValue="Some Language" margin="normal"/>
+                </FormControl>
+                <div className="form-btn">
+                    <Button variant="contained">Save</Button>
                 </div>
-                <TextField select label="College/Univesity" defaultValue="Your college">
-                    {collegeList.map(college=>{
-                        <MenuItem key={college} value={college}>
-                            {college}
-                        </MenuItem>
-                    })}
-                </TextField>
-                <TextField label="Programming Language 1" defaultValue="Some Language"/>
-                <TextField label="Programming Language 2" defaultValue="Some Language"/>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

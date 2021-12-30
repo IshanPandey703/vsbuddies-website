@@ -2,7 +2,7 @@
 import "./Profile.css";
 import { useParams,Link } from 'react-router-dom';
 import firebase from "firebase/compat";
-import {useEffect,useState,useRef} from "react";
+import {useEffect,useState} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {Button} from "@mui/material";
 
@@ -21,7 +21,7 @@ export default function Profile(){
     const [details,setDetails] = useState({})
     
     // stores interests of actv user
-    const actvUserInterests = useRef();
+    const [actvUserInterests,setActvUserInterests] = useState([])
     
     // fetching data on mount
     useEffect(async()=>{
@@ -36,7 +36,7 @@ export default function Profile(){
                 // fetching actv user interest list
                 const userDoc = await db.collection("Users").doc(user.email).collection("Details").doc("Details").get();
                 const temp = userDoc.data().interests;
-                actvUserInterests.current=[...temp];
+                setActvUserInterests(temp);
                 // console.log(actvUserInterests);
             }
         }
@@ -73,7 +73,7 @@ export default function Profile(){
                             <div className="text-bg">
                             {details.interests.map((interest)=> {
                                 if(user && user.email!==uid){
-                                    if(actvUserInterests.current.includes(interest)){
+                                    if(actvUserInterests.includes(interest)){
                                         {/* highlights common interests */}
                                         return (<div key={interest} className="text highlight"> {interest} </div>)
                                     }

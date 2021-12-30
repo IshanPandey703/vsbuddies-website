@@ -1,0 +1,46 @@
+.Details{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin-top: 5%;
+}
+
+.form-heading{
+    grid-column: 1/2;
+    font-size: clamp(3rem,5vw,6rem);
+    color: #fff;
+    font-weight: 500;
+}
+
+.form-container{
+    grid-column: 1/2;
+    background-color: #fff;
+    padding: 2% 2%;
+    width: 85%;
+    border-radius: 20px;
+    margin: 5% 0 3%;
+}
+
+.interest-container{
+    overflow-y: scroll;
+    height: 30vh;
+    margin-bottom: 1%;
+}
+
+.form-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.MuiButton-root, .MuiTypography-root, .MuiOutlinedInput-input, 
+.MuiFormHelperText-root,.MuiOutlinedInput-root, .MuiInputLabel-root, .MuiFormLabel-root{
+    font-family: "Poppins" !important;
+    font-size: clamp(1rem,1vw,5rem) !important;
+}
+
+.MuiMenuItem-root,.MuiFormHelperText-root{
+    font-family: "Poppins" !important;
+    font-size: clamp(0.8rem,1vw,5rem) !important;
+}

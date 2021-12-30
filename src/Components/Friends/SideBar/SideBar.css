@@ -1,6 +1,3 @@
-body{
-    background-color: #0C5DAF;
-}
 .Options-List{
     height: calc(100vh - 64px);
     overflow-y: scroll;
