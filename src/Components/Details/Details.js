@@ -8,70 +8,169 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import "./Details.css";
+import { collegeList, interests} from './Data/Data';
 
 export default function Details(){
     // uid of actv user
     const {uid} = useParams();
-    const collegeList = [ " Birla Institute of Technology, Mesra", "Banaras Hindu University, Varanasi", 
-    "Central University of Jharkhand, Ranchi", "Chandigarh University, Mohali",  
-    "Delhi Technological University, New Delhi", "Dr. B R Ambedkar National Institute of Technology, Jalandhar", 
-    "Dr. C.V. Raman University, Bilaspur", "Gandhi Institute of Technology and Management, Visakhapatnam", 
-    "GNA University, Phagwara", "Indian Institute of Information Technology, Allahabad", 
-    "Indian Institute of Information Technology, Guwahati", 
-    "Indian Institute of Science, Banglore", "Indian Institute of Teacher Education, Gandhinagar", 
-    "Indian Institute of Technology, Bombay", "Indian Institute of Technology, Kharagpur", 
-    "Indian Statistical Institute, Kolkata", "Indira Gandhi Institute of Medical Science, Patna", 
-    "Indraprastha Institute of Information Technology, New Delhi", 
-    "Institute of Advanced Research, Gandhinagar", "Institute of Chemical Technology, Mumbai" ,
-    "Institute of Infrastructure, Technology, Research and Management, Ahmedabad", 
-    "International Institute of Information Technology, Bhubaneswar", "ISBM University, Gariyaband", 
-    "Jadavpur University, Kolkata" ];
-
-    const interests = ["competitive programming", "data sructures", "algorithms", "web development", 
-    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap",
-    "competitive programming", "data sructures", "algorithms", "web development", 
-    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap", 
-    "competitive programming", "data sructures", "algorithms", "web development", 
-    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap",
-    "competitive programming", "data sructures", "algorithms", "web development", 
-    "reactjs", "nodejs", "javascript", "cpp", "html", "css", "expressjs", "firebase", "materialui", "bootstrap"];
     
     // to check if user is logged in or not
     const auth = firebase.auth();
     const db = firebase.firestore();
 
+    const [userDetails,setUserDetails] = useState({});
+    const [values,setValues] = useState({
+        name : "Your Name",
+        college : "Your College",
+        bio : "Short bio about you",
+        languages : ["Language 1","Language 2"] ,
+        theme: "dark"
+    })
     const [user,loading,err] = useAuthState(auth);
 
-    return (
-        <div className="Details">
-            <div className="form-heading"> User Details </div>
-            <div className="form-container">
-                <form action="">
-                <FormControl fullWidth sx={{fontFamily:"Poppins"}}>
-                    <TextField label="Name" defaultValue="Ishan Pandey" margin="normal"/>
-                    <TextField label="Bio" defaultValue="Short bio about me" 
-                    helperText="*Short bio of you in 50 chars" margin="normal"/>
-                    <FormLabel component="legend" >Interests</FormLabel>
-                    <div className="interest-container" margin="normal">
-                        {interests.map(interest=>
-                            <FormControlLabel control={<Checkbox />} label={interest} />)}
+    useEffect(async()=>{
+        if(user){
+            const docSnapshot = await db.collection("Users").doc(uid).collection("Details").doc("Details").get();
+            const details = docSnapshot.data();
+            const temp = {
+                name: details.name,
+                college: details.college,
+                bio: details.bio,
+                languages: details.topTwoLanguages,
+                theme: details.theme
+            }
+            setValues(temp);
+            setUserDetails(details);  
+        }
+    },[user])
+
+    function handleChange(e) {
+        const value = e.target.value;
+        const target = e.target.name;
+        if(target==='1'||target==='2'){
+            const index = target-1;
+            const temp = {
+                ...values
+            }
+            temp.languages[index] = value;
+            console.log(temp);
+            setValues(temp);
+        } else{
+            const temp = {
+                ...values,
+                [target] : value    
+            }
+            console.log(temp);
+            setValues(temp);
+        }
+    }
+
+    function handleChecked(e){
+        const isChecked = e.target.checked;
+        const value = e.target.name;
+        console.log(isChecked,value);
+        if(!isChecked){
+            setUserDetails( prevDetails => {
+                const temp = prevDetails.interests.filter(interest => interest!=value);
+                return {...prevDetails,interests:temp};
+            });
+            return;
+        } else{
+            setUserDetails(prevDetails=>{
+                const temp = [...prevDetails.interests,value];
+                return {...prevDetails,interests:temp};
+            });
+            return;
+        }
+    }
+
+    async function handleSubmit(e){
+        e.preventDefault()
+        console.log(values);
+        console.log(userDetails.interests);
+        const newDetails={
+            ...userDetails,
+            name: values.name,
+            college: values.college,
+            bio: values.bio,
+            topTwoLanguages: values.languages,
+            theme: values.theme
+        }
+        console.log(newDetails);
+        await db.collection("Users").doc(uid).collection("Details").doc("Details").update(newDetails);
+        window.location.reload();
+    }
+
+    return (user && user.email===uid ? 
+        ((Object.keys(userDetails).length!==0) && 
+            <div className="Details">
+                <div className="form-heading"> User Details </div>
+                <div className="form-container">
+                    <form onSubmit={handleSubmit}>
+                    <FormControl fullWidth sx={{fontFamily:"Poppins"}}>
+
+                        <TextField label="Name" name="name"
+                        value={values.name} onChange = {handleChange} 
+                        margin="normal"/>
+                    
+                        <TextField label="Bio" name="bio"
+                        value={values.bio} onChange={handleChange}
+                        helperText="*Short bio of you in 50 chars" margin="normal"/>
+
+                        <TextField select label="Theme" name="theme"
+                            value={values.theme} onChange={handleChange}
+                            margin="normal">
+                            <MenuItem value="dark">dark</MenuItem>
+                            <MenuItem value="light">light</MenuItem>
+                        </TextField>
+                    
+                        <FormLabel component="legend" >Interests</FormLabel>
+                        <div className="interest-container" margin="normal">
+                            {interests.map((interest,index)=>{
+                                if(userDetails.interests && userDetails.interests.includes(interest)){
+                                    return <FormControlLabel key={index} control={<Checkbox name={interest}
+                                        checked onChange={handleChecked}/>} 
+                                        label={interest} />
+                                } else{                                    
+                                    return <FormControlLabel key={index} control={<Checkbox name={interest}
+                                    onChange ={handleChecked}/>} 
+                                    label={interest} />
+                                }
+                            })}
+                        </div>
+
+                        <TextField select label="College/Univesity" name="college"
+                            value={values.college} onChange = {handleChange} 
+                            margin="normal">
+                            {collegeList.map(college=>
+                                <MenuItem key={college} value={college}>{college}</MenuItem>
+                            )}
+                        </TextField>
+                    </FormControl>
+
+                    <FormControl fullWidth>
+                        <FormLabel component="legend" >Fill Two Programming Languages</FormLabel>
+                        <TextField label="Programming Language 1" name="1"
+                        value = {values.languages[0]} onChange = {handleChange}
+                        margin="normal"/>
+                        <TextField label="Programming Language 2" name="2"
+                        value = {values.languages[1]} onChange = {handleChange}
+                        margin="normal"/>
+                    </FormControl>
+
+                    <div className="form-btn">
+                        <Button variant="contained" type="Submit">Save</Button>
                     </div>
-                    <TextField select label="College/Univesity" defaultValue="Your college" margin="normal">
-                        {collegeList.map(college=>
-                            <MenuItem key={college} value={college}>{college}</MenuItem>
-                        )}
-                    </TextField>
-                </FormControl>
-                <FormControl fullWidth>
-                    <FormLabel component="legend" >Fill Two Programming Languages</FormLabel>
-                    <TextField label="Programming Language 1" defaultValue="Some Language" margin="normal"/>
-                    <TextField label="Programming Language 2" defaultValue="Some Language" margin="normal"/>
-                </FormControl>
-                <div className="form-btn">
-                    <Button variant="contained">Save</Button>
+                    </form>
                 </div>
-                </form>
+            </div>) : (!loading &&
+            <div className="not-logged">
+                <div className="message">Please Login to edit your Details.</div>
+                <Link to="/" >
+                    <Button variant="contained" color="primary" 
+                    type="Submit">Login</Button>
+                </Link>
             </div>
-        </div>
+        )
     )
 }

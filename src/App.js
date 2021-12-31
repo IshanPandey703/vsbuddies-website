@@ -41,6 +41,7 @@ function App() {
 					})
 					db.collection("Users").doc(user.email).collection("Details").doc("Details").set({
 						uid: user.email,
+						bio:"",
 						friends: [],
 						icon: user.photoURL,
 						name: user.displayName?user.displayName:"No-Name",
