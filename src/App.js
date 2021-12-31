@@ -49,7 +49,7 @@ function App() {
 						extensions: [],
 						interests: [],
 						topTwoLanguages: [],
-						college: "Other"
+						college: ""
 					});
 				}
 			})}
