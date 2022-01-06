@@ -13,6 +13,7 @@ import firebase from "firebase/compat"
 import { Link } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MODAL from "../Modal/Modal";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Dashboard(props) {
 	//initalise firestore
@@ -86,7 +87,7 @@ function Dashboard(props) {
 						<ChatIcon color="primary"/>
 					</Button>
 					<Button className="dashboard-nav-btn" onClick={props.func} variant="outlined">
-						Logout
+						<LogoutIcon/>
 					</Button>
 				</Toolbar>
 			</AppBar>

@@ -11,6 +11,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { PersonAdd } from "@mui/icons-material";
 import ChatIcon from '@mui/icons-material/Chat';
 import { useAuthState } from "react-firebase-hooks/auth";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Friends() {
 
@@ -88,7 +89,7 @@ function Friends() {
                                 </Button>
                             </Link>
                             <Button className="dashboard-nav-btn" onClick={handleSignOut} variant="outlined">
-                                Logout
+                                <LogoutIcon/>
                             </Button>
                         </Toolbar>
                     </AppBar>
@@ -134,7 +135,7 @@ function Friends() {
                             </Button>
                         </Link>
                         <Button className="dashboard-nav-btn" onClick={handleSignOut} variant="outlined">
-                            Logout
+                            <LogoutIcon/>
                         </Button>
                     </Toolbar>
                 </AppBar>
