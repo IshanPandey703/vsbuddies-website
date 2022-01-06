@@ -13,7 +13,11 @@
     grid-template-columns: repeat(3,1fr);
     /* gap: 1rem; */
     grid-row-gap: 1rem;
-    padding: 3% 5%;
-    height: calc(100vh - 202px);
+    height: calc(100vh - 128px );
     /* flex: 90%; */
+}
+@media(max-width: 600px){
+    .UserCard-Container{
+        height: calc((100vh - 112px));
+    }
 }

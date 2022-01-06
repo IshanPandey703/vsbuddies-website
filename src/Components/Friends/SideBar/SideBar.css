@@ -32,3 +32,8 @@
         background-color: #181a1b;
     }
 }
+@media(max-width: 600px){
+    .Options-List{
+        height: calc((100vh - 56px));
+    }
+}
