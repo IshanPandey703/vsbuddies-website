@@ -98,6 +98,7 @@ export default function Details(){
         }
         console.log(newDetails);
         await db.collection("Users").doc(uid).collection("Details").doc("Details").update(newDetails);
+        window.location.replace(`http://localhost:3000/profile/${uid}`);
     }
 
     return (user && user.email===uid ? 
@@ -156,11 +157,9 @@ export default function Details(){
                         value = {values.languages[1]} onChange = {handleChange}
                         margin="normal"/>
                     </FormControl>
-                    <Link to={`/profile/${uid}`}>
                         <div className="form-btn">
                             <Button variant="contained" type="Submit">Save</Button>
                         </div>
-                    </Link>
                     </form>
                 </div>
             </div>) : (!loading &&
