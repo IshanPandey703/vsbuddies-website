@@ -65,7 +65,7 @@ function Dashboard(props) {
 							<AccountCircleIcon color="primary"/>
 						</Button>
 					</Link>
-					<Link to={`/connect/${props.user.email}`}>
+					<Link to={"/connect"}>
 						<Button className="dashboard-nav-btn" variant="outlined" >
 							<PersonAdd color="primary"/>
 						</Button>
