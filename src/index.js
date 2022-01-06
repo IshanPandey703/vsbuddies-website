@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+import Profile from "./Components/Profile/Profile";
+import Details from "./Components/Details/Details";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/profile/:uid" element={<Profile />} />
+        <Route path="/details/:uid" element={<Details />} /> 
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

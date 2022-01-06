@@ -21,6 +21,7 @@ function Chat(props) {
 			.get()
 			.then(async (doc) => {
 				const friends = await doc.data().friends;
+
 				// next line handles the cases of undefined / null return types when fetching friends array from firebase
 				if (typeof friends !== "undefined" && friends !== null) {
 					let toSet = [];
@@ -44,6 +45,7 @@ function Chat(props) {
 						setFriends(toSet);
 					});
 				}
+
 			});
 		// Firebase is not a real dependency of this useEffect hook, so suppressed es-lint warning
 		// eslint-disable-next-line react-hooks/exhaustive-deps

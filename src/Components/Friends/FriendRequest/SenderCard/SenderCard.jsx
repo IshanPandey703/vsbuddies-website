@@ -3,6 +3,7 @@ import firebase from "firebase/compat";
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import "./SenderCard.css";
+import { Link } from "react-router-dom";
 
 function SenderCard(props) {
     const db = firebase.firestore();
@@ -54,9 +55,11 @@ function SenderCard(props) {
                 <div className="Spacer-large"></div>
                 <div className="button-container">
                     <ButtonGroup size="large">
-                    <Button onClick={() => {
-                    }} sx={{ color: "white", backgroundColor: "#181a1b", justifySelf: "flex-end", fontSize: "0.8rem" }}
-                        variant="outlined" fullWidth >View Profile</Button>
+                        <Link to={`/profile/${props.uid}`}>
+                            <Button onClick={() => {
+                            }} sx={{ color: "white", backgroundColor: "#181a1b", justifySelf: "flex-end", fontSize: "0.8rem" }}
+                                variant="outlined" fullWidth >View Profile</Button>
+                        </Link>
                     </ButtonGroup>
                     <ButtonGroup fullWidth = {true}>
                         <Button onClick={reqAccept}

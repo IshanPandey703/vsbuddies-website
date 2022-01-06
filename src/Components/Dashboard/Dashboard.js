@@ -1,4 +1,3 @@
-// import firebase from 'firebase/compat/app';
 import {
 	AppBar,
 	Avatar,
@@ -12,16 +11,30 @@ import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
 import Friends from "../Friends/Friends";
 import firebase from "firebase/compat"
+import { Link } from "react-router-dom";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MODAL from "../Modal/Modal";
 
 function Dashboard(props) {
 	//initalise firestore
     const firestore = firebase.firestore();
 	const [avatarSrc, setAvatarSrc] = useState("")
+	// if user details are incomplete modal will appear
+	const [showModal,setShowModal] = useState(false);
+
 	useEffect(()=>{
 		//get user icon from firestore db
 		const avatarSrcRef = firestore.collection("Users").doc(props.user.email).collection("Details").doc("Details");
 		avatarSrcRef.get().then(async(doc)=>{
 			const temp = await doc.data()
+
+			// Display Modal if user details incomplete
+			if(temp.name==="No-Name"||temp.bio.length===0
+			||temp.college.length===0||temp.topTwoLanguages[0].length===0
+			||temp.topTwoLanguages[1].length===0||temp.interests.length===0){
+				setShowModal(true);
+			}
+
 			setAvatarSrc(temp)
 		})
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,6 +61,11 @@ function Dashboard(props) {
 						<Avatar src={avatarSrc.icon} />
 						{avatarSrc.name}
 					</div>
+					<Link to={`/profile/${props.user.email}`}>
+						<Button className="dashboard-nav-btn" variant="outlined" >
+							<AccountCircleIcon color="primary"/>
+						</Button>
+					</Link>
 					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(1)
 					}}>
@@ -63,8 +81,9 @@ function Dashboard(props) {
 					</Button>
 				</Toolbar>
 			</AppBar>
+			{showModal && <MODAL />}
 		{/* On currActivity 0 -> renders Chat 
-			   currActivity 1 -> renders Friends panel */}
+			   currActivity 1 -> renders Friends panel  */}
 		{curActivity===0&&<Chat uid={props.user.email}/>}
 		{curActivity===1&&<Friends uid={props.user.email}/>}
 
@@ -73,3 +92,7 @@ function Dashboard(props) {
 }
 
 export default Dashboard;
+
+// /Profile?uid={}
+
+// /Profile?uid={anouauoad}
