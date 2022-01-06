@@ -14,7 +14,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 function Friends() {
 
-    const [curOption,setCurOption] = useState(0);
+    const [curOption,setCurOption] = useState(-1);
     const firestore = firebase.firestore();
     const auth = firebase.auth();
 	const [avatarSrc, setAvatarSrc] = useState("")
@@ -48,9 +48,66 @@ function Friends() {
         console.log(num);
         setCurOption(num);
     }
-
+    const [width, setWidth] = useState(window.innerWidth);
+	function handleWindowSizeChange() {
+		setWidth(window.innerWidth);
+	}
+	useEffect(() => {
+		window.addEventListener("resize", handleWindowSizeChange);
+		return () => {
+			window.removeEventListener("resize", handleWindowSizeChange);
+		};
+	}, []);
+	const isMobile = width <= 768;
     if(!loading){
         if(user){
+            if(isMobile){
+                return (
+                    <>
+                    <AppBar position="static" className="dashboard-navbar" elevation={3} sx={{
+                        bgcolor: bgcolor,
+                        color: color
+                        }}>
+                        <Toolbar>
+                            <div className="dashboard-nav-left">
+                                <Avatar src={avatarSrc.icon} />
+                                {avatarSrc.name}
+                            </div>
+                            <Link to={`/profile/${user.email}`}>
+                                    <Button className="dashboard-nav-btn" variant="outlined" >
+                                        <AccountCircleIcon color="primary"/>
+                                    </Button>
+                            </Link>
+                            <Link to={"/connect"}>
+                                <Button className="dashboard-nav-btn" variant="outlined" >
+                                    <PersonAdd color="primary"/>
+                                </Button>
+                            </Link>
+                            <Link to="/">
+                                <Button className="dashboard-nav-btn" variant="outlined" >
+                                    <ChatIcon color="primary"/>
+                                </Button>
+                            </Link>
+                            <Button className="dashboard-nav-btn" onClick={handleSignOut} variant="outlined">
+                                Sign Out
+                            </Button>
+                        </Toolbar>
+                    </AppBar>
+                    <div className="Friends">
+                        {curOption === -1 && <SideBar  onClick ={handleClick} />}
+                        {curOption === 0 && <AllUsers back={()=>{
+                            setCurOption(-1)
+                        }}uid = {user.email} option="Connect with other Devs" />}
+                        {curOption === 1 && <FriendRequest back={()=>{
+                            setCurOption(-1)
+                        }}uid ={user.email} option="Pending Friend Requests" />}
+                        {curOption === 2 && <FriendList back={()=>{
+                            setCurOption(-1)
+                        }}uid = {user.email} option="Friends" />}
+                    </div>
+                    </>
+                )
+            }
             return (
                 <>
                 <AppBar position="static" className="dashboard-navbar" elevation={3} sx={{
@@ -84,7 +141,7 @@ function Friends() {
                 </AppBar>
                 <div className="Friends">
                     <SideBar onClick ={handleClick} />
-                    {curOption === 0 && <AllUsers uid = {user.email} option="Connect with other Devs" />}
+                    {(curOption === 0||curOption === -1) && <AllUsers uid = {user.email} option="Connect with other Devs" />}
                     {curOption === 1 && <FriendRequest uid ={user.email} option="Pending Friend Requests" />}
                     {curOption === 2 && <FriendList uid = {user.email} option="Friends" />}
                 </div>

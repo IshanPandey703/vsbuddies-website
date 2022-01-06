@@ -1,6 +1,6 @@
 import firebase from "firebase/compat";
 import {useState,useEffect} from "react";
-import {AppBar,Toolbar} from "@mui/material";
+import {AppBar,Toolbar, Button} from "@mui/material";
 import SenderCard from "./SenderCard/SenderCard";
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import "./FriendRequest.css";
@@ -62,6 +62,7 @@ function FriendRequest(props) {
                     color: color
                     }}>
                 <Toolbar>
+                {props.back && <Button onClick={props.back}>{"<"}</Button>}
                     <ArrowCircleRightIcon />
                     {props.option}
                 </Toolbar>
