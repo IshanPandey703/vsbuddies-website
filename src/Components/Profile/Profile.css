@@ -2,60 +2,63 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #fff;
-    height: 50vh;
+    color: black;
+    min-height: max-content;
     font-family: "Poppins";
     padding: 5%;
     justify-content: space-between;
-    background-color: #181A1B;
+    background-color: white;
 }
 
 .profile-img{
-    background-image: url("/src/Media/random.jpg");
+    /* background-image: url("/src/Media/random.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 30%;
-    height: 30%;
+    height: 30%; */
+    height: 120px;
+    width:120px;
     border-radius: 100%;
     border: 2px solid #393D43;
     /* margin: 1% 0; */
 }
 
 .Name{
-    background-color: #393D43;
+    background-color: whitesmoke;
     border-radius: 20px;
     font-size: 1.5rem;
     width: 80%;
     text-align: center;
     padding: 1%;
-    /* margin: 1% 0; */
+    margin: 2% 0;
 }
 
 .Bio{
     width:80%;
-    height: 40%;
+    height: max-content;
     padding: 5%;
-    background-color: #393D43;
+    background-color: whitesmoke;
     border-radius: 20px;
-    margin: 1% 0;
+    margin: 2% 0%;
 }
 
-textarea{
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  background-color: #393D43;
-  color: #ffffff; 
-  width: 100% !important;
-  height: 100% !important; 
-  font-family: "Poppins" !important;
+#textarea{
+    border: none;
+    resize:none;
+    outline: none;
+    font-size: 1rem;
+    background-color: whitesmoke;
+    color: black; 
+    width: 100% !important;
+    height: 100% !important; 
+    font-family: "Poppins" !important;
 }
 
 .Container-2{
     color: #fff;
     font-family : "Poppins";
-    background-color: #0C5DAF;
+    background-color: #0984e3;
     /* overflow: hidden; */
 }
 
@@ -70,6 +73,7 @@ textarea{
 .text-bg{
     background-color: #004A98;
     border-radius: 20px;
+    padding: 2%;
 }
 
 .text{
@@ -92,6 +96,8 @@ textarea{
 
 .College .text{
     background-color: #004A98;
+    margin-left: 0;
+    padding: 2%
 }
 
 .Top-two-languages{
@@ -100,22 +106,21 @@ textarea{
 
 .Top-two-languages .text{
     background-color: #004A98;
+    margin-left: 0;
 }
 
-@media (min-width:1024px) and (max-width:1024px){
+/* @media (min-width:1024px) and (max-width:1024px){
     .Profile{
         display: grid;
         grid-template-columns: 1fr 2fr;
     }
     .Container-1{
-        height: 100vh;
+        min-height: 100vh;
         justify-content: center;
         padding: 0%;
     }
     .profile-img{
-        width: 70%;
-        height: 20%;
-        border: 3px solid #393D43;
+        border: 3px solid #393D43; 
         margin-bottom: 2%;
     }
     .Name{
@@ -132,7 +137,7 @@ textarea{
         font-size: 1.7rem;
     }
     .Container-2{
-        height: 100vh;
+        min-height: 100vh;
     }
     .heading{
         font-size: 2.5rem;
@@ -140,7 +145,7 @@ textarea{
     .text{
         font-size: 2rem;
     }
-}
+} */
 
 @media (min-width:1100px){
     .Profile{
@@ -148,13 +153,14 @@ textarea{
         grid-template-columns: 1fr 3fr;
     }
     .Container-1{
-        height: 100vh;
+        min-height: 100vh;
         justify-content: center;
+        height: 100%;
         padding: 0%;
     }
-    .profile-img{
-        width: 80%;
-        height: 40%;
+    .profile-img {
+        width: 200px;
+        height: 200px;
         border: 3px solid #393D43;
         margin-bottom: 2%;
     }
@@ -162,10 +168,22 @@ textarea{
         margin: 2% 0;
     }
     .Bio{
-        height: 25%;
         margin: 2% 0;
     }
     .Container-2{
-        height: 100vh;
+        min-height: 100vh;
+    }
+}
+@media (prefers-color-scheme: dark){
+    .Container-1{
+        color: white;
+        background-color: #181818
+    }
+    .Name, .Bio, textarea{
+        background-color: #393D43;
+        color: white;
+    }
+    .Container-2{
+        background-color: #0c5daf;
     }
 }

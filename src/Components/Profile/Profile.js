@@ -1,10 +1,9 @@
-// import randomImg from "../../Media/random.jpg";
 import "./Profile.css";
 import { useParams,Link } from 'react-router-dom';
 import firebase from "firebase/compat";
 import {useEffect,useState} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {Button} from "@mui/material";
+import {Avatar,Button} from "@mui/material";
 
 export default function Profile(){
 
@@ -48,19 +47,18 @@ export default function Profile(){
                 <div className="Profile">
                     <div className="Container-1">
                         <div className="profile-img">
-                            {/* <img src = {randomImg} alt="User"/> */}
+                            <Avatar sx={{height: '100%', width: "100%"}} src = {details.icon} />
                         </div>
                         <div className="Name">
                             {details.name}
                         </div>
                         <div className="Bio">
-                            <textarea maxLength="50" >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            </textarea>
+                            <div className="textarea">
+                                {details.bio}
+                            </div>
                         </div>
                         {/* if actv user views their own profile Edit button will be rendered 
-                            to change data of proile*/}
+                            to change data of profile*/}
                         { (user && user.email===uid) &&
                             <Link to={`/details/${user.email}`}>
                             <Button variant="outlined">Edit</Button>

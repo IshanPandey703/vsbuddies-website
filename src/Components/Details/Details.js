@@ -55,7 +55,19 @@ export default function Details(){
             temp.languages[index] = value;
             console.log(temp);
             setValues(temp);
-        } else{
+        } 
+        else if(target === "bio"){
+            console.log(value.length)
+            if(value.length>100){
+                return;
+            }
+            const temp = {
+                ...values,
+                [target] : value    
+            }
+            console.log(temp);
+            setValues(temp);
+        }else{
             const temp = {
                 ...values,
                 [target] : value    
@@ -115,7 +127,7 @@ export default function Details(){
                     
                         <TextField label="Bio" name="bio"
                         value={values.bio} onChange={handleChange}
-                        helperText="*Short bio of you in 50 chars" margin="normal"/>
+                        helperText="*Short bio of you in 100 chars" margin="normal"/>
 
                         <TextField select label="Theme" name="theme"
                             value={values.theme} onChange={handleChange}
