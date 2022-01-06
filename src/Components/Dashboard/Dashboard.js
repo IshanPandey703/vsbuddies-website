@@ -48,7 +48,17 @@ function Dashboard(props) {
 	const color = bgcolor === "#fff"?"#1976d2":"white"
 	// Checks if user is in the Chat section or add Friends Section, initialises to 0 ie chats
 	const [curActivity,setCurActivity] = useState(0);
-
+	const [width, setWidth] = useState(window.innerWidth);
+	function handleWindowSizeChange() {
+		setWidth(window.innerWidth);
+	}
+	useEffect(() => {
+		window.addEventListener("resize", handleWindowSizeChange);
+		return () => {
+			window.removeEventListener("resize", handleWindowSizeChange);
+		};
+	}, []);
+	const isMobile = width <= 768;
 	return (
 		<div className="Dashboard">
 			<AppBar position="static" className="dashboard-navbar" elevation={3} sx={{
@@ -58,7 +68,7 @@ function Dashboard(props) {
 				<Toolbar>
 					<div className="dashboard-nav-left">
 						<Avatar src={avatarSrc.icon} />
-						{avatarSrc.name}
+						{!isMobile && avatarSrc.name}
 					</div>
 					<Link to={`/profile/${props.user.email}`}>
 						<Button className="dashboard-nav-btn" variant="outlined" >
@@ -76,7 +86,7 @@ function Dashboard(props) {
 						<ChatIcon color="primary"/>
 					</Button>
 					<Button className="dashboard-nav-btn" onClick={props.func} variant="outlined">
-						Sign Out
+						Logout
 					</Button>
 				</Toolbar>
 			</AppBar>
