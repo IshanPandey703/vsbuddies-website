@@ -25,5 +25,6 @@
 @media(max-width: 768px){
     .Sender-card-container{
         display: flex;
+        flex-direction: column;
     }
 }

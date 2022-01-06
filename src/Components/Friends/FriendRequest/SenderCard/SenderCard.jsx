@@ -54,19 +54,17 @@ function SenderCard(props) {
                 </p>
                 <div className="Spacer-large"></div>
                 <div className="button-container">
-                    <ButtonGroup size="large">
-                        <Link to={`/profile/${props.uid}`}>
-                            <Button onClick={() => {
-                            }} sx={{ color: "white", backgroundColor: "#181a1b", justifySelf: "flex-end", fontSize: "0.8rem" }}
-                                variant="outlined" fullWidth >View Profile</Button>
-                        </Link>
-                    </ButtonGroup>
-                    <ButtonGroup fullWidth = {true}>
+                    <Link to={`/profile/${props.uid}`}>
+                        <Button onClick={() => {
+                        }} sx={{ color: "white", backgroundColor: "#181a1b", fontSize: "0.8rem" }}
+                            variant="outlined" fullWidth >View Profile</Button>
+                    </Link>
+                    <ButtonGroup fullWidth>
                         <Button onClick={reqAccept}
-                            sx={{ color: "#fff", backgroundColor: "#181a1b", justifySelf: "flex-end" }}
+                            sx={{ color: "#fff", backgroundColor: "#181a1b" }}
                             variant="outlined"> <DoneIcon /> </Button>
                         <Button onClick={reqDecline}
-                            sx={{ color: "#fff", backgroundColor: "#181a1b", justifySelf: "flex-end" }}
+                            sx={{ color: "#fff", backgroundColor: "#181a1b" }}
                             variant="outlined"> <ClearIcon /> </Button>
                     </ButtonGroup>
                 </div>
