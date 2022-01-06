@@ -6,6 +6,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	padding-right: 5%;
+	background-color: white;
 }
 .home-nav-item>a{
 	text-decoration: none;
@@ -16,6 +17,7 @@
 	padding-top: 2ch;
 	padding-bottom: 2ch;
 	font-size: 20px;
+	background-color: white;
 }
 .home-nav-first{
 	padding-left: 5%;
@@ -24,8 +26,11 @@
 }
 .home-right{
 	background-position: center;
-	background: url("./home.png") no-repeat;
+	background: url("./home-light.png") no-repeat;
 	background-size: contain;
+	background-attachment: local;
+  background-position: center; 
+	flex: 1;
 }
 .cloud {
 	background-color: #0984e3;
@@ -44,9 +49,6 @@
 	width: 30%;
 }
 .home-left{
-  flex: 1;
-}
-.home-right{
   flex: 1;
 }
 .img{
@@ -84,7 +86,9 @@
 .about-text > p {
 	width: 70%;
 }
-
+.cloud2{
+	background-color: white;
+}
 .contact-container {
 	padding: 4% 5%;
 	background-color: black;
@@ -146,8 +150,14 @@
 	.cloud > path {
 		fill: #181a1b;
 	}
+	.home-nav-item{
+		background-color: #181a1b;
+	}
 	.home-nav-first{
 		background-color: #004a98;
+	}
+	.home-right{
+		background: url('./home.png');
 	}
 	.cloud{
 		background-color: #004a98;
