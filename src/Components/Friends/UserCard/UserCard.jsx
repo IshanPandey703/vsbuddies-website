@@ -30,7 +30,7 @@ export default function UserCard(props) {
                 <Link to={`/profile/${props.uid}`}>
                     <Button onClick={()=>{
                     }} sx={{color:"white", backgroundColor:"#181a1b", justifySelf:"flex-end", fontSize: "0.8rem"}} 
-                    variant ="outlined" disabled = {btnDisabled}>View Profile</Button>
+                    variant ="outlined" disabled = {btnDisabled} fullWidth>View Profile</Button>
                 </Link>
                 <Button onClick={()=>{ 
                     props.func(props.uid);

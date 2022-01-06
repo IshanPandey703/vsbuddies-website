@@ -3,17 +3,14 @@
     display: flex;
     flex-direction: column;
     padding: 2%;
-    /* margin: 10% 3%; */
     color: #fff;
     font-size: 1.2rem;
     width: 75%;
-    /* justify-content: space-evenly; */
     text-align: center;
     border-radius: 8px;
-    /* box-shadow: 3px 3px 3px rgb(121, 110, 110); */
     margin-left: 12.5%;
     min-height: 35vh;
-    align-items: center;
+    margin-top: 5%;
 }
 
 .Card-head{
@@ -22,10 +19,10 @@
     justify-content: center;
     gap:1rem;
 }
-
+/* 
 .Spacer-small{
     flex: 0.3;
-}
+} */
 
 .Spacer-large{
     flex:1;
