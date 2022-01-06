@@ -15,7 +15,7 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route path="/profile/:uid" element={<Profile />} />
         <Route path="/details/:uid" element={<Details />} />
-        <Route path="/connect/:uid" element={<Friends />} />
+        <Route path="/connect" element={<Friends />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

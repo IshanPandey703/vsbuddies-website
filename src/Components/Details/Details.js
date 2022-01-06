@@ -1,6 +1,6 @@
 import { useParams,Link } from 'react-router-dom';
 import firebase from "firebase/compat";
-import {useEffect,useState,useRef} from "react";
+import {useEffect,useState} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {Button, FormControl, FormLabel} from "@mui/material";
 import TextField from '@mui/material/TextField';
@@ -98,7 +98,6 @@ export default function Details(){
         }
         console.log(newDetails);
         await db.collection("Users").doc(uid).collection("Details").doc("Details").update(newDetails);
-        window.location.reload();
     }
 
     return (user && user.email===uid ? 
@@ -157,10 +156,11 @@ export default function Details(){
                         value = {values.languages[1]} onChange = {handleChange}
                         margin="normal"/>
                     </FormControl>
-
-                    <div className="form-btn">
-                        <Button variant="contained" type="Submit">Save</Button>
-                    </div>
+                    <Link to={`/profile/${uid}`}>
+                        <div className="form-btn">
+                            <Button variant="contained" type="Submit">Save</Button>
+                        </div>
+                    </Link>
                     </form>
                 </div>
             </div>) : (!loading &&
