@@ -71,7 +71,6 @@ function Friends() {
                         <Toolbar>
                             <div className="dashboard-nav-left">
                                 <Avatar src={avatarSrc.icon} />
-                                {avatarSrc.name}
                             </div>
                             <Link to={`/profile/${user.email}`}>
                                     <Button className="dashboard-nav-btn" variant="outlined" >
@@ -89,7 +88,7 @@ function Friends() {
                                 </Button>
                             </Link>
                             <Button className="dashboard-nav-btn" onClick={handleSignOut} variant="outlined">
-                                Sign Out
+                                Logout
                             </Button>
                         </Toolbar>
                     </AppBar>
@@ -135,7 +134,7 @@ function Friends() {
                             </Button>
                         </Link>
                         <Button className="dashboard-nav-btn" onClick={handleSignOut} variant="outlined">
-                            Sign Out
+                            Logout
                         </Button>
                     </Toolbar>
                 </AppBar>
