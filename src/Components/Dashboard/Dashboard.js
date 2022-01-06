@@ -9,7 +9,6 @@ import ChatIcon from '@mui/icons-material/Chat';
 import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
-import Friends from "../Friends/Friends";
 import firebase from "firebase/compat"
 import { Link } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -66,11 +65,11 @@ function Dashboard(props) {
 							<AccountCircleIcon color="primary"/>
 						</Button>
 					</Link>
-					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
-						setCurActivity(1)
-					}}>
-						<PersonAdd color="primary"/>
-					</Button>
+					<Link to={`/connect/${props.user.email}`}>
+						<Button className="dashboard-nav-btn" variant="outlined" >
+							<PersonAdd color="primary"/>
+						</Button>
+					</Link>
 					<Button className="dashboard-nav-btn" variant="outlined" onClick={()=>{
 						setCurActivity(0)
 					}}>
@@ -82,11 +81,8 @@ function Dashboard(props) {
 				</Toolbar>
 			</AppBar>
 			{showModal && <MODAL />}
-		{/* On currActivity 0 -> renders Chat 
-			   currActivity 1 -> renders Friends panel  */}
+		{/* On currActivity 0 -> renders Chat  */}
 		{curActivity===0&&<Chat uid={props.user.email}/>}
-		{curActivity===1&&<Friends uid={props.user.email}/>}
-
 		</div>
 	);
 }
