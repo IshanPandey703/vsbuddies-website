@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import firebase from "firebase/compat";
 import UserCard from "../UserCard/UserCard";
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar, Toolbar ,Button} from "@mui/material";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import MatchCalculator from "../MatchCalculator/MatchCalculator";
 import "./FriendList.css";
@@ -66,6 +66,7 @@ function FriendList(props) {
                     color: color
                     }}>
                 <Toolbar>
+                {props.back && <Button onClick={props.back}>{"<"}</Button>}
                     <PeopleAltIcon />
                     {props.option}
                 </Toolbar>

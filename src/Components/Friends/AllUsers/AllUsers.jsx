@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import firebase from "firebase/compat";
 import "./AllUsers.css";
 import UserCard from "../UserCard/UserCard";
-import {AppBar,Toolbar} from "@mui/material";
+import {AppBar,Toolbar,Button} from "@mui/material";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import MatchCalculator from "../MatchCalculator/MatchCalculator";
 
@@ -71,6 +71,7 @@ export default function AllUsers(props) {
                 color: color
                 }}>
             <Toolbar>
+                {props.back && <Button onClick={props.back}>{"<"}</Button>}
                 <PersonAddIcon />
                 {props.option}
             </Toolbar>

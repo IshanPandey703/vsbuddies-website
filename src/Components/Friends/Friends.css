@@ -17,3 +17,8 @@
     text-transform: uppercase;
 }
 
+@media(max-width: 768px){
+    .Friends, .Options-List, .All-User-List-Container, .All-sender-list-container, .Friends-list-container{
+        width: 100vw;
+    }
+}
