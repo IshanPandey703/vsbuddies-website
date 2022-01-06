@@ -21,3 +21,9 @@
         height: calc((100vh - 112px));
     }
 }
+@media(max-width: 768px){
+    .UserCard-Container{
+        display: flex;
+        flex-direction: column;
+    }
+}
