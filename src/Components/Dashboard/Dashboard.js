@@ -27,7 +27,7 @@ function Dashboard(props) {
 		const avatarSrcRef = firestore.collection("Users").doc(props.user.email).collection("Details").doc("Details");
 		avatarSrcRef.get().then(async(doc)=>{
 			const temp = await doc.data()
-
+            console.log(temp);
 			// Display Modal if user details incomplete
 			if(temp.name==="No-Name"||temp.bio.length===0
 			||temp.college.length===0||temp.topTwoLanguages[0].length===0
