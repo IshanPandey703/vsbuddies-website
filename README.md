@@ -23,3 +23,10 @@
 ### Your extension list gets auto updated so your match percentage remains accurate*
 
 > *Your extensions will only be fetched though the vscode extension
+
+# How to deploy locally
+## Website and firebase server
+1. Create a Firebase account, and setup a firestore database and enable github outh(remember to add localhost to authorised domains)
+2. Create a .env file with the keys from .env.example file and the values from firebase panel(names should be self-explanatory)
+3. Replace the url in src/Components/Details/Details.js and src/Components/Friends/Friends.js from https://vsbuddies.netlify.app to localhost:3000
+4. In the firestore database create a collection with the name Users
