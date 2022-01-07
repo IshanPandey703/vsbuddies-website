@@ -19,4 +19,4 @@ image
 ## Login to the VSCode extension to be able to chat with your friends while coding
 image
 [Link To Extension](https://marketplace.visualstudio.com/items?itemName=Lohitaksha.vsbuddies)
-## Also your extension list gets auto updated so your match percentage remains accurate
+## Your extension list gets auto updated so your match percentage remains accurate(if you have the extension)
