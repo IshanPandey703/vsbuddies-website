@@ -52,10 +52,10 @@ function Home(props) {
 				<div className="about-text">
 					<h1>About us</h1>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore
-						magna aliqua. Ut enim ad minim veniam, quis nostrud
-						exercitation ullamco laboris nisi ut aliquip
+						We are here to connect Developers.  
+						We provide developers with opportunities that enable their growth 
+						and help them to get connected with the ones having common interests and 
+						high match percent. By doing that we want to become the leading developer community.
 					</p>
 				</div>
 				<div className="about-image">
@@ -75,31 +75,31 @@ function Home(props) {
 			<div id="contact" className="contact-container">
 				<h1>Contact us</h1>
 				<div className="contact-grid">
-					<ContactCard type="LinkedIn" to="">
+					<ContactCard type="LinkedIn" to="https://www.linkedin.com/in/lohitaksha-malhotra-b84392201/">
 						Lohitaksha Malhotra
 					</ContactCard>
-					<ContactCard type="LinkedIn" to="">
+					<ContactCard type="LinkedIn" to="https://www.linkedin.com/in/ishan-pandey-15527717b/" target="_blank">
 						Ishan Pandey
 					</ContactCard>
-					<ContactCard type="LinkedIn" to="">
+					<ContactCard type="LinkedIn" to="" >
 						Ankur Pandey
 					</ContactCard>
-					<ContactCard type="Email" to="">
+					<ContactCard type="Email" to="mailto:lohit244@gmail.com">
 						Lohitaksha Malhotra
 					</ContactCard>
-					<ContactCard type="Email" to="">
+					<ContactCard type="Email" to="mailto:pandey.ishan703@gmail.com">
 						Ishan Pandey
 					</ContactCard>
-					<ContactCard type="Email" to="">
+					<ContactCard type="Email" to="mailto:mailankur1902@gmail.com">
 						Ankur Pandey
 					</ContactCard>
-					<ContactCard type="Github" to="">
+					<ContactCard type="Github" to="https://github.com/Lohit244">
 						Lohitaksha Malhotra
 					</ContactCard>
-					<ContactCard type="Github" to="">
+					<ContactCard type="Github" to="https://github.com/IshanPandey703">
 						Ishan Pandey
 					</ContactCard>
-					<ContactCard type="Github" to="">
+					<ContactCard type="Github" to="https://github.com/AnkurPandey07">
 						Ankur Pandey
 					</ContactCard>
 				</div>
