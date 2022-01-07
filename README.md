@@ -30,3 +30,8 @@
 2. Create a .env file with the keys from .env.example file and the values from firebase panel(names should be self-explanatory)
 3. Replace the url in src/Components/Details/Details.js and src/Components/Friends/Friends.js from https://vsbuddies.netlify.app to localhost:3000
 4. In the firestore database create a collection with the name Users
+5. Navigate to the folder of the project and run the commands
+ ```bash
+npm i
+npm start
+```
