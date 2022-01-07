@@ -14,3 +14,12 @@
     margin-right: 5px !important;
     height: 50px; 
 }
+
+@media (max-width:350px) {
+    .dashboard-nav-left{
+        display: none !important;
+    }
+    .dashboard-navbar>div{
+        justify-content: center;
+    }
+}

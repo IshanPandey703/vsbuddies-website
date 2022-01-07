@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# [VSBuddies](https://vsbuddies.netlify.app)
+> A simple way to meet new friends and chat with your friends.
+# Features
+### Supports Dark and Light mode
+![LightDark](https://user-images.githubusercontent.com/44966242/148548114-719434bb-13ae-44d2-979c-ee1d9409db96.png)
+### Login with github
+### Customize you profile and your interests
+![Profile](https://user-images.githubusercontent.com/44966242/148548144-c9aafc7f-1bc7-4927-af8f-8b043941496b.png)
+### Find other developers with common interests
+![Connect](https://user-images.githubusercontent.com/44966242/148548167-0a8ce685-4fac-4222-816e-577e5b2781fc.png)
+### Send them friend requests and recieve friend requests from other developers
+### Remove friends you dont want
+### Get match percentage on the basis of 
++ Common Interests
++ College
++ Your top two languages
++ Your extensions*
+### Your Preference in dark and light themes
+## Login to the VSCode extension to be able to chat with your friends while coding
+![Extension](https://user-images.githubusercontent.com/44966242/148548190-284fa183-4589-4952-b433-dba112a40f3f.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Link To Extension](https://marketplace.visualstudio.com/items?itemName=Lohitaksha.vsbuddies)
+### Your extension list gets auto updated so your match percentage remains accurate*
 
-## Available Scripts
+> *Your extensions will only be fetched though the vscode extension
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# How to deploy locally
+## Website and firebase server
+1. Create a Firebase account, and setup a firestore database and enable github outh(remember to add localhost to authorised domains)
+2. Create a .env file with the keys from .env.example file and the values from firebase panel(names should be self-explanatory)
+3. Replace the url in src/Components/Details/Details.js and src/Components/Friends/Friends.js from https://vsbuddies.netlify.app to localhost:3000
+4. In the firestore database create a collection with the name Users

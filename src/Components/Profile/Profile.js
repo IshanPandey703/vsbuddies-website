@@ -14,6 +14,7 @@ export default function Profile(){
     const auth = firebase.auth();
     
     // to check who is requesting to view profile
+    // eslint-disable-next-line no-unused-vars
     const [user,loading,err] = useAuthState(auth);
 
     // stores details of user whose profile is requested
@@ -23,23 +24,25 @@ export default function Profile(){
     const [actvUserInterests,setActvUserInterests] = useState([])
     
     // fetching data on mount
-    useEffect(async()=>{
-        
-        const docSnapshot = await db.collection("Users").doc(uid).collection("Details").doc("Details").get();
-        const temp = docSnapshot.data();
-        setDetails(temp);
-        
-        if(user){
-            // user.email === uid ---> if true, actv user is requesting to view their own profile 
-            if(user.email!==uid){
-                // fetching actv user interest list
-                const userDoc = await db.collection("Users").doc(user.email).collection("Details").doc("Details").get();
-                const temp = userDoc.data().interests;
-                setActvUserInterests(temp);
-                // console.log(actvUserInterests);
+    useEffect(()=>{
+        const foruseeffect=async()=>{
+            const docSnapshot = await db.collection("Users").doc(uid).collection("Details").doc("Details").get();
+            const temp = docSnapshot.data();
+            setDetails(temp);
+            
+            if(user){
+                // user.email === uid ---> if true, actv user is requesting to view their own profile 
+                if(user.email!==uid){
+                    // fetching actv user interest list
+                    const userDoc = await db.collection("Users").doc(user.email).collection("Details").doc("Details").get();
+                    const temp = userDoc.data().interests;
+                    setActvUserInterests(temp);
+                    // console.log(actvUserInterests);
+                }
             }
         }
-    },[user]) 
+        foruseeffect()
+    },[user,db,uid]) 
     
     return (
         <div>
@@ -72,7 +75,7 @@ export default function Profile(){
                             {details.interests.map((interest)=> {
                                 if(user && user.email!==uid){
                                     if(actvUserInterests.includes(interest)){
-                                        {/* highlights common interests */}
+                                        /* highlights common interests */
                                         return (<div key={interest} className="text highlight"> {interest} </div>)
                                     }
                                 }

@@ -19,6 +19,7 @@ function Friends() {
     const firestore = firebase.firestore();
     const auth = firebase.auth();
 	const [avatarSrc, setAvatarSrc] = useState("")
+    // eslint-disable-next-line no-unused-vars
     const [user,loading,err] = useAuthState(auth);
 
     useEffect(()=>{
@@ -31,8 +32,7 @@ function Friends() {
                 setAvatarSrc(temp)
             })
         }
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [firestore, user])
 
     let bgcolor = "#fff"
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {

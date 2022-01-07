@@ -25,9 +25,10 @@
 .messages-container{
     flex: 1;
     display: flex;
-    padding: 1% 1%;
+    padding: 1ch;
     flex-direction: column;
     overflow-y: scroll;
+    gap: 4px
 }
 .message-input{
     border: none;
@@ -44,9 +45,10 @@
 }
 .message-form{
     align-self: flex-end;
-    height: 4.5vh;
+    height: 6ch;
     width: 100%;
     display: flex;
+    font-size: 0.8rem;
 }
 
 @media (prefers-color-scheme : dark) {
