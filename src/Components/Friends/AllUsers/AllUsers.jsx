@@ -14,7 +14,8 @@ export default function AllUsers(props) {
     const [everyUserDetails,setEveryUserDetails] = useState([]);
     const [actvUserDetails,setActvUserDetails] = useState([]);
 
-    useEffect(async ()=>{
+    useEffect(()=>{
+        const foruseeffect = async()=>{
             let details = [];
             
             // fetching uid's of actv user's friends
@@ -50,7 +51,10 @@ export default function AllUsers(props) {
             })
 
             setEveryUserDetails(details)
-    },[]);
+        }
+        foruseeffect()
+
+    },[db,props.uid]);
     let bgcolor = "#fff"
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 		// For dark mode chagne the material ui appbar
@@ -77,8 +81,8 @@ export default function AllUsers(props) {
             </Toolbar>
         </AppBar>
             <div className = "UserCard-Container">
-            {(everyUserDetails.length!=0) && everyUserDetails.map((user)=>
-                (!actvUserDetails.friends.includes(user.uid)&&user.uid!=props.uid) && 
+            {(everyUserDetails.length!==0) && everyUserDetails.map((user)=>
+                (!actvUserDetails.friends.includes(user.uid)&&user.uid!==props.uid) && 
                 <UserCard key={user.uid} uid={user.uid} name = {user.name} 
                 icon = {user.icon} matchPercent={user.matchPercent} text="Add Friend" func = {AddFriend} />
             )

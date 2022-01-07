@@ -22,3 +22,8 @@
         width: 100vw;
     }
 }
+@media(max-width: 1100px){
+    .Friends{
+        grid-template-columns: 30vw 70vw;
+    }
+}

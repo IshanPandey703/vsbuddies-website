@@ -13,7 +13,8 @@ function FriendList(props) {
     
     const [friendsDetails,setFriendsDetails] = useState([]);
     
-    useEffect(async ()=>{
+    useEffect(()=>{
+        const foruseeffect=async()=>{
         // Fetching Details of actv user 
         const docSnapshot = await db.collection("Users").doc(props.uid).collection("Details").doc("Details").get()
         const actvuserDetails = docSnapshot.data();
@@ -33,8 +34,9 @@ function FriendList(props) {
             friendsData.push(friendDetails);
         }))
         setFriendsDetails(friendsData);
-    // eslint-disable-next-line
-    },[]
+    }
+    foruseeffect()
+    },[db, props.uid]
     );
 
     let bgcolor = "#fff"

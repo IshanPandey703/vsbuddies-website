@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Button, ButtonGroup, Avatar } from "@mui/material";
 import firebase from "firebase/compat";
 import DoneIcon from '@mui/icons-material/Done';
@@ -37,7 +38,10 @@ function SenderCard(props) {
         // delete the doc with key as Uid of sender in receiver's Pending Req Collection
         const removeSender = await receiverRef.delete();
     }
-
+    let darkmode = false
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        darkmode=true;
+    }
     const matchPercent = props.matchPercent;
     return (
         <div>
@@ -56,15 +60,15 @@ function SenderCard(props) {
                 <div className="button-container">
                     <Link to={`/profile/${props.uid}`}>
                         <Button onClick={() => {
-                        }} sx={{ color: "white", backgroundColor: "#181a1b", fontSize: "0.8rem" }}
+                        }} sx={{ color: darkmode?"white":"black", backgroundColor: darkmode?"#181a1b":"white", fontSize: "0.8rem" }}
                             variant="outlined" fullWidth >View Profile</Button>
                     </Link>
                     <ButtonGroup fullWidth>
                         <Button onClick={reqAccept}
-                            sx={{ color: "#fff", backgroundColor: "#181a1b" }}
+                            sx={{ color: darkmode?"#fff":"black", backgroundColor: darkmode?"#181a1b":"white" }}
                             variant="outlined"> <DoneIcon /> </Button>
                         <Button onClick={reqDecline}
-                            sx={{ color: "#fff", backgroundColor: "#181a1b" }}
+                            sx={{ color: darkmode?"#fff":"black", backgroundColor: darkmode?"#181a1b":"white" }}
                             variant="outlined"> <ClearIcon /> </Button>
                     </ButtonGroup>
                 </div>

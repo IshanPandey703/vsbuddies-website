@@ -11,7 +11,10 @@ export default function UserCard(props) {
     // if Remove Friend=> Removed
     let [btnText,setBtnText] = useState(props.text);
     let[btnDisabled,setBtnDisabled] = useState(false); 
-
+    let darkmode = false
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        darkmode=true;
+    }
     const matchPercent = props.matchPercent;
     return (
         <div>
@@ -29,7 +32,7 @@ export default function UserCard(props) {
                 <div className="Spacer-large"></div>
                 <Link to={`/profile/${props.uid}`}>
                     <Button onClick={()=>{
-                    }} sx={{color:"white", backgroundColor:"#181a1b", justifySelf:"flex-end", fontSize: "0.8rem"}} 
+                    }} sx={{color:darkmode?"white":"black", backgroundColor:darkmode?"#181a1b":"white", justifySelf:"flex-end", fontSize: "0.8rem"}} 
                     variant ="outlined" disabled = {btnDisabled} fullWidth>View Profile</Button>
                 </Link>
                 <Button onClick={()=>{ 
@@ -42,7 +45,7 @@ export default function UserCard(props) {
                     }
                     setBtnText(txt);
                     setBtnDisabled(true);
-                }} sx={{color:"white", backgroundColor:"#181a1b", justifySelf:"flex-end", fontSize: "0.8rem"}} 
+                }} sx={{color:darkmode?"white":"black", backgroundColor:darkmode?"#181a1b":"white", justifySelf:"flex-end", fontSize: "0.8rem"}} 
                 variant ="outlined" disabled = {btnDisabled} >{btnText}</Button>
             </div>
         </div> 

@@ -26,23 +26,26 @@ export default function Details(){
         languages : ["Language 1","Language 2"] ,
         theme: "dark"
     })
-    const [user,loading,err] = useAuthState(auth);
+    const [user,loading] = useAuthState(auth);
 
-    useEffect(async()=>{
-        if(user){
-            const docSnapshot = await db.collection("Users").doc(uid).collection("Details").doc("Details").get();
-            const details = docSnapshot.data();
-            const temp = {
-                name: details.name,
-                college: details.college,
-                bio: details.bio,
-                languages: details.topTwoLanguages,
-                theme: details.theme
+    useEffect(()=>{
+        async function foruseeffect(){
+            if(user){
+                const docSnapshot = await db.collection("Users").doc(uid).collection("Details").doc("Details").get();
+                const details = docSnapshot.data();
+                const temp = {
+                    name: details.name,
+                    college: details.college,
+                    bio: details.bio,
+                    languages: details.topTwoLanguages,
+                    theme: details.theme
+                }
+                setValues(temp);
+                setUserDetails(details);  
             }
-            setValues(temp);
-            setUserDetails(details);  
         }
-    },[user])
+        foruseeffect();
+    },[user,db,uid])
 
     function handleChange(e) {
         const value = e.target.value;
@@ -83,7 +86,7 @@ export default function Details(){
         console.log(isChecked,value);
         if(!isChecked){
             setUserDetails( prevDetails => {
-                const temp = prevDetails.interests.filter(interest => interest!=value);
+                const temp = prevDetails.interests.filter(interest => interest!==value);
                 return {...prevDetails,interests:temp};
             });
             return;
