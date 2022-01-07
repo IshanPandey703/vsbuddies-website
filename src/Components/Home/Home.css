@@ -75,7 +75,7 @@
 .about-container {
 	min-height: 65vh;
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	background-color: white;
 	padding: 2% 5%;
 }
@@ -84,7 +84,7 @@
 	font-size: 2rem;
 }
 .about-text > p {
-	width: 70%;
+	width: 90%;
 }
 .cloud2{
 	background-color: white;

@@ -172,6 +172,9 @@ export default function Details(){
                         <div className="form-btn">
                             <Button variant="contained" type="Submit">Save</Button>
                         </div>
+                        <footer className='detail-foot'>
+                            <p className='detail-para'>*Update Your Extension List from the VSCode Extension for more Accurate Match Percent</p>
+                        </footer> 
                     </form>
                 </div>
             </div>) : (!loading &&
