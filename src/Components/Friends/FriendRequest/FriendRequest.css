@@ -34,3 +34,9 @@
         background-color: #0C5DAF;
     }
 }
+
+@media(max-width: 1110px){
+    .Sender-card-container{
+        grid-template-columns: 1fr 1fr;
+    }
+}

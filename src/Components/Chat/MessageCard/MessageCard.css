@@ -1,6 +1,6 @@
 .Message-Card-Text{
     overflow-wrap: break-word;
-    padding: 2% 4%;
+    padding: 2ch 4ch;
     max-width: 60%;
     border-radius: 10px;
 }

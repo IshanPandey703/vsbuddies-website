@@ -75,7 +75,7 @@ export default function Profile(){
                             {details.interests.map((interest)=> {
                                 if(user && user.email!==uid){
                                     if(actvUserInterests.includes(interest)){
-                                        {/* highlights common interests */}
+                                        /* highlights common interests */
                                         return (<div key={interest} className="text highlight"> {interest} </div>)
                                     }
                                 }
