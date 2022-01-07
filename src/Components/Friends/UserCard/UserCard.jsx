@@ -27,7 +27,7 @@ export default function UserCard(props) {
                     </p>
                 </div>
                 <p>
-                    {"Match Percent: "+matchPercent+"%"}
+                    Match Percent: <strong>{matchPercent}%</strong>
                 </p>
                 <div className="Spacer-large"></div>
                 <Link to={`/profile/${props.uid}`}>

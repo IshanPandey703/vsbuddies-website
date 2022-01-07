@@ -54,7 +54,7 @@ function SenderCard(props) {
                     </p>
                 </div>
                 <p>
-                    {"Match Percent: " + matchPercent + "%"}
+                    Match Percent: <strong>{matchPercent}%</strong>
                 </p>
                 <div className="Spacer-large"></div>
                 <div className="button-container">
