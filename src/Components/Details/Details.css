@@ -34,6 +34,14 @@
     margin-top: 1%;
 }
 
+.detail-foot{
+    text-align: center;
+    font-family: "Poppins" !important;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+
 .MuiButton-root, .MuiTypography-root, .MuiOutlinedInput-input, 
 .MuiFormHelperText-root,.MuiOutlinedInput-root, .MuiInputLabel-root, .MuiFormLabel-root{
     font-family: "Poppins" !important;
