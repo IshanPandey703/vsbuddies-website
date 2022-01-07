@@ -12,9 +12,9 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     /* gap: 1rem; */
+    background-color: #0984e3;
     grid-row-gap: 1rem;
     height: calc(100vh - 128px);
-    background-color: #0C5DAF;
     /* flex: 90%; */
 }
 @media(max-width: 600px){
@@ -26,5 +26,11 @@
     .Friends-card-container{
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media(prefers-color-scheme: dark){
+    .Friends-card-container{
+        background-color: #0C5DAF;
     }
 }
