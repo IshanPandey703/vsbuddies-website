@@ -16,6 +16,7 @@
 .Message-Card{
     display: flex;
     align-items: center;
+    gap: 1ch;
 }
 @media (prefers-color-scheme: dark){
     .Message-Card-Text{

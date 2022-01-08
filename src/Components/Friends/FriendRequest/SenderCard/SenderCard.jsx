@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 import { Button, ButtonGroup, Avatar } from "@mui/material";
+import {useState} from "react"
 import firebase from "firebase/compat";
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 function SenderCard(props) {
     const db = firebase.firestore();
 
+    const [disabled,setDisabled] = useState(false);
     async function reqAccept() {
         const sender = props.uid;
         const receiver = props.receiverUid;
@@ -16,18 +17,19 @@ function SenderCard(props) {
         const senderRref = db.collection("Users").doc(sender).collection("Details").doc("Details");
 
         // Add sender's uid in receiver's friend List
-        const addSender = await receiverRref.update({
+        await receiverRref.update({
             friends: firebase.firestore.FieldValue.arrayUnion(sender)
         });
 
         // Add receiver's uid in sender's friend List
-        const addReceiver = await senderRref.update({
+        await senderRref.update({
             friends: firebase.firestore.FieldValue.arrayUnion(receiver)
         });
 
         // delete the doc with key as Uid of sender in receiver's Pending Req Collection
-        const removeSender = await db.collection("Users").doc(receiver).collection("Pending Requests")
+        await db.collection("Users").doc(receiver).collection("Pending Requests")
             .doc(sender).delete();
+        setDisabled(true)
     }
 
     async function reqDecline() {
@@ -36,7 +38,8 @@ function SenderCard(props) {
         const receiverRef = db.collection("Users").doc(receiver).collection("Pending Requests").doc(sender);
 
         // delete the doc with key as Uid of sender in receiver's Pending Req Collection
-        const removeSender = await receiverRef.delete();
+        await receiverRef.delete();
+        setDisabled(true)
     }
     let darkmode = false
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -66,10 +69,10 @@ function SenderCard(props) {
                     <ButtonGroup fullWidth>
                         <Button onClick={reqAccept}
                             sx={{ color: darkmode?"#fff":"black", backgroundColor: darkmode?"#181a1b":"white" }}
-                            variant="outlined"> <DoneIcon /> </Button>
+                            variant="outlined" disabled={disabled}> <DoneIcon /> </Button>
                         <Button onClick={reqDecline}
                             sx={{ color: darkmode?"#fff":"black", backgroundColor: darkmode?"#181a1b":"white" }}
-                            variant="outlined"> <ClearIcon /> </Button>
+                            variant="outlined" disabled={disabled}> <ClearIcon /> </Button>
                     </ButtonGroup>
                 </div>
             </div>

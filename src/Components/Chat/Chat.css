@@ -36,29 +36,37 @@
     padding: 1ch;
     flex-direction: column;
     overflow-y: scroll;
-    gap: 4px
+    gap: 4px;
+    font-family: "Poppins";
 }
 .message-input{
     border: none;
-    border-radius: 5px 0 0 5px;
-    flex: 1;
-    font-size: 0.8rem;
+    border-radius: 20px 0 0 20px;
+    width: 90%;
+    font-size: 1rem;
+    padding-left: 2ch;
+    font-family: "Poppins";
 }
 .message-card{
     background-color: black;
 }
 .message-form>button{
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 20px 20px 0;
     background-color: black;
+    color: white;
 }
 .message-form{
     align-self: flex-end;
     height: 6ch;
+    justify-content: center;
     width: 100%;
     display: flex;
     font-size: 0.8rem;
+    margin-bottom: 3px;
 }
-
+.message-input:focus{
+    outline: none;
+}
 @media (prefers-color-scheme : dark) {
     .Friends-List{
         background-color: #181a1b;
