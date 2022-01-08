@@ -30,7 +30,7 @@ function Dashboard(props) {
 				const temp = await doc.data()
 				// Display Modal if user details incomplete
 				if(temp){
-					if(temp.name!=="No-Name"||temp.bio.length===0
+					if(temp.name==="No-Name"||temp.bio.length===0
 					||temp.college.length===0||temp.topTwoLanguages[0].length===0
 					||temp.topTwoLanguages[1].length===0||temp.interests.length===0){
 						setShowModal(true);
