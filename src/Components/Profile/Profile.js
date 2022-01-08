@@ -47,7 +47,7 @@ export default function Profile(){
     
     return (
         <div>
-            {(!details)?<h1>No User</h1>:(Object.keys(details).length!==0) && (
+            {(!details)?<h1 style={{color: "white"}}>No User</h1>:(Object.keys(details).length!==0) && (
                 <div className="Profile">
                     <div className="Container-1">
                         <div className="profile-img">
