@@ -11,6 +11,14 @@
     flex-direction: column;
     background-color: #0984e3;
 }
+.nofriends{
+    color: dark;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.nofriends>svg{
+    vertical-align: bottom;
+}
 
 .Friends-List{
     background-color: #fff;
@@ -60,6 +68,9 @@
     }
     .CurChat{
         background-color: #1056a1;
+    }
+    .nofriends{
+        color: white;
     }
 }
 @media(max-width: 1100px){

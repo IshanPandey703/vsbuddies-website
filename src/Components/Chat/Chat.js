@@ -3,6 +3,7 @@ import "./Chat.css";
 import { useState, useEffect } from "react";
 import firebase from "firebase/compat";
 import CurChat from "./CurChat";
+import { PersonAdd } from "@mui/icons-material";
 
 function Chat(props) {
 	// initalise firestore
@@ -20,36 +21,34 @@ function Chat(props) {
 			.doc("Details")
 			.get()
 			.then(async (doc) => {
-				const friends = await doc.data().friends;
-
-				// next line handles the cases of undefined / null return types when fetching friends array from firebase
-				if (typeof friends !== "undefined" && friends !== null) {
-					let toSet = [];
-					friends.forEach(async (friend) => {
-						const doc2 = await friendsRef
-							.doc(friend)
-							.collection("Details")
-							.doc("Details")
-							.get();
-						const name = await doc2.data().name;
-						const icon = await doc2.data().icon;
-						toSet = [
-							...toSet,
-							{
-								name: name,
-								icon: icon,
-								uid: friend,
-							},
-						];
-						// Update the friends state array
-						setFriends(toSet);
-					});
+				if(doc.data()){
+					const friends = await doc.data().friends || [];
+	
+					// next line handles the cases of undefined / null return types when fetching friends array from firebase
+					if (friends && friends.length>0) {
+						let toSet = [];
+						friends.forEach(async (friend) => {
+							const doc2 = await friendsRef.doc(friend).collection("Details").doc("Details").get();
+								if(doc2.data()){
+									const name = await doc2.data().name || "";
+									const icon = await doc2.data().icon || "";
+									toSet = [
+										...toSet,
+										{
+											name: name,
+											icon: icon,
+											uid: friend,
+										},
+									];
+								}
+							// Update the friends state array
+							setFriends(toSet);
+						});
+					}
 				}
 
 			});
-		// Firebase is not a real dependency of this useEffect hook, so suppressed es-lint warning
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.uid]);
+	}, [props.uid, firestore]);
 	// Line 51 to 61 check if the user is on a mobile device
 	const [width, setWidth] = useState(window.innerWidth);
 	function handleWindowSizeChange() {
@@ -72,7 +71,7 @@ function Chat(props) {
 				{curChat === "0" && (
 					<div className="Friends-List">
 						<div className="Friends-container">
-							{Friends &&
+							{(Friends && Friends.length>0)&&
 								Friends.map((fr) => {
 									return (
 										<FriendCard
@@ -85,6 +84,9 @@ function Chat(props) {
 										</FriendCard>
 									);
 								})}
+								{(Friends && Friends.length===0)&&
+								<h3 className="nofriends">Go to <PersonAdd /> to make new friends</h3>
+								}
 						</div>
 					</div>
 				)}
@@ -105,19 +107,22 @@ function Chat(props) {
 			<div className="Chat">
 				<div className="Friends-List">
 					<div className="Friends-container">
-						{Friends &&
-							Friends.map((fr) => {
-								return (
-									<FriendCard
-										onClick={() => {
-											setCurChat(fr.uid);
-										}}
-										key={fr.uid}
-										icon={fr.icon}>
-										{fr.name}
-									</FriendCard>
-								);
-							})}
+					{(Friends && Friends.length>0)&&
+								Friends.map((fr) => {
+									return (
+										<FriendCard
+											onClick={() => {
+												setCurChat(fr.uid);
+											}}
+											key={fr.uid}
+											icon={fr.icon}>
+											{fr.name}
+										</FriendCard>
+									);
+								})}
+								{(Friends && Friends.length===0)&&
+								<h3 className="nofriends">Go to <PersonAdd /> to make new friends</h3>
+								}
 					</div>
 				</div>
 				{curChat === "0" ? (

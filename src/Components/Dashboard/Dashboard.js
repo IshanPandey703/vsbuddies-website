@@ -18,7 +18,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 function Dashboard(props) {
 	//initalise firestore
     const firestore = firebase.firestore();
-	const [avatarSrc, setAvatarSrc] = useState("")
+	const [avatarSrc, setAvatarSrc] = useState({icon: "", name: ""})
 	// if user details are incomplete modal will appear
 	const [showModal,setShowModal] = useState(false);
 
@@ -26,19 +26,18 @@ function Dashboard(props) {
 		const foruseeffect = async()=>{
 			//get user icon from firestore db
 			const avatarSrcRef = await firestore.collection("Users").doc(props.user.email).collection("Details").doc("Details");
-			await avatarSrcRef.get().then(async(doc)=>{
+			avatarSrcRef.get().then(async(doc)=>{
 				const temp = await doc.data()
-							console.log(temp);
 				// Display Modal if user details incomplete
-				if(temp.name==="No-Name"||temp.bio.length===0
-				||temp.college.length===0||temp.topTwoLanguages[0].length===0
-				||temp.topTwoLanguages[1].length===0||temp.interests.length===0){
-					setShowModal(true);
+				if(temp){
+					if(temp.name!=="No-Name"||temp.bio.length===0
+					||temp.college.length===0||temp.topTwoLanguages[0].length===0
+					||temp.topTwoLanguages[1].length===0||temp.interests.length===0){
+						setShowModal(true);
+					}
+					setAvatarSrc(temp)
 				}
-	
-				setAvatarSrc(temp)
 			})
-
 		}
 		foruseeffect();
 	}, [firestore, props.user.email])
@@ -71,7 +70,7 @@ function Dashboard(props) {
 				}}>
 				<Toolbar>
 					<div className="dashboard-nav-left">
-						<Avatar src={avatarSrc.icon} />
+						<Avatar src={avatarSrc.icon } />
 						{!isMobile && avatarSrc.name}
 					</div>
 					<Link to={`/profile/${props.user.email}`}>

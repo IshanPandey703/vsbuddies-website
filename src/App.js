@@ -3,6 +3,7 @@ import Home from "./Components/Home/Home";
 import firebase from "firebase/compat/app";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import {useState, useEffect} from "react"
 
 // initialise firebase 
 firebase.initializeApp({
@@ -26,20 +27,23 @@ function App() {
 	};
 	//eslint-disable-next-line
 	const [user, loading, err] = useAuthState(auth);
-		if(user){
+	const [done,setDone] = useState(false)
+	useEffect(()=>{
+		if(user && !loading){
 			// console.log(user);
 		// true if user is logged in
 		db.collection("Users").doc(user.email).collection("Details").doc("Details")
 			.get()
-			.then((docSnapshot) => {
+			.then(async(docSnapshot) => {
 				if (docSnapshot.exists) {
+					setDone(true)
 					//user exists
 				} else {
 					// new user
-					db.collection("Users").doc(user.email).set({
+					const pr1 = await db.collection("Users").doc(user.email).set({
 						exists: true
 					})
-					db.collection("Users").doc(user.email).collection("Details").doc("Details").set({
+					const pr2 = await db.collection("Users").doc(user.email).collection("Details").doc("Details").set({
 						uid: user.email,
 						bio:"",
 						friends: [],
@@ -51,12 +55,15 @@ function App() {
 						topTwoLanguages: [],
 						college: ""
 					});
+					await Promise.all([pr1, pr2])
+					setDone(true)
 				}
 			})}
+	},[user,loading])
 			
 	return (
 		<div className="App">
-			{user ? (
+			{user&&done ? (
 				// Go to dashboard if signed in
 				<Dashboard func={signOut} user={user} />
 			) : (
