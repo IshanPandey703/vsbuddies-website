@@ -4,6 +4,7 @@ import firebase from "firebase/compat";
 import {useEffect,useState} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {Avatar,Button} from "@mui/material";
+import { GitHub } from "@mui/icons-material";
 
 export default function Profile(){
 
@@ -52,8 +53,11 @@ export default function Profile(){
                         <div className="profile-img">
                             <Avatar sx={{height: '100%', width: "100%"}} src = {details.icon} />
                         </div>
-                        <div className="Name">
+                        <div className="Name" >
                             {details.name}
+                            <a href={`https://github.com/${details.github}`} style={{textDecoration: "none", color: "inherit", verticalAlign: "bottom" }}>
+                            <GitHub sx={{height: "2ch", verticalAlign: "text-top", paddingLeft: "1ch"}} />
+                            </a>
                         </div>
                         <div className="Bio">
                             <div className="textarea">

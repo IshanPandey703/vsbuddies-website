@@ -89,7 +89,8 @@ function CurChat(props) {
                     fontFamily: "Poppins",
                     display: "flex",
                     gap: "1ch",
-                    textAlign: "center"
+                    textAlign: "center",
+                    alignItems: "center"
                 }}>
             {isMobile&&(
                 <Button onClick={props.back}> {"<"} </Button>

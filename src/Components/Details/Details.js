@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import "./Details.css";
-import { collegeList, interests} from './Data/Data';
+import { collegeList, interests, languages} from './Data/Data';
 
 export default function Details(){
     // uid of actv user
@@ -38,7 +38,8 @@ export default function Details(){
                     college: details.college,
                     bio: details.bio,
                     languages: details.topTwoLanguages,
-                    theme: details.theme
+                    theme: details.theme,
+                    github: details.github
                 }
                 setValues(temp);
                 setUserDetails(details);  
@@ -109,7 +110,8 @@ export default function Details(){
             college: values.college,
             bio: values.bio,
             topTwoLanguages: values.languages,
-            theme: values.theme
+            theme: values.theme,
+            github: values.github
         }
         console.log(newDetails);
         await db.collection("Users").doc(uid).collection("Details").doc("Details").update(newDetails);
@@ -131,6 +133,10 @@ export default function Details(){
                         <TextField label="Bio" name="bio"
                         value={values.bio} onChange={handleChange}
                         helperText="*Short bio of you in 100 chars" margin="normal"/>
+
+                        <TextField label="Github Username" name="github"
+                        value={values.github} onChange = {handleChange} 
+                        margin="normal"/>
 
                         <TextField select label="Theme" name="theme"
                             value={values.theme} onChange={handleChange}
@@ -165,12 +171,20 @@ export default function Details(){
 
                     <FormControl fullWidth>
                         <FormLabel component="legend" >Fill Two Programming Languages</FormLabel>
-                        <TextField label="Programming Language 1" name="1"
-                        value = {values.languages[0]} onChange = {handleChange}
-                        margin="normal"/>
-                        <TextField label="Programming Language 2" name="2"
-                        value = {values.languages[1]} onChange = {handleChange}
-                        margin="normal"/>
+                        <TextField select label="Programming Language 1" name="1"
+                            value={values.languages[0]} onChange = {handleChange} 
+                            margin="normal">
+                            {languages.map(language=>
+                                <MenuItem key={language} value={language}>{language}</MenuItem>
+                            )}
+                        </TextField>
+                        <TextField select label="Programming Language 2" name="2"
+                            value={values.languages[1]} onChange = {handleChange} 
+                            margin="normal">
+                            {languages.map(language=>
+                                <MenuItem key={language} value={language}>{language}</MenuItem>
+                            )}
+                        </TextField>
                     </FormControl>
                         <div className="form-btn">
                             <Button variant="contained" type="Submit">Save</Button>

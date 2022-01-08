@@ -47,6 +47,7 @@ function App() {
 						uid: user.email,
 						bio:"",
 						friends: [],
+						github: "#",
 						icon: user.photoURL,
 						name: user.displayName?user.displayName:"No-Name",
 						theme: "dark",

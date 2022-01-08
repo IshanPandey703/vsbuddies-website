@@ -5,6 +5,7 @@ import { AppBar, Toolbar ,Button} from "@mui/material";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import MatchCalculator from "../MatchCalculator/MatchCalculator";
 import "./FriendList.css";
+import EmptyCard from "../../EmptyCard/EmptyCard";
 
 
 function FriendList(props) {
@@ -67,7 +68,7 @@ function FriendList(props) {
                     bgcolor: bgcolor,
                     color: color
                     }}>
-                <Toolbar>
+                <Toolbar sx={{gap: "1ch"}}>
                 {props.back && <Button onClick={props.back}>{"<"}</Button>}
                     <PeopleAltIcon />
                     {props.option}
@@ -77,6 +78,7 @@ function FriendList(props) {
                     {(friendsDetails.length > 0) && friendsDetails.map(friend=> <UserCard 
                     key={friend} uid={friend.uid} name={friend.name} icon={friend.icon} 
                     matchPercent={friend.matchPercent} text = "Remove Friend" func = {RemoveFriend}/>)}
+                    {(friendsDetails.length ===0)&& <EmptyCard type="frlist" text={"wow such empty"}/>}
                 </div>
         </div>
     );

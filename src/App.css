@@ -2,6 +2,11 @@
 h1 {
 	font-size: 4rem;
 }
+body{
+	transition: all ease-in-out;
+	animation: opacitiytransition ease-in-out 500ms;
+
+}
 h3 {
 	font-size: 2rem;
 	font-weight: 500;
@@ -52,4 +57,8 @@ html {
 	::-webkit-scrollbar-thumb:hover {
 		background: rgb(66, 66, 66);
 	}
+}
+@keyframes opacitiytransition{
+	from{opacity: 0.5}
+	to{opacity: 1;}
 }

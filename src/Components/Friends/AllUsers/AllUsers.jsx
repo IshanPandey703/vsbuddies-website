@@ -72,9 +72,9 @@ export default function AllUsers(props) {
         <div className = "All-User-List-Container">
         <AppBar position="static" elevation={1} sx={{
                 bgcolor: bgcolor,
-                color: color
+                color: color,
                 }}>
-            <Toolbar>
+            <Toolbar sx={{gap: "1ch"}}>
                 {props.back && <Button onClick={props.back}>{"<"}</Button>}
                 <PersonAddIcon />
                 {props.option}

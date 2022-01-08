@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import firebase from "firebase/compat";
 import CurChat from "./CurChat";
 import { PersonAdd } from "@mui/icons-material";
+import EmptyCard from "../EmptyCard/EmptyCard";
 
 function Chat(props) {
 	// initalise firestore
@@ -126,7 +127,9 @@ function Chat(props) {
 					</div>
 				</div>
 				{curChat === "0" ? (
-					<div className="CurChat"></div>
+					<div style={{height: "inherit", width: "100%"}}>
+						<EmptyCard type="chat" text="Click any friend to start chatting!"/>
+					</div>
 				) : (
 					<CurChat
 						uid={props.uid}

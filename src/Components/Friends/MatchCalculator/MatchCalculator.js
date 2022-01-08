@@ -9,7 +9,10 @@ export default function MatchCalculator(person1,person2) {
     person1.interests.forEach(interest => {
         if(interestSet.has(interest)) sameInterests+=1;
     });
-    const interestMatch = ((2*sameInterests)/(person1.interests.length+person2.interests.length));
+    let interestMatch = ((2*sameInterests)/(person1.interests.length+person2.interests.length));
+    if(isNaN(interestMatch)){
+        interestMatch = 0;
+    }
 
     // get common extensions 
     const extensionSet = new Set(person2.extensions);
@@ -17,8 +20,10 @@ export default function MatchCalculator(person1,person2) {
     person1.extensions.forEach(extension => {
         if(extensionSet.has(extension)) sameExtensions+=1; 
     });
-    const extensionMatch = ((2*sameExtensions)/(person1.extensions.length+person2.extensions.length));
-    
+    let extensionMatch = ((2*sameExtensions)/(person1.extensions.length+person2.extensions.length));
+    if(isNaN(extensionMatch)){
+        extensionMatch = 0;
+    }
     // theme match
     const themeMatch = person1.theme===person2.theme?1:0;
     
@@ -34,7 +39,7 @@ export default function MatchCalculator(person1,person2) {
     const matchPercent = ((interestMatch*4 + extensionMatch*2 + (collegeMatch)+ (themeMatch)
                                 +topTwoLanguagesMatch*2)*10).toFixed(2);
     
-    return (matchPercent===NaN)?0:matchPercent;
+    return matchPercent;
 }
 
 // Weight Distribution:

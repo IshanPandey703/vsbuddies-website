@@ -5,6 +5,7 @@ import SenderCard from "./SenderCard/SenderCard";
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import "./FriendRequest.css";
 import MatchCalculator from "../MatchCalculator/MatchCalculator";
+import EmptyCard from "../../EmptyCard/EmptyCard";
 
 function FriendRequest(props) {
     const db = firebase.firestore();
@@ -78,7 +79,7 @@ function FriendRequest(props) {
                     bgcolor: bgcolor,
                     color: color
                     }}>
-                <Toolbar>
+                <Toolbar sx={{gap:"1ch"}}>
                 {props.back && <Button onClick={props.back}>{"<"}</Button>}
                     <ArrowCircleRightIcon />
                     {props.option}
@@ -90,6 +91,9 @@ function FriendRequest(props) {
                     <SenderCard key={sender.uid} uid = {sender.uid} receiverUid = {props.uid} 
                     name={sender.name} matchPercent={sender.matchPercent} icon= {sender.icon} />)
                 }
+								{(senderDetails.length === 0) &&
+								<EmptyCard type="req" text="You're all caught up" />
+								}
             </div>
         </div>
     );
