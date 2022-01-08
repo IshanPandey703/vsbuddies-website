@@ -34,7 +34,7 @@ export default function MatchCalculator(person1,person2) {
     const matchPercent = ((interestMatch*4 + extensionMatch*2 + (collegeMatch)+ (themeMatch)
                                 +topTwoLanguagesMatch*2)*10).toFixed(2);
     
-    return matchPercent
+    return (matchPercent===NaN)?0:matchPercent;
 }
 
 // Weight Distribution:
