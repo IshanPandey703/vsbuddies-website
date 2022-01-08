@@ -153,7 +153,7 @@ function Friends() {
         }
     } else {
         return(
-            <h3>
+            <h3 style={{color: "white"}}>
                 loading....
             </h3>
         )
