@@ -15,7 +15,7 @@
 + College
 + Your top two languages
 + Your extensions*
-### Your Preference in dark and light themes
++ Your Preference in dark and light themes
 ## Login to the VSCode extension to be able to chat with your friends while coding
 ![Extension](https://user-images.githubusercontent.com/44966242/148548190-284fa183-4589-4952-b433-dba112a40f3f.png)
 
