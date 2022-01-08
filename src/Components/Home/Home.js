@@ -81,7 +81,7 @@ function Home(props) {
 					<ContactCard type="LinkedIn" to="https://www.linkedin.com/in/ishan-pandey-15527717b/" target="_blank">
 						Ishan Pandey
 					</ContactCard>
-					<ContactCard type="LinkedIn" to="" >
+					<ContactCard type="LinkedIn" to="https://www.linkedin.com/in/ankur-pandey-96696522a/" >
 						Ankur Pandey
 					</ContactCard>
 					<ContactCard type="Email" to="mailto:lohit244@gmail.com">

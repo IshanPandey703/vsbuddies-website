@@ -35,3 +35,7 @@
 npm i
 npm start
 ```
+## Node backend
+Follow the instructions on [this link](https://github.com/Lohit244/vsbuddiesextapi)
+## Extension
+Look at the instruction [Here](https://github.com/Lohit244/vsbuddiesExtension)
