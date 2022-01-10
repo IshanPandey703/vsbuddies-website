@@ -11,7 +11,6 @@ import Chat from "../Chat/Chat"
 import { PersonAdd } from "@mui/icons-material";
 import firebase from "firebase/compat"
 import { Link } from "react-router-dom";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MODAL from "../Modal/Modal";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -20,6 +19,7 @@ function Dashboard() {
 	//initalise firestore
     const firestore = firebase.firestore();
 	const auth = firebase.auth();
+	// eslint-disable-next-line no-unused-vars
 	const [user,loading,err] = useAuthState(auth);
 	const [avatarSrc, setAvatarSrc] = useState({icon: "", name: ""})
 	// if user details are incomplete modal will appear
@@ -69,7 +69,7 @@ function Dashboard() {
 
 	const signOut = () => {
 		auth.signOut();
-		window.location.href = "http://vsbuddies.netlify.app";
+		window.location.href = "https://vsbuddies.netlify.app";
 	};
 
 	const isMobile = width <= 768;
@@ -86,11 +86,6 @@ function Dashboard() {
 						<Avatar src={avatarSrc.icon } />
 						{!isMobile && avatarSrc.name}
 					</div>
-					{/* <Link to={`/profile/${props.user.email}`}>
-						<Button className="dashboard-nav-btn" variant="outlined" >
-							<AccountCircleIcon color="primary"/>
-						</Button>
-					</Link> */}
 					<Link to={"/connect"}>
 						<Button className="dashboard-nav-btn" variant="outlined" >
 							<PersonAdd color="primary"/>

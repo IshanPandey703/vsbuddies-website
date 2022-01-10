@@ -2,8 +2,7 @@ import "./App.css";
 import Home from "./Components/Home/Home";
 import firebase from "firebase/compat/app";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Dashboard from "./Components/Dashboard/Dashboard";
-import {useState, useEffect} from "react"
+import {useEffect} from "react"
 
 // initialise firebase 
 firebase.initializeApp({
@@ -33,7 +32,7 @@ function App() {
 			.then(async(docSnapshot) => {
 				if (docSnapshot.exists) {
 					// setDone(true)
-					window.location.href = "http://vsbuddies.netlify.app/dashboard";
+					window.location.href = "https://vsbuddies.netlify.app/dashboard";
 					//user exists
 				} else {
 					// new user
@@ -55,7 +54,7 @@ function App() {
 					});
 					await Promise.all([pr1, pr2])
 					// setDone(true)
-					window.location.href = "http://vsbuddies.netlify.app/dashboard";
+					window.location.href = "https://vsbuddies.netlify.app/dashboard";
 				}
 			})}
 	},[user,loading])

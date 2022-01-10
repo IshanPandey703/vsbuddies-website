@@ -118,7 +118,7 @@ function Friends() {
                                 <PersonAdd color="primary"/>
                             </Button>
                         </Link>
-                        <Link to="/">
+                        <Link to="/dashboard">
                             <Button className="dashboard-nav-btn" variant="outlined" >
                                 <ChatIcon color="primary"/>
                             </Button>
