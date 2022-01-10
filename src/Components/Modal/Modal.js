@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 import "./Modal.css";
+import PersonAdd from '@mui/icons-material/PersonAdd';
 
 export default function MODAL(){
 
@@ -33,8 +34,10 @@ export default function MODAL(){
                 <Fade in={open}>
                     <Box sx={style}>
                         <div className="modal-text">Looks like you haven't filled all your details.<br/>
-                            Go to your profile  
+                            Go to your profile 
                             <AccountCircleIcon color="primary" fontSize="large" />  
+                            from the 
+                            <PersonAdd color="primary" fontSize="large" /> section
                             and edit your details.
                         </div>
                     </Box>
