@@ -14,10 +14,13 @@ import { Link } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MODAL from "../Modal/Modal";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useAuthState } from "react-firebase-hooks/auth";
 
-function Dashboard(props) {
+function Dashboard() {
 	//initalise firestore
     const firestore = firebase.firestore();
+	const auth = firebase.auth();
+	const [user,loading,err] = useAuthState(auth);
 	const [avatarSrc, setAvatarSrc] = useState({icon: "", name: ""})
 	// if user details are incomplete modal will appear
 	const [showModal,setShowModal] = useState(false);
@@ -25,22 +28,24 @@ function Dashboard(props) {
 	useEffect(()=>{
 		const foruseeffect = async()=>{
 			//get user icon from firestore db
-			const avatarSrcRef = await firestore.collection("Users").doc(props.user.email).collection("Details").doc("Details");
-			avatarSrcRef.get().then(async(doc)=>{
-				const temp = await doc.data()
-				// Display Modal if user details incomplete
-				if(temp){
-					if(temp.name==="No-Name"||temp.bio.length===0
-					||temp.college.length===0||temp.topTwoLanguages[0].length===0
-					||temp.topTwoLanguages[1].length===0||temp.interests.length===0){
-						setShowModal(true);
+			if(user){
+				const avatarSrcRef = await firestore.collection("Users").doc(user.email).collection("Details").doc("Details");
+				avatarSrcRef.get().then(async(doc)=>{
+					const temp = await doc.data()
+					// Display Modal if user details incomplete
+					if(temp){
+						if(temp.name==="No-Name"||temp.bio.length===0
+						||temp.college.length===0||temp.topTwoLanguages[0].length===0
+						||temp.topTwoLanguages[1].length===0||temp.interests.length===0){
+							setShowModal(true);
+						}
+						setAvatarSrc(temp)
 					}
-					setAvatarSrc(temp)
-				}
-			})
+				})
+			}
 		}
 		foruseeffect();
-	}, [firestore, props.user.email])
+	}, [firestore, user])
 
 
 	let bgcolor = "#fff"
@@ -61,9 +66,17 @@ function Dashboard(props) {
 			window.removeEventListener("resize", handleWindowSizeChange);
 		};
 	}, []);
+
+	const signOut = () => {
+		auth.signOut();
+		window.location.href = "http://localhost:3000";
+	};
+
 	const isMobile = width <= 768;
 	return (
-		<div className="Dashboard">
+		<>
+		{ (user) && 
+			<div className="Dashboard">
 			<AppBar position="static" className="dashboard-navbar" elevation={3} sx={{
 				bgcolor: bgcolor,
 				color: color
@@ -73,11 +86,11 @@ function Dashboard(props) {
 						<Avatar src={avatarSrc.icon } />
 						{!isMobile && avatarSrc.name}
 					</div>
-					<Link to={`/profile/${props.user.email}`}>
+					{/* <Link to={`/profile/${props.user.email}`}>
 						<Button className="dashboard-nav-btn" variant="outlined" >
 							<AccountCircleIcon color="primary"/>
 						</Button>
-					</Link>
+					</Link> */}
 					<Link to={"/connect"}>
 						<Button className="dashboard-nav-btn" variant="outlined" >
 							<PersonAdd color="primary"/>
@@ -88,15 +101,17 @@ function Dashboard(props) {
 					}}>
 						<ChatIcon color="primary"/>
 					</Button>
-					<Button className="dashboard-nav-btn" onClick={props.func} variant="outlined">
+					<Button className="dashboard-nav-btn" onClick={signOut} variant="outlined">
 						<LogoutIcon/>
 					</Button>
 				</Toolbar>
 			</AppBar>
 			{showModal && <MODAL />}
-		{/* On currActivity 0 -> renders Chat  */}
-		{curActivity===0&&<Chat uid={props.user.email}/>}
-		</div>
+			{/* On currActivity 0 -> renders Chat  */}
+			{curActivity===0&&<Chat uid={user.email}/>}
+			</div>
+		}
+		</>
 	);
 }
 

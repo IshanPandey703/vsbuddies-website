@@ -7,7 +7,6 @@ import FriendRequest from "./FriendRequest/FriendReqest";
 import firebase from "firebase/compat";
 import {AppBar,Avatar,Toolbar,Button} from "@mui/material";
 import { Link } from "react-router-dom";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { PersonAdd } from "@mui/icons-material";
 import ChatIcon from '@mui/icons-material/Chat';
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -73,17 +72,12 @@ function Friends() {
                             <div className="dashboard-nav-left">
                                 <Avatar src={avatarSrc.icon} />
                             </div>
-                            <Link to={`/profile/${user.email}`}>
-                                    <Button className="dashboard-nav-btn" variant="outlined" >
-                                        <AccountCircleIcon color="primary"/>
-                                    </Button>
-                            </Link>
                             <Link to={"/connect"}>
                                 <Button className="dashboard-nav-btn" variant="outlined" >
                                     <PersonAdd color="primary"/>
                                 </Button>
                             </Link>
-                            <Link to="/">
+                            <Link to="/dashboard">
                                 <Button className="dashboard-nav-btn" variant="outlined" >
                                     <ChatIcon color="primary"/>
                                 </Button>
@@ -94,7 +88,7 @@ function Friends() {
                         </Toolbar>
                     </AppBar>
                     <div className="Friends">
-                        {curOption === -1 && <SideBar  onClick ={handleClick} />}
+                        {curOption === -1 && <SideBar user = {user.email} onClick ={handleClick} />}
                         {curOption === 0 && <AllUsers back={()=>{
                             setCurOption(-1)
                         }}uid = {user.email} option="Connect with other Devs" />}
@@ -119,11 +113,6 @@ function Friends() {
                             <Avatar src={avatarSrc.icon} />
                             {avatarSrc.name}
                         </div>
-                        <Link to={`/profile/${user.email}`}>
-                                <Button className="dashboard-nav-btn" variant="outlined" >
-                                    <AccountCircleIcon color="primary"/>
-                                </Button>
-                        </Link>
                         <Link to={"/connect"}>
                             <Button className="dashboard-nav-btn" variant="outlined" >
                                 <PersonAdd color="primary"/>
@@ -140,7 +129,7 @@ function Friends() {
                     </Toolbar>
                 </AppBar>
                 <div className="Friends">
-                    <SideBar onClick ={handleClick} />
+                    <SideBar user={user.email} onClick ={handleClick} />
                     {(curOption === 0||curOption === -1) && <AllUsers uid = {user.email} option="Connect with other Devs" />}
                     {curOption === 1 && <FriendRequest uid ={user.email} option="Pending Friend Requests" />}
                     {curOption === 2 && <FriendList uid = {user.email} option="Friends" />}
