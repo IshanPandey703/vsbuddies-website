@@ -18,7 +18,7 @@ export default function AllUsers(props) {
     useEffect(()=>{
         const foruseeffect = async()=>{
             let details = [];
-            const reqRef = await db.collection("Users").doc(props.uid).collection("Pending Requests").where("sent","==",props.uid).get()
+            const reqRef = await db.collection("Users").doc(props.uid).collection("Pending Requests").get()
             const reqRefDocIds = reqRef.docs.map(doc=>doc.id);
             // fetching uid's of actv user's friends
             const actvUserRef = await db.collection("Users").doc(props.uid).collection("Details").doc("Details").get()

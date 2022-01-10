@@ -38,7 +38,7 @@ export default function UserCard(props) {
                     props.func(props.uid);
                     setBtnDisabled(true);
                 }} sx={{color:darkmode?"white":"black", backgroundColor:darkmode?"#181a1b":"white", justifySelf:"flex-end", fontSize: "0.8rem"}} 
-                variant ="outlined" disabled = {btnDisabled} >{btnDisabled?props.text==="Add Friend"?"Request Sent":"Removed" :props.text}</Button>
+                variant ="outlined" disabled = {btnDisabled} >{btnDisabled?props.text==="Add Friend"?"Request Pending":"Removed" :props.text}</Button>
             </div>
         </div> 
     );
