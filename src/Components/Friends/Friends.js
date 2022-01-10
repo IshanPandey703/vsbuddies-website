@@ -136,7 +136,7 @@ function Friends() {
                 </>
             )
         } else {
-            window.location.replace("https://vsbuddies.netlify.app/");
+            window.location.replace("http://localhost:3000/");
             return
         }
     } else {
