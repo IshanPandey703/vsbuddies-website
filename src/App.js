@@ -24,10 +24,6 @@ function App() {
 	}; 
 	//eslint-disable-next-line
 	const [user, loading, err] = useAuthState(auth);
-	// if(user){
-	// 	window.location.href = "http://localhost:3000/dashboard";
-	// }
-	// const [done,setDone] = useState(false)
 	useEffect(()=>{
 		if(user && !loading){
 			// console.log(user);
@@ -37,7 +33,7 @@ function App() {
 			.then(async(docSnapshot) => {
 				if (docSnapshot.exists) {
 					// setDone(true)
-					window.location.href = "http://localhost:3000/dashboard";
+					window.location.href = "http://vsbuddies.netlify.app/dashboard";
 					//user exists
 				} else {
 					// new user
@@ -59,19 +55,13 @@ function App() {
 					});
 					await Promise.all([pr1, pr2])
 					// setDone(true)
-					window.location.href = "http://localhost:3000/dashboard";
+					window.location.href = "http://vsbuddies.netlify.app/dashboard";
 				}
 			})}
 	},[user,loading])
 	
 	return (
 			<div className="App">
-				{/* {user&&done ? (
-					// Go to dashboard if signed in
-					<Dashboard func={signOut} user={user} />
-				) : (
-					// If not signed in stay on home
-				)} */}
 				<Home func={signIn} />
 			</div>
 		);
