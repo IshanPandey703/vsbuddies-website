@@ -21,13 +21,13 @@ function App() {
 	const signIn = () => {
 		const provider = new firebase.auth.GithubAuthProvider();
 		auth.signInWithPopup(provider);
-	};
-	const signOut = () => {
-		auth.signOut();
-	};
+	}; 
 	//eslint-disable-next-line
 	const [user, loading, err] = useAuthState(auth);
-	const [done,setDone] = useState(false)
+	// if(user){
+	// 	window.location.href = "http://localhost:3000/dashboard";
+	// }
+	// const [done,setDone] = useState(false)
 	useEffect(()=>{
 		if(user && !loading){
 			// console.log(user);
@@ -36,7 +36,8 @@ function App() {
 			.get()
 			.then(async(docSnapshot) => {
 				if (docSnapshot.exists) {
-					setDone(true)
+					// setDone(true)
+					window.location.href = "http://localhost:3000/dashboard";
 					//user exists
 				} else {
 					// new user
@@ -57,22 +58,23 @@ function App() {
 						college: ""
 					});
 					await Promise.all([pr1, pr2])
-					setDone(true)
+					// setDone(true)
+					window.location.href = "http://localhost:3000/dashboard";
 				}
 			})}
 	},[user,loading])
-			
+	
 	return (
-		<div className="App">
-			{user&&done ? (
-				// Go to dashboard if signed in
-				<Dashboard func={signOut} user={user} />
-			) : (
-				// If not signed in stay on home
+			<div className="App">
+				{/* {user&&done ? (
+					// Go to dashboard if signed in
+					<Dashboard func={signOut} user={user} />
+				) : (
+					// If not signed in stay on home
+				)} */}
 				<Home func={signIn} />
-			)}
-		</div>
-	);
+			</div>
+		);
 }
 
 export default App;

@@ -14,7 +14,7 @@
     margin-left: 5px;
     margin-right: 5px;
 }
-.option-card>button{
+.option-card button{
     border-bottom: 0.5px solid #363c3d;
     border-radius: 0%;
     width: 100%;
@@ -23,6 +23,11 @@
     overflow-wrap: break-word;
     font-size: 1rem;
 }
+
+.option-card>a{
+    width: 100%;
+}
+
 .optionIcon{
     margin-right: 15px;
 }

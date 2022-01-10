@@ -50,6 +50,9 @@ export default function Profile(){
             {(!details)?<h1 style={{color: "white"}}>No User</h1>:(Object.keys(details).length!==0) && (
                 <div className="Profile">
                     <div className="Container-1">
+                        <Link to="/connect">
+                            <Button style={{marginBottom:"2px"}}>{"<"}</Button>
+                        </Link>
                         <div className="profile-img">
                             <Avatar sx={{height: '100%', width: "100%"}} src = {details.icon} />
                         </div>

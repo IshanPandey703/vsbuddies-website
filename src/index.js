@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
+import Dashboard from "./Components/Dashboard/Dashboard";
 import Profile from "./Components/Profile/Profile";
 import Details from "./Components/Details/Details";
 import Friends from './Components/Friends/Friends';
@@ -13,6 +14,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile/:uid" element={<Profile />} />
         <Route path="/details/:uid" element={<Details />} />
         <Route path="/connect" element={<Friends />} />

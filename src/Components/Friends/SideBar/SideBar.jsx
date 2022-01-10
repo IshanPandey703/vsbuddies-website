@@ -4,6 +4,8 @@ import { Button } from '@mui/material'
     import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from "react-router-dom";
 
 export default function SideBar(props) {
     return (
@@ -32,6 +34,14 @@ export default function SideBar(props) {
                         <PeopleAltIcon className="optionIcon" />
                         Friends List
                     </Button>
+                </div>
+                <div className ="option-card">
+                    <Link to={`/profile/${props.user}`}>
+                        <Button>
+                            <AccountCircleIcon className="optionIcon" />
+                            Your Profile
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>
