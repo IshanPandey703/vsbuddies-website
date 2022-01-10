@@ -22,12 +22,10 @@ function FriendList(props) {
         
         // Fetching details of actv user's friends 
         const friendUids = actvuserDetails.friends;
-        // console.log(friendUids);
         const friendsData = [];
         await Promise.all(friendUids.map(async(friendUid)=>{
             const docSnapshot = await db.collection("Users").doc(friendUid).collection("Details").doc("Details").get();
             let friendDetails = docSnapshot.data();
-            console.log(friendDetails);
             friendDetails = {
                 ...friendDetails,
                 matchPercent: MatchCalculator(actvuserDetails,friendDetails)
@@ -76,7 +74,7 @@ function FriendList(props) {
                 </AppBar>
                 <div className="Friends-card-container">
                     {(friendsDetails.length > 0) && friendsDetails.map(friend=> <UserCard 
-                    key={friend} uid={friend.uid} name={friend.name} icon={friend.icon} 
+                    key={friend} uid={friend.uid} disble={[]} name={friend.name} icon={friend.icon} 
                     matchPercent={friend.matchPercent} text = "Remove Friend" func = {RemoveFriend}/>)}
                     {(friendsDetails.length ===0)&& <EmptyCard type="frlist" text={"wow such empty"}/>}
                 </div>

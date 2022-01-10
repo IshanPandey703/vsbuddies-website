@@ -9,8 +9,7 @@ export default function UserCard(props) {
     // buttonText changes according to type of card 
     // if Add Friend=> buttonText changes to Request Sent
     // if Remove Friend=> Removed
-    let [btnText,setBtnText] = useState(props.text);
-    let[btnDisabled,setBtnDisabled] = useState(false); 
+    let[btnDisabled,setBtnDisabled] = useState(props.disble.includes(props.uid)); 
     let darkmode = false
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         darkmode=true;
@@ -37,16 +36,9 @@ export default function UserCard(props) {
                 </Link>
                 <Button onClick={()=>{ 
                     props.func(props.uid);
-                    let txt = "";
-                    if(props.text==="Add Friend"){
-                        txt = "Request Sent"
-                    }else if(props.text==="Remove Friend"){
-                        txt = "Removed";
-                    }
-                    setBtnText(txt);
                     setBtnDisabled(true);
                 }} sx={{color:darkmode?"white":"black", backgroundColor:darkmode?"#181a1b":"white", justifySelf:"flex-end", fontSize: "0.8rem"}} 
-                variant ="outlined" disabled = {btnDisabled} >{btnText}</Button>
+                variant ="outlined" disabled = {btnDisabled} >{btnDisabled?props.text==="Add Friend"?"Request Sent":"Removed" :props.text}</Button>
             </div>
         </div> 
     );

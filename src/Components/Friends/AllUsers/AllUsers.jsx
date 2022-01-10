@@ -13,11 +13,13 @@ export default function AllUsers(props) {
 
     const [everyUserDetails,setEveryUserDetails] = useState([]);
     const [actvUserDetails,setActvUserDetails] = useState([]);
+    const [usersReqSent,setUsersReqSent] = useState([])
 
     useEffect(()=>{
         const foruseeffect = async()=>{
             let details = [];
-            
+            const reqRef = await db.collection("Users").doc(props.uid).collection("Pending Requests").where("sent","==",props.uid).get()
+            const reqRefDocIds = reqRef.docs.map(doc=>doc.id);
             // fetching uid's of actv user's friends
             const actvUserRef = await db.collection("Users").doc(props.uid).collection("Details").doc("Details").get()
             const actvUserData = actvUserRef.data();
@@ -37,6 +39,7 @@ export default function AllUsers(props) {
                 details = [...details, temp];
             }))
             
+            setUsersReqSent(reqRefDocIds)
             setActvUserDetails(actvUserData)
             
             // Sorting details acc. to matchPercent with Actv user in Dec. order
@@ -64,8 +67,11 @@ export default function AllUsers(props) {
 
     function AddFriend(uid) {
         db.collection("Users").doc(uid).collection("Pending Requests").doc(props.uid).set({
-            receivedTime: firebase.firestore.FieldValue.serverTimestamp()
+            sent: props.uid
         });
+        db.collection("Users").doc(props.uid).collection("Pending Requests").doc(uid).set({
+            sent: props.uid
+        })
     }
 
     return(
@@ -82,8 +88,8 @@ export default function AllUsers(props) {
         </AppBar>
             <div className = "UserCard-Container">
             {(everyUserDetails.length!==0) && everyUserDetails.map((user)=>
-                (!actvUserDetails.friends.includes(user.uid)&&user.uid!==props.uid) && 
-                <UserCard key={user.uid} uid={user.uid} name = {user.name} 
+                (!actvUserDetails.friends.includes(user.uid)&&(user.uid!==props.uid)) && 
+                <UserCard key={user.uid} uid={user.uid} name = {user.name} disble={usersReqSent}
                 icon = {user.icon} matchPercent={user.matchPercent} text="Add Friend" func = {AddFriend} />
             )
             }

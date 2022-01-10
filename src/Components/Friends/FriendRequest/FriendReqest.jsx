@@ -27,6 +27,7 @@ function FriendRequest(props) {
 				.collection("Users")
 				.doc(props.uid)
 				.collection("Pending Requests")
+				.where("sent", "!=",props.uid)
 				.get();
 			// Uids of sender
 			const senderUids = docSnapshot.docs;

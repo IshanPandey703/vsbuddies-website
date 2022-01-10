@@ -57,11 +57,9 @@ export default function Details(){
                 ...values
             }
             temp.languages[index] = value;
-            console.log(temp);
             setValues(temp);
         } 
         else if(target === "bio"){
-            console.log(value.length)
             if(value.length>100){
                 return;
             }
@@ -69,14 +67,12 @@ export default function Details(){
                 ...values,
                 [target] : value    
             }
-            console.log(temp);
             setValues(temp);
         }else{
             const temp = {
                 ...values,
                 [target] : value    
             }
-            console.log(temp);
             setValues(temp);
         }
     }
@@ -84,7 +80,6 @@ export default function Details(){
     function handleChecked(e){
         const isChecked = e.target.checked;
         const value = e.target.name;
-        console.log(isChecked,value);
         if(!isChecked){
             setUserDetails( prevDetails => {
                 const temp = prevDetails.interests.filter(interest => interest!==value);
@@ -102,8 +97,6 @@ export default function Details(){
 
     async function handleSubmit(e){
         e.preventDefault()
-        console.log(values);
-        console.log(userDetails.interests);
         const newDetails={
             ...userDetails,
             name: values.name,
@@ -113,7 +106,6 @@ export default function Details(){
             theme: values.theme,
             github: values.github
         }
-        console.log(newDetails);
         await db.collection("Users").doc(uid).collection("Details").doc("Details").update(newDetails);
         window.location.replace(`https://vsbuddies.netlify.app/profile/${uid}`);
     }

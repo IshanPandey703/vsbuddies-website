@@ -29,6 +29,8 @@ function SenderCard(props) {
         // delete the doc with key as Uid of sender in receiver's Pending Req Collection
         await db.collection("Users").doc(receiver).collection("Pending Requests")
             .doc(sender).delete();
+        
+        await db.collection("Users").doc(sender).collection("Pending Requests").doc(sender).delete();
         setDisabled(true)
     }
 
@@ -39,6 +41,7 @@ function SenderCard(props) {
 
         // delete the doc with key as Uid of sender in receiver's Pending Req Collection
         await receiverRef.delete();
+        await db.collection("Users").doc(sender).collection("Pending Requests").doc(sender).delete();
         setDisabled(true)
     }
     let darkmode = false

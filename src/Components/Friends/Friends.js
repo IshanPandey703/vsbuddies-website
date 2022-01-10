@@ -45,7 +45,6 @@ function Friends() {
     }
 
     function handleClick(num) {
-        console.log(num);
         setCurOption(num);
     }
     const [width, setWidth] = useState(window.innerWidth);

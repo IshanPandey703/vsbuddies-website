@@ -38,7 +38,6 @@ export default function Profile(){
                     const userDoc = await db.collection("Users").doc(user.email).collection("Details").doc("Details").get();
                     const temp = userDoc.data().interests;
                     setActvUserInterests(temp);
-                    // console.log(actvUserInterests);
                 }
             }
         }

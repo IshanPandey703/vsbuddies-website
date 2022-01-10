@@ -25,7 +25,6 @@ function App() {
 	const [user, loading, err] = useAuthState(auth);
 	useEffect(()=>{
 		if(user && !loading){
-			// console.log(user);
 		// true if user is logged in
 		db.collection("Users").doc(user.email).collection("Details").doc("Details")
 			.get()
