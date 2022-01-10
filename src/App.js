@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./Components/Home/Home";
-import firebase from "firebase/compat/app";
+import firebase from "firebase/compat";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {useEffect} from "react"
 
