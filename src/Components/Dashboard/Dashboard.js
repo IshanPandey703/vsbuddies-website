@@ -73,7 +73,7 @@ function Dashboard() {
 
 	const signOut = () => {
 		auth.signOut();
-		window.location.href = "http://localhost:3000";
+		window.location.href = "https://vsbuddies.netlify.app";
 	};
 
 	const isMobile = width <= 768;
