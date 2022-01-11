@@ -1,9 +1,4 @@
-import {
-	AppBar,
-	Avatar,
-	Button,
-	Toolbar,
-} from "@mui/material";
+import { AppBar,Avatar,Button,Toolbar} from "@mui/material";
 import "./Dashboard.css";
 import ChatIcon from '@mui/icons-material/Chat';
 import { useEffect, useState } from "react";
@@ -14,6 +9,7 @@ import { Link } from "react-router-dom";
 import MODAL from "../Modal/Modal";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuthState } from "react-firebase-hooks/auth";
+import {io} from "socket.io-client";
 
 function Dashboard() {
 	//initalise firestore
@@ -29,6 +25,14 @@ function Dashboard() {
 		const foruseeffect = async()=>{
 			//get user icon from firestore db
 			if(user){
+				
+				// connect to socket-server
+				const socket = io("https://socketservervsb.herokuapp.com/");
+				socket.on("connect",()=>{
+					// on connecting send actv user's to server 
+					socket.emit("message",user.email);
+				});
+
 				const avatarSrcRef = await firestore.collection("Users").doc(user.email).collection("Details").doc("Details");
 				avatarSrcRef.get().then(async(doc)=>{
 					const temp = await doc.data()

@@ -18,6 +18,25 @@
     overflow-wrap: break-word;
     font-size: 1.25rem;
 }
+.avatar-container{
+    display: flex;
+    position: relative;
+}
+
+.avatar-container .MuiSvgIcon-root{
+    position: absolute;
+    top:24px;
+    left:26px;
+}
+
+.avatar-container .online{
+    color:#2e7d32 !important;
+}
+
+.avatar-container .offline{
+    color: rgb(97 100 102 / 99%) !important;
+}
+
 .FriendCardAvatar{
     margin-right: 1ch;
 }

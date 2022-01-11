@@ -42,7 +42,7 @@ function App() {
 						uid: user.email,
 						bio:"",
 						friends: [],
-						github: "#",
+						github: "",
 						icon: user.photoURL,
 						name: user.displayName?user.displayName:"No-Name",
 						theme: "dark",
@@ -51,7 +51,11 @@ function App() {
 						topTwoLanguages: [],
 						college: ""
 					});
-					await Promise.all([pr1, pr2])
+					const pr3 = await db.collection("Users").doc(user.email).collection("Status").doc("Status")
+					.set({
+						status: false
+					});
+					await Promise.all([pr1, pr2, pr3]);
 					// setDone(true)
 					window.location.href = "https://vsbuddies.netlify.app/dashboard";
 				}
