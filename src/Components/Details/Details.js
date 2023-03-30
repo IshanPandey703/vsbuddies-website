@@ -107,7 +107,7 @@ export default function Details(){
             github: values.github
         }
         await db.collection("Users").doc(uid).collection("Details").doc("Details").update(newDetails);
-        window.location.replace(`https://vsbuddies.netlify.app/profile/${uid}`);
+        window.location.replace(`${process.env.REACT_APP_DASHBOARD_URL}/profile/${uid}`);
     }
 
     return (user && user.email===uid ? 

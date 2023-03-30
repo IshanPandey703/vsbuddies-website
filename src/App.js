@@ -31,7 +31,7 @@ function App() {
 			.then(async(docSnapshot) => {
 				if (docSnapshot.exists) {
 					// setDone(true)
-					window.location.href = "https://vsbuddies.netlify.app/dashboard";
+					window.location.href = process.env.REACT_APP_DASHBOARD_URL;
 					//user exists
 				} else {
 					// new user
@@ -57,7 +57,7 @@ function App() {
 					});
 					await Promise.all([pr1, pr2, pr3]);
 					// setDone(true)
-					window.location.href = "https://vsbuddies.netlify.app/dashboard";
+					window.location.href = process.env.REACT_APP_DASHBOARD_URL;
 				}
 			})}
 	},[user,loading])

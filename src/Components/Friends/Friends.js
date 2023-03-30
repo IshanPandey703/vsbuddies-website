@@ -136,7 +136,7 @@ function Friends() {
                 </>
             )
         } else {
-            window.location.replace("https://vsbuddies.netlify.app/");
+            window.location.replace(process.env.REACT_APP_DASHBOARD_URL);
             return
         }
     } else {

@@ -25,9 +25,8 @@ function Dashboard() {
 		const foruseeffect = async()=>{
 			//get user icon from firestore db
 			if(user){
-				
 				// connect to socket-server
-				const socket = io("https://socketservervsb.herokuapp.com/");
+				const socket = io(process.env.REACT_APP_SOCKET_SERVER);
 				socket.on("connect",()=>{
 					// on connecting send actv user's to server 
 					socket.emit("message",user.email);
@@ -73,7 +72,7 @@ function Dashboard() {
 
 	const signOut = () => {
 		auth.signOut();
-		window.location.href = "https://vsbuddies.netlify.app";
+		window.location.href = process.env.REACT_APP_DASHBOARD_URL;
 	};
 
 	const isMobile = width <= 768;
